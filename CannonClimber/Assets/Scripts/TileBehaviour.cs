@@ -5,13 +5,12 @@ using UnityEngine;
 public class TileBehaviour : MonoBehaviour
 {
     public float movementSpd = 0.8f;
-    // Start is called before the first frame update
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         tileMove();
