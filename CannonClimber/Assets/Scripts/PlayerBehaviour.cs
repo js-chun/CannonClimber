@@ -81,4 +81,10 @@ public class PlayerBehaviour : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         anim.SetBool("isMoving", false);
     }
+
+    public void isGrounded(bool grounded)
+    {
+        if (grounded) { anim.SetBool("isGrounded", true); }
+        else { anim.SetBool("isGrounded", false); }
+    }
 }
