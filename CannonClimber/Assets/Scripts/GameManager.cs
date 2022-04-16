@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public bool isMenuState;
-    public int menuStage;
+    public int stageLevel;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //isMenuState = true;
-        menuStage = 1;
+        stageLevel = 0;
     }
 
     void Update()

@@ -16,7 +16,7 @@ public class TileBehaviour : MonoBehaviour
     void Update()
     {
         tileMove();
-        if (gm.menuStage == 2)
+        if (gm.stageLevel == 1)
         {
             StartCoroutine(comeToHalt());
         }

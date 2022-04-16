@@ -67,7 +67,7 @@ public class CannonBehaviour : MonoBehaviour
 
     private void menuPlay()
     {
-        if(gm.menuStage == 2)
+        if(gm.stageLevel == 1)
         {
             StartCoroutine(switchGravity());
         }

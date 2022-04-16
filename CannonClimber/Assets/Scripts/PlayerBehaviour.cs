@@ -5,21 +5,29 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     private GameManager gm;
+    private Rigidbody2D rigibody;
     private Animator anim;
     public float moveSpeed = 4f;
+    public float jumpPower = 3f;
+
+    private int jumpCount;
+    private int moveStop;
+    private bool checkGround;
 
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
         anim = GetComponent<Animator>();
+        rigibody = GetComponent<Rigidbody2D>();
+        moveStop = 1;
     }
 
     void Update()
     {
         if (!gm.isMenuState)
         {
-            canMove();
-            canJump();
+            Move();
+            Jump();
         }
         else
         {
@@ -27,10 +35,10 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    private void canMove()
+    private void Move()
     {
-        float moveFt = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        if(moveFt != 0)
+        float moveFt = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime * moveStop;
+        if (moveFt != 0)
         {
             anim.SetBool("isMoving", true);
             if (moveFt > 0)
@@ -49,9 +57,40 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    private void canJump()
+    private void Jump()
     {
-
+        if (checkGround)
+        {
+            if (jumpCount == 0)
+            {
+                if (Input.GetKeyDown("space"))
+                {
+                    if (rigibody.velocity.y == 0)
+                    {
+                        moveStop = 0;
+                        anim.SetInteger("JumpState", 1);
+                    }
+                }
+                if (Input.GetKeyUp("space"))
+                {
+                    moveStop = 1;
+                    jumpCount++;
+                    Vector2 jumpFt = new Vector2(0, jumpPower);
+                    rigibody.velocity += jumpFt;
+                }
+            }
+        }
+        if (!checkGround)
+        {
+            if(rigibody.velocity.y > 0)
+            {
+                anim.SetInteger("JumpState", 2);
+            }
+            else if (rigibody.velocity.y < 0)
+            {
+                anim.SetInteger("JumpState", 3);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -60,17 +99,21 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Vector2 pushback = (this.transform.position - collision.transform.position) * collision.gameObject.GetComponent<CannonBallBehaviour>().getBallPower();
             Debug.Log(pushback);
-            this.GetComponent<Rigidbody2D>().velocity += pushback;
+            rigibody.velocity += pushback;
+        }
+        else if (collision.gameObject.tag == "Boundary")
+        {
+            //need to make it so player can't move in direction of Boundary
         }
     }
 
     private void menuLoad()
     {
-        if (gm.menuStage == 1)
+        if (gm.stageLevel == 0)
         {
             anim.SetBool("isMoving", true);
         }
-        else if (gm.menuStage == 2)
+        else if (gm.stageLevel == 1)
         {
             StartCoroutine(haltChar());
         }
@@ -84,7 +127,19 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void isGrounded(bool grounded)
     {
-        if (grounded) { anim.SetBool("isGrounded", true); }
-        else { anim.SetBool("isGrounded", false); }
+        if (grounded) 
+        {
+            if (!checkGround)
+            {
+                anim.SetInteger("JumpState",4);
+            }
+            anim.SetBool("isGrounded", true);
+            checkGround = true;
+            jumpCount = 0;
+        }
+        else { 
+            anim.SetBool("isGrounded", false);
+            checkGround = false;
+        }
     }
 }
