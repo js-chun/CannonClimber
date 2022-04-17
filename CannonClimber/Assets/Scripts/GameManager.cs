@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public bool isMenuState;
-    public int stageLevel;
+    public int stageLevel=0;
 
     private void Awake()
     {
@@ -23,8 +22,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //isMenuState = true;
-        stageLevel = 0;
     }
 
     void Update()

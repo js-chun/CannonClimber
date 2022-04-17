@@ -8,8 +8,10 @@ public class PlayerBehaviour : MonoBehaviour
     private Rigidbody2D rigibody;
     private Animator anim;
     public float moveSpeed = 4f;
-    public float jumpPower = 3f;
-
+    public float jumpPower = 3.5f;
+    public float jumpStart = 0.7f;
+    public float jumpBuildRate = 0.4f;
+    private float jumpPerc;
     private int jumpCount;
     private int moveStop;
     private bool checkGround;
@@ -24,7 +26,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (!gm.isMenuState)
+        if (gm.stageLevel>2)
         {
             Move();
             Jump();
@@ -37,17 +39,19 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Move()
     {
-        float moveFt = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime * moveStop;
+        float inAir = 1f;
+        if (!checkGround) { inAir = 0.7f; }
+        float moveFt = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime * moveStop * inAir;
         if (moveFt != 0)
         {
             anim.SetBool("isMoving", true);
             if (moveFt > 0)
             {
-                this.transform.localScale = new Vector3(2, 2, 1);
+                this.transform.localScale = new Vector3(1.5f, 1.5f, 1);
             }
             else if (moveFt < 0)
             {
-                this.transform.localScale = new Vector3(-2, 2, 1);
+                this.transform.localScale = new Vector3(-1.5f, 1.5f, 1);
             }
             this.transform.Translate(moveFt, 0, 0);
         }
@@ -63,19 +67,22 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (jumpCount == 0)
             {
-                if (Input.GetKeyDown("space"))
+                if (Input.GetKeyDown("space")) { jumpPerc = jumpStart; }
+                if (Input.GetKey("space"))
                 {
                     if (rigibody.velocity.y == 0)
                     {
+                        jumpPerc += Time.deltaTime * jumpBuildRate;
+                        if (jumpPerc > 1) { jumpPerc = 1; }
                         moveStop = 0;
                         anim.SetInteger("JumpState", 1);
-                    }
                 }
-                if (Input.GetKeyUp("space"))
+                }
+                else if (Input.GetKeyUp("space"))
                 {
                     moveStop = 1;
                     jumpCount++;
-                    Vector2 jumpFt = new Vector2(0, jumpPower);
+                    Vector2 jumpFt = new Vector2(0, jumpPower * jumpPerc);
                     rigibody.velocity += jumpFt;
                 }
             }
