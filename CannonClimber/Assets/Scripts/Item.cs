@@ -7,19 +7,25 @@ public class Item : MonoBehaviour
     private float moveLimit = 0.2f;
     private float itemSpeed = 0.5f;
     private Transform tf;
-    public float minMove;
-    public float maxMove;
+    private float minMove;
+    private float maxMove;
     private bool goingUp;
 
+    private GameManager gm;
+    public GameObject linked;
+
+    public int iType; //0 = map,
     public int scoreBonus;
     public int lifeBonus;
 
     void Start()
     {
+        gm= FindObjectOfType<GameManager>();
         tf = this.transform;
+
         minMove = tf.localPosition.y - moveLimit;
         maxMove = tf.localPosition.y + moveLimit;
-
+       
         goingUp = true;
     }
 
@@ -52,4 +58,27 @@ public class Item : MonoBehaviour
     }
 
     //need to add a collider
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (iType == 0) { mapConsumed(); }
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void mapConsumed()
+    {
+        gm.stageLevel++;
+        if (gm.stageLevel  == 4)
+        {
+            if(linked != null) 
+            { 
+                linked.SetActive(true);
+                linked.GetComponent<LevelBehaviour>().setLvl(true);
+            }
+        }
+    }
+
 }

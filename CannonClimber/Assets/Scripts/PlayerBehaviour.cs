@@ -7,10 +7,11 @@ public class PlayerBehaviour : MonoBehaviour
     private GameManager gm;
     private Rigidbody2D rigibody;
     private Animator anim;
+    private JumpUI jumpSlider;
     public float moveSpeed = 4f;
     public float jumpPower = 3.5f;
     public float jumpStart = 0.7f;
-    public float jumpBuildRate = 0.4f;
+    public float jumpBuildRate = 0.7f;
     private float jumpPerc;
     private int jumpCount;
     private int moveStop;
@@ -21,6 +22,7 @@ public class PlayerBehaviour : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         anim = GetComponent<Animator>();
         rigibody = GetComponent<Rigidbody2D>();
+        jumpSlider = FindObjectOfType<JumpUI>();
         moveStop = 1;
     }
 
@@ -63,6 +65,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Jump()
     {
+        //need to update jump behaviour
         if (checkGround)
         {
             if (jumpCount == 0)
@@ -72,14 +75,17 @@ public class PlayerBehaviour : MonoBehaviour
                 {
                     if (rigibody.velocity.y == 0)
                     {
+                        jumpSlider.setSeeThru(true);
                         jumpPerc += Time.deltaTime * jumpBuildRate;
                         if (jumpPerc > 1) { jumpPerc = 1; }
+                        jumpSlider.flat = jumpPerc;
                         moveStop = 0;
                         anim.SetInteger("JumpState", 1);
                 }
                 }
                 else if (Input.GetKeyUp("space"))
                 {
+                    jumpSlider.setSeeThru(false);
                     moveStop = 1;
                     jumpCount++;
                     Vector2 jumpFt = new Vector2(0, jumpPower * jumpPerc);

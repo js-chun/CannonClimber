@@ -17,6 +17,8 @@ public class CannonBehaviour : MonoBehaviour
     private int numFired;
     public float cannonPower = 3f;
 
+    //need to add a controllable timer to cannon firing
+
     void Start()
     {
         gm = FindObjectOfType<GameManager>();

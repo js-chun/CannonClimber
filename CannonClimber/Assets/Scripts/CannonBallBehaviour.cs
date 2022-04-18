@@ -21,11 +21,10 @@ public class CannonBallBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameObject explosion = Instantiate(explosionAnim, this.transform.position, Quaternion.identity, transform.parent);
-            Destroy(this.gameObject);
-
             //need to add player dmg
-        }   
+        }
+        GameObject explosion = Instantiate(explosionAnim, this.transform.position, Quaternion.identity, transform.parent);
+        Destroy(this.gameObject);
     }
 
     public void setBallPower(float power)
