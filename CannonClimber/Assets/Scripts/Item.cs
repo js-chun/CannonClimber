@@ -73,11 +73,9 @@ public class Item : MonoBehaviour
         gm.stageLevel++;
         if (gm.stageLevel  == 4)
         {
-            if(linked != null) 
-            { 
-                linked.SetActive(true);
-                linked.GetComponent<LevelBehaviour>().setLvl(true);
-            }
+            FindObjectOfType<LevelSpawner>().setLvl(true);
+            CannonSpawner cSpwn = FindObjectOfType<CannonSpawner>();
+            cSpwn.spawnCannon(4.3f, 2.5f,true);
         }
     }
 
