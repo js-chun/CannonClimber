@@ -21,7 +21,7 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        player.isGrounded(true);
+        player.IsGrounded(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,6 +36,6 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        player.isGrounded(false);
+        player.IsGrounded(false);
     }
 }

@@ -6,18 +6,19 @@ using UnityEngine.Tilemaps;
 public class LevelSpawner : MonoBehaviour
 {
     private GameManager gm;
-    public Tilemap lvlMap;
+    private FloorRandomizer fr;
     public int tileCount; //will be private later on
     public int levelCount; //will be private later on
-
-    private bool canLeft;
-    private bool canMidLeft;
-    private bool canMidRight;
-    private bool canRight;
 
     private int difficulty;
 
     private bool lvlActive;
+
+    public Tilemap lvlMap;
+    public Tile lvlSoloTile;
+    public Tile lvlLeftTile;
+    public Tile lvlMidTile;
+    public Tile lvlRightTile;
 
     public Tilemap bgdMap;
     public Tile bgdLeftTile;
@@ -32,23 +33,23 @@ public class LevelSpawner : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
+        fr = FindObjectOfType<FloorRandomizer>();
         lvlActive = false;
         levelCount = 0;
         difficulty = 2;
-
     }
 
     void Update()
     {
         if (lvlActive)
         {
-            showLevel();
+            ShowLevel();
         }
-        checkTile();
-        generateLevel();
+        CheckTile();
+        GenerateLevel();
     }
 
-    private void showLevel()
+    private void ShowLevel()
     {
         if (lvlMap != null)
         {
@@ -66,30 +67,30 @@ public class LevelSpawner : MonoBehaviour
         }
     }
 
-    public void setLvl(bool isActive) { lvlActive = isActive; }
+    public void SetLvl(bool isActive) { lvlActive = isActive; }
 
-    private void generateLevel()
+    private void GenerateLevel()
     {
         if (!tileIsSet)
         {
-            addBackground();
+            AddBackground();
             levelCount++;
 
             if (levelCount == 3)
             {
-                addBoundary(Random.Range(1, difficulty + 1));
+                AddBoundary(Random.Range(1, difficulty + 1));
                 levelCount = 0;
             }
             else if (levelCount == 2)
             {
                 //addLevel
-                addBoundary(0);
+                AddBoundary(0);
             }
-            else { addBoundary(0); }
+            else { AddBoundary(0); }
         }
     }
 
-    private void addBackground()
+    private void AddBackground()
     {
         Tile newTile;
         for (int i = -4; i < 4; i++)
@@ -104,7 +105,7 @@ public class LevelSpawner : MonoBehaviour
         }
     }
 
-    private void addBoundary(int scenario)
+    private void AddBoundary(int scenario)
     {
         int y = (int)this.transform.position.y;
         if(scenario == 0)
@@ -122,24 +123,14 @@ public class LevelSpawner : MonoBehaviour
         }
     }
 
-    private void addLevel(int scenario)
+    private void AddLevel(int scenario)
     {
         int y = (int)this.transform.position.y;
-        if(scenario == 0)
-        {
+        fr.RandomFlr();
 
-        }
-        else if (scenario == 1)
-        {
-
-        }
-        else if(scenario == 2)
-        {
-
-        }
     }
 
-    private void checkTile()
+    private void CheckTile()
     {
         int y = (int)this.transform.position.y;
         if(bgdMap.GetTile(new Vector3Int(0,y,0)) == null)

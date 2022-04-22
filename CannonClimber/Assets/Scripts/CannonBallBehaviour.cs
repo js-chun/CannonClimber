@@ -8,10 +8,10 @@ public class CannonBallBehaviour : MonoBehaviour
 
     void Update()
     {
-        ballMove();
+        BallMove();
     }
 
-    private void ballMove()
+    private void BallMove()
     {
         transform.localPosition -= new Vector3(ballSpeed, 0, 0) * Time.deltaTime;
         //add rotation?
@@ -27,12 +27,12 @@ public class CannonBallBehaviour : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void setBallPower(float power)
+    public void SetBallPower(float power)
     {
         ballPower = power;
     }
 
-    public float getBallPower()
+    public float GetBallPower()
     {
         return ballPower;
     }

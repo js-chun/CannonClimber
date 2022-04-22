@@ -35,7 +35,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else
         {
-            menuLoad();
+            MenuLoad();
         }
     }
 
@@ -75,7 +75,7 @@ public class PlayerBehaviour : MonoBehaviour
                 {
                     if (rigibody.velocity.y == 0)
                     {
-                        jumpSlider.setSeeThru(true);
+                        jumpSlider.SetSeeThru(true);
                         jumpPerc += Time.deltaTime * jumpBuildRate;
                         if (jumpPerc > 1) { jumpPerc = 1; }
                         jumpSlider.flat = jumpPerc;
@@ -85,7 +85,7 @@ public class PlayerBehaviour : MonoBehaviour
                 }
                 else if (Input.GetKeyUp("space"))
                 {
-                    jumpSlider.setSeeThru(false);
+                    jumpSlider.SetSeeThru(false);
                     moveStop = 1;
                     jumpCount++;
                     Vector2 jumpFt = new Vector2(0, jumpPower * jumpPerc);
@@ -110,7 +110,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "CannonBall")
         {
-            Vector2 pushback = (this.transform.position - collision.transform.position) * collision.gameObject.GetComponent<CannonBallBehaviour>().getBallPower();
+            Vector2 pushback = (this.transform.position - collision.transform.position) * collision.gameObject.GetComponent<CannonBallBehaviour>().GetBallPower();
             Debug.Log(pushback);
             rigibody.velocity += pushback;
         }
@@ -120,7 +120,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    private void menuLoad()
+    private void MenuLoad()
     {
         if (gm.stageLevel == 0)
         {
@@ -128,17 +128,17 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (gm.stageLevel == 1)
         {
-            StartCoroutine(haltChar());
+            StartCoroutine(HaltChar());
         }
     }
 
-    private IEnumerator haltChar()
+    private IEnumerator HaltChar()
     {
         yield return new WaitForSeconds(1.5f);
         anim.SetBool("isMoving", false);
     }
 
-    public void isGrounded(bool grounded)
+    public void IsGrounded(bool grounded)
     {
         if (grounded) 
         {

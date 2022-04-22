@@ -19,10 +19,10 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-        camMove();
+        CamMove();
     }
 
-    private void camMove()
+    private void CamMove()
     {
         if(cam != null)
         {

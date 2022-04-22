@@ -10,7 +10,7 @@ public class Detection : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            parentCannon.setFireOnOff(true);
+            parentCannon.SetFireOnOff(true);
         }
     }
 
@@ -18,7 +18,7 @@ public class Detection : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            parentCannon.setFireOnOff(false);
+            parentCannon.SetFireOnOff(false);
         }
     }
 

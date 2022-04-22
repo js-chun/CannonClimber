@@ -9,16 +9,16 @@ public class ParticleFX : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        startAnim();
+        StartAnim();
     }
 
-    private void startAnim()
+    private void StartAnim()
     {
         animTime = anim.GetCurrentAnimatorStateInfo(0).length;
-        StartCoroutine(destroyParticle());
+        StartCoroutine(DestroyParticle());
     }
 
-    private IEnumerator destroyParticle()
+    private IEnumerator DestroyParticle()
     {
         yield return new WaitForSeconds(animTime + 0.1f);
         Destroy(this.gameObject);

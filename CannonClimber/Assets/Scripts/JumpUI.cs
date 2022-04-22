@@ -26,11 +26,11 @@ public class JumpUI : MonoBehaviour
 
     void Update()
     {
-        updateSlider();
-        updSeeThru();
+        UpdSlider();
+        UpdSeeThru();
     }
 
-    private void updateSlider()
+    private void UpdSlider()
     {
         float dist = top.transform.position.y - bottom.transform.position.y;
         perc = (flat - start) / (1 - start);
@@ -39,7 +39,7 @@ public class JumpUI : MonoBehaviour
         slider.transform.Translate(0, toPos - fromPos, 0);
     }
 
-    private void updSeeThru()
+    private void UpdSeeThru()
     {
         if (canSee)
         {
@@ -57,5 +57,5 @@ public class JumpUI : MonoBehaviour
         }
     }
 
-    public void setSeeThru(bool seeOrNot) { canSee = seeOrNot; }
+    public void SetSeeThru(bool seeOrNot) { canSee = seeOrNot; }
 }

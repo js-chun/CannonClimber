@@ -15,14 +15,14 @@ public class TileBehaviour : MonoBehaviour
 
     void Update()
     {
-        tileMove();
+        TileMove();
         if (gm.stageLevel == 1)
         {
-            StartCoroutine(comeToHalt());
+            StartCoroutine(ComeToHalt());
         }
     }
 
-    private void tileMove()
+    private void TileMove()
     {
         if (!stopMoving)
         {
@@ -30,7 +30,7 @@ public class TileBehaviour : MonoBehaviour
         }
     }
 
-    private IEnumerator comeToHalt()
+    private IEnumerator ComeToHalt()
     {
         yield return new WaitForSeconds(1.5f);
         stopMoving = true;

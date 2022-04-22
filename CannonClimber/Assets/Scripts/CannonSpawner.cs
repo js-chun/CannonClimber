@@ -12,7 +12,7 @@ public class CannonSpawner : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
     }
 
-    public void spawnCannon(float locX, float locY, bool faceRight)
+    public void SpawnCannon(float locX, float locY, bool faceRight)
     {
         if (faceRight)
         {

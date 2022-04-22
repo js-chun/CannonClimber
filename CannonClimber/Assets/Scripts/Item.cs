@@ -31,12 +31,12 @@ public class Item : MonoBehaviour
 
     void Update()
     {
-        itemMove();
+        ItemMove();
 
     }
 
     //need to adjust for when moving
-    private void itemMove()
+    private void ItemMove()
     {
         if (goingUp)
         {
@@ -63,19 +63,19 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (iType == 0) { mapConsumed(); }
+            if (iType == 0) { MapConsumed(); }
             Destroy(this.gameObject);
         }
     }
 
-    private void mapConsumed()
+    private void MapConsumed()
     {
         gm.stageLevel++;
         if (gm.stageLevel  == 4)
         {
-            FindObjectOfType<LevelSpawner>().setLvl(true);
+            FindObjectOfType<LevelSpawner>().SetLvl(true);
             CannonSpawner cSpwn = FindObjectOfType<CannonSpawner>();
-            cSpwn.spawnCannon(4.3f, 2.5f,true);
+            cSpwn.SpawnCannon(4.3f, 2.5f,true);
         }
     }
 

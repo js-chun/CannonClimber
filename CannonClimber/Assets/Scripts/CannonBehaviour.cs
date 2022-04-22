@@ -30,7 +30,7 @@ public class CannonBehaviour : MonoBehaviour
 
     void Update()
     {
-        menuPlay();
+        MenuPlay();
         
         Fire();
 
@@ -50,7 +50,7 @@ public class CannonBehaviour : MonoBehaviour
                     numFired += 1;
                     Vector3 loc = BallPoint.transform.position + new Vector3(0f, 0f, -5f);
                     GameObject fireBall = Instantiate(CannonBall, loc, Quaternion.identity, transform);
-                    fireBall.GetComponent<CannonBallBehaviour>().setBallPower(cannonPower);
+                    fireBall.GetComponent<CannonBallBehaviour>().SetBallPower(cannonPower);
                     GameObject fireFx = Instantiate(LaunchFx, loc, Quaternion.identity, transform);
                 }
             }
@@ -61,21 +61,21 @@ public class CannonBehaviour : MonoBehaviour
         }
     }
 
-    public void setFireOnOff(bool enemyThere)
+    public void SetFireOnOff(bool enemyThere)
     {
         if (enemyThere) { isFiring = true; }
         else { isFiring = false; }
     }
 
-    private void menuPlay()
+    private void MenuPlay()
     {
         if(gm.stageLevel == 1)
         {
-            StartCoroutine(switchGravity());
+            StartCoroutine(SwitchGravity());
         }
     }
 
-    private IEnumerator switchGravity()
+    private IEnumerator SwitchGravity()
     {
         yield return new WaitForSeconds(2.5f);
         GetComponent<Rigidbody2D>().gravityScale = 1f;
