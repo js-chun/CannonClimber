@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbe9508a54e338347a1ded03db4686c3, type: 3}
-  m_Name: 2R
+  m_Name: 3R
   m_EditorClassIdentifier: 
   x1: 0
   x2: 0
   x3: 0
   x4: 0
   x5: 0
-  x6: 0
+  x6: 1
   x7: 1
   x8: 1

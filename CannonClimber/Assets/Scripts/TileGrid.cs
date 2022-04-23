@@ -31,23 +31,33 @@ public class TileGrid : ScriptableObject
     public bool CantGoUp(TileGrid aboveLevel)
     {
         int numJumpTo = 0;
-
+        int numBotOccupied = 0;
+        int numBotBlocked = 0;
         for (int i = 1; i < 9; i++)
         {
             if (GetOccupied(i))
             {
+                numBotOccupied++;
                 for (int j = -2; j < 3; j++)
                 {
                     int checkPosition = i + j;
-                    if (checkPosition > 0 || checkPosition < 9)
+                    if (checkPosition > 0 && checkPosition < 9)
                     {
+                        if(j == 0)
+                        {
+                            if (TileCompare(aboveLevel,checkPosition) == -1) { numBotBlocked++; }
+                        }
                         if (aboveLevel.GetOccupied(checkPosition)) { numJumpTo++; }
                     }
                 }
             }
         }
         if(numJumpTo == 0) { return true; }
-        else { return false; }
+        else
+        {
+            if(numBotOccupied == numBotBlocked) { return true; }
+            else { return false; }
+        }
     }
 
     public int GetOccupiedInt(int x)
@@ -69,6 +79,7 @@ public class TileGrid : ScriptableObject
         else if (x == 8) { return x8; }
         else { return false; }
     }
+
 
     public void SetOccupied(int x, bool hasTile)
     {
@@ -118,5 +129,10 @@ public class TileGrid : ScriptableObject
             }
         }
         return -1;
+        //-1 is no tile
+        //0 is solo
+        //1 is left
+        //2 is mid
+        //3 is right
     }
 }

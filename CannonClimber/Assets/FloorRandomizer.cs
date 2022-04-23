@@ -5,10 +5,11 @@ public class FloorRandomizer : MonoBehaviour
     public TileGrid[] floors;
     public TileGrid botFloor;
     public TileGrid topFloor;
+    public TileGrid initialFloor;
 
     void Start()
     {
-        Debug.Log(floors.Length);
+        botFloor = initialFloor;
     }
 
     public void RandomFlr()

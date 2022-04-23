@@ -17,8 +17,10 @@ public class CannonSpawner : MonoBehaviour
         if (faceRight)
         {
             locX = -(locX);
-            GameObject newCan = Instantiate(cannon, new Vector2(locX, locY), Quaternion.identity, transform);
-            if (faceRight) { newCan.transform.localScale = new Vector2(-2f, 2f); }
         }
+        GameObject newCan = Instantiate(cannon, new Vector2(locX, locY), Quaternion.identity, transform);
+        if (faceRight) { newCan.transform.localScale = new Vector2(-2f, 2f); }
+        Debug.Log(locX);
+        Debug.Log(locY);
     }
 }

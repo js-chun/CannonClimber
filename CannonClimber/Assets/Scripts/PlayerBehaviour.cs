@@ -11,7 +11,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float moveSpeed = 4f;
     public float jumpPower = 3.5f;
     public float jumpStart = 0.7f;
-    public float jumpBuildRate = 0.7f;
+    public float jumpBuildRate = 1f;
     private float jumpPerc;
     private int jumpCount;
     private int moveStop;
@@ -111,7 +111,6 @@ public class PlayerBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "CannonBall")
         {
             Vector2 pushback = (this.transform.position - collision.transform.position) * collision.gameObject.GetComponent<CannonBallBehaviour>().GetBallPower();
-            Debug.Log(pushback);
             rigibody.velocity += pushback;
         }
         else if (collision.gameObject.tag == "Boundary")
