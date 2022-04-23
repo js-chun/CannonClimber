@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Shredder : MonoBehaviour
 {
-    public string shredTag;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == shredTag)
+        if (collision.gameObject.tag == "Cannon" || collision.gameObject.tag == "CannonBall") 
         {
             Destroy(collision.gameObject);
         }
+        else if (collision.gameObject.tag == "Player")
+        {
+
+        }
     }
+
 }

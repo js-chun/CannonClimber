@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    private float moveLimit = 0.2f;
-    private float itemSpeed = 0.5f;
+    private readonly float moveLimit = 0.2f;
+    private readonly float itemSpeed = 0.5f;
     private Transform tf;
+
     private float minMove;
     private float maxMove;
     private bool goingUp;
 
     private GameManager gm;
+    private PlayerBehaviour player;
     public GameObject linked;
 
-    public int iType; //0 = map,
+    public int itemType;
     public int scoreBonus;
-    public int lifeBonus;
+    public float rarity;
 
     void Start()
     {
         gm= FindObjectOfType<GameManager>();
+        player= FindObjectOfType<PlayerBehaviour>();
         tf = this.transform;
 
         minMove = tf.localPosition.y - moveLimit;
@@ -63,7 +66,11 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (iType == 0) { MapConsumed(); }
+            if (itemType == 0) { MapConsumed(); }
+            else if (itemType == 1) { CoconutConsumed(); }
+            else if (itemType == 2) { OrangeConsumed(); }
+            else if (itemType == 3) { WineConsumed(); }
+            else if (itemType == 4) { ScoreConsumed(); }
             Destroy(this.gameObject);
         }
     }
@@ -74,9 +81,28 @@ public class Item : MonoBehaviour
         if (gm.stageLevel  == 4)
         {
             FindObjectOfType<LevelSpawner>().SetLvl(true);
-            CannonSpawner cSpwn = FindObjectOfType<CannonSpawner>();
-            cSpwn.SpawnCannon(4.3f, 2.5f,true);
+            FloorRandomizer fr = FindObjectOfType<FloorRandomizer>();
+            fr.SpawnCannon(4.3f, 2.5f,true);
         }
     }
 
+    private void CoconutConsumed()
+    {
+        player.SetCocoBuff();
+    }
+
+    private void OrangeConsumed()
+    {
+
+    }
+
+    private void WineConsumed()
+    {
+
+    }
+
+    private void ScoreConsumed()
+    {
+        gm.score += scoreBonus;
+    }
 }

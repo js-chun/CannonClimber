@@ -7,7 +7,6 @@ public class LevelSpawner : MonoBehaviour
 {
     private GameManager gm;
     private FloorRandomizer fr;
-    private CannonSpawner cs;
     public int tileCount; //will be private later on
     public int levelCount; //will be private later on
 
@@ -34,7 +33,6 @@ public class LevelSpawner : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        cs = FindObjectOfType<CannonSpawner>();
         fr = FindObjectOfType<FloorRandomizer>();
         lvlActive = false;
         levelCount = 0;
@@ -118,12 +116,12 @@ public class LevelSpawner : MonoBehaviour
         else if(scenario == 1)
         {
             boundMap.SetTile(new Vector3Int(4, y, 0), bndRightTile);
-            cs.SpawnCannon(4.3f,y + 0.5f,true);
+            fr.SpawnCannon(4.3f,y + 0.5f,true);
         }
         else if(scenario == 2)
         {
             boundMap.SetTile(new Vector3Int(-5, y, 0), bndLeftTile);
-            cs.SpawnCannon(4.3f, y + 0.5f, false);
+            fr.SpawnCannon(4.3f, y + 0.5f, false);
         }
     }
 
@@ -144,7 +142,7 @@ public class LevelSpawner : MonoBehaviour
                 lvlMap.SetTile(new Vector3Int(i, y, 0), newTile);
             }
         }
-        fr.setBotFloor();
+        fr.SetBotFloor();
     }
 
     private void CheckTile()

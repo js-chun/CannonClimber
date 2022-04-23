@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CannonBallBehaviour : MonoBehaviour
 {
-    public float ballSpeed = 3f;        //how fast the cannon ball will go
+    public float ballSpeed = 2.5f;        //how fast the cannon ball will go
     public GameObject explosionAnim;    //explosion prefab for when it hits
     private float ballPower = 3f;
 

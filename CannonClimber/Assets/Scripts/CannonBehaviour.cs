@@ -8,6 +8,7 @@ public class CannonBehaviour : MonoBehaviour
     private SpriteRenderer spRend;
     private GameManager gm;
 
+    public float fireSpeed = 0.2f;
     public GameObject CannonBall;   //cannon ball prefab to shoot
     public GameObject BallPoint;    //where cannon ball instantiates + player detection range
     public Sprite fireSprite;       //sprite in animation when cannonball should launch
@@ -39,10 +40,13 @@ public class CannonBehaviour : MonoBehaviour
 
     }
 
+    //add a color for aggro and about to fire
+
     private void Fire()
     {
         if (isFiring == true)
         {
+            anim.speed = fireSpeed;
             if (spRend.sprite == fireSprite)
             {
                 if(numFired == 0)

@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int stageLevel=0;
+    public int stageLevel = 0;
+    public int maxLives = 3;
+    public int score;
+
+    private Vector2 spawnLoc;
 
     private void Awake()
     {
@@ -22,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        score = 0;
     }
 
     void Update()
@@ -29,5 +34,9 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void setSpawnLoc(float locX, float locY)
+    {
+        spawnLoc = new Vector2(locX, locY);
+    }
 
 }

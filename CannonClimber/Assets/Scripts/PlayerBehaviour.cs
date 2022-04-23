@@ -7,23 +7,36 @@ public class PlayerBehaviour : MonoBehaviour
     private GameManager gm;
     private Rigidbody2D rigibody;
     private Animator anim;
-    private JumpUI jumpSlider;
-    public float moveSpeed = 4f;
-    public float jumpPower = 3.5f;
-    public float jumpStart = 0.7f;
-    public float jumpBuildRate = 1f;
-    private float jumpPerc;
-    private int jumpCount;
-    private int moveStop;
-    private bool checkGround;
+    private InGameUI jumpSlider;
+
+    public GameObject jumpFx;
+    public GameObject jumpSpwn;
+
+    public float moveSpeed = 4f;     //move speed of player
+    public float jumpPower;          //how high a jump is
+    public float jumpStart = 0.7f;   //lowest % a jump can be
+    public float jumpBuildRate;      //how fast jump % builds
+
+    private float jumpPerc;          //jump % of current jump
+    private int jumpCount;           //player 1 jump only
+    private int moveStop;            //stops user left/right while jumping
+    private bool checkGround;        //check if player on the ground
+    private bool chargingJump;
+    private float groundSpawn;
+
+    public int coconutBuff;     //private later
 
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
         anim = GetComponent<Animator>();
         rigibody = GetComponent<Rigidbody2D>();
-        jumpSlider = FindObjectOfType<JumpUI>();
+        jumpSlider = FindObjectOfType<InGameUI>();
         moveStop = 1;
+        groundSpawn = 0;
+        chargingJump = false;
+
+        coconutBuff = 0;
     }
 
     void Update()
@@ -32,6 +45,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Move();
             Jump();
+            Kick();
         }
         else
         {
@@ -75,21 +89,25 @@ public class PlayerBehaviour : MonoBehaviour
                 {
                     if (rigibody.velocity.y == 0)
                     {
+                        chargingJump = true;
                         jumpSlider.SetSeeThru(true);
                         jumpPerc += Time.deltaTime * jumpBuildRate;
                         if (jumpPerc > 1) { jumpPerc = 1; }
-                        jumpSlider.flat = jumpPerc;
+                        jumpSlider.jpFlat = jumpPerc;
                         moveStop = 0;
+
                         anim.SetInteger("JumpState", 1);
                 }
                 }
                 else if (Input.GetKeyUp("space"))
                 {
+                    chargingJump = false;
                     jumpSlider.SetSeeThru(false);
                     moveStop = 1;
-                    jumpCount++;
                     Vector2 jumpFt = new Vector2(0, jumpPower * jumpPerc);
                     rigibody.velocity += jumpFt;
+                    Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
+                    jumpCount++;
                 }
             }
         }
@@ -102,6 +120,16 @@ public class PlayerBehaviour : MonoBehaviour
             else if (rigibody.velocity.y < 0)
             {
                 anim.SetInteger("JumpState", 3);
+            }
+            if(jumpCount == 1)
+            {
+                if (Input.GetKeyDown("space"))
+                {
+                    rigibody.velocity = new Vector2(0, 0);
+                    rigibody.velocity += new Vector2(0, jumpPower * 0.6f);
+                    Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
+                    jumpCount++;
+                }
             }
         }
     }
@@ -148,10 +176,37 @@ public class PlayerBehaviour : MonoBehaviour
             anim.SetBool("isGrounded", true);
             checkGround = true;
             jumpCount = 0;
+            groundSpawn += Time.deltaTime;
+
+            if (groundSpawn > 2f)
+            {
+                gm.setSpawnLoc(this.transform.position.x, this.transform.position.y);
+                groundSpawn = 0;
+            }
+            
         }
         else { 
             anim.SetBool("isGrounded", false);
             checkGround = false;
+        }
+    }
+
+    public void SetCocoBuff()
+    {
+        coconutBuff = 3;
+    }
+
+    private void Kick()
+    {
+        if (coconutBuff > 0)
+        {
+            if (Input.GetKeyDown("f"))
+            {
+                if (!chargingJump)
+                {
+                    anim.SetTrigger("Kick");
+                }
+            }
         }
     }
 }
