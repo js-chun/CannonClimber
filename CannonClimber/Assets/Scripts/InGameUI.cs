@@ -101,4 +101,5 @@ public class InGameUI : MonoBehaviour
         else if (i == 2) { heart2.SetActive(false); }
         else { heart1.SetActive(false); }
     }
+
 }

@@ -5,16 +5,14 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     private GameObject cam;
-    private GameObject player;
+    private PlayerBehaviour player;
     private GameManager gm;
-    private float peakHeight;
 
     void Start()
     {
         cam = FindObjectOfType<Camera>().gameObject;
-        player = FindObjectOfType<PlayerBehaviour>().gameObject;
+        player = FindObjectOfType<PlayerBehaviour>();
         gm = FindObjectOfType<GameManager>();
-        peakHeight = 0;
     }
 
     void Update()
@@ -30,13 +28,13 @@ public class CameraMovement : MonoBehaviour
             {
                 if(player != null)
                 {
-                    if (player.GetComponent<Rigidbody2D>().velocity.y == 0)
+                    if (player.GetGroundCheck())
                     {
                         float currentHeight = this.transform.position.y;
-                        if (currentHeight > peakHeight) { peakHeight = currentHeight; }
+                        if (currentHeight > gm.GetPeakHeight()) { gm.SetPeakHeight(currentHeight); }
                     }
                 }
-                Vector2 dist = new Vector2(0, peakHeight-cam.transform.position.y) * Time.deltaTime * 0.7f;
+                Vector2 dist = new Vector2(0, gm.GetPeakHeight()-cam.transform.position.y) * Time.deltaTime * 0.9f;
                 cam.transform.Translate(dist);
             }
         }

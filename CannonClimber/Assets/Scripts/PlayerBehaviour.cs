@@ -9,6 +9,10 @@ public class PlayerBehaviour : MonoBehaviour
     private Animator anim;
     private InGameUI jumpSlider;
 
+    public GameObject kickCollider;
+    public Sprite kickTimer_1;
+    public Sprite kickTimer_2;
+    public Sprite kickTimer_3;
     public GameObject jumpFx;
     public GameObject jumpSpwn;
 
@@ -24,8 +28,6 @@ public class PlayerBehaviour : MonoBehaviour
     private bool chargingJump;
     private float groundSpawn;
 
-    public int coconutBuff;     //private later
-
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
@@ -35,8 +37,6 @@ public class PlayerBehaviour : MonoBehaviour
         moveStop = 1;
         groundSpawn = 0;
         chargingJump = false;
-
-        coconutBuff = 0;
     }
 
     void Update()
@@ -46,6 +46,7 @@ public class PlayerBehaviour : MonoBehaviour
             Move();
             Jump();
             Kick();
+            KickColliderCheck();
         }
         else
         {
@@ -138,8 +139,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "CannonBall")
         {
-            Vector2 pushback = (this.transform.position - collision.transform.position) * collision.gameObject.GetComponent<CannonBallBehaviour>().GetBallPower();
-            rigibody.velocity += pushback;
+            //Vector2 pushback = (this.transform.position - collision.transform.position) * collision.gameObject.GetComponent<CannonBallBehaviour>().GetBallPower();
+            //rigibody.velocity += pushback;
         }
         else if (collision.gameObject.tag == "Boundary")
         {
@@ -180,7 +181,7 @@ public class PlayerBehaviour : MonoBehaviour
 
             if (groundSpawn > 2f)
             {
-                gm.setSpawnLoc(this.transform.position.x, this.transform.position.y);
+                gm.SetSpawnLoc(this.transform.position.x, this.transform.position.y);
                 groundSpawn = 0;
             }
             
@@ -191,22 +192,45 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    public void SetCocoBuff()
-    {
-        coconutBuff = 3;
-    }
 
     private void Kick()
     {
-        if (coconutBuff > 0)
+        if (gm.coconutBuff > 0)
         {
             if (Input.GetKeyDown("f"))
             {
                 if (!chargingJump)
                 {
+                    Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
                     anim.SetTrigger("Kick");
+                    if (transform.localScale.x < 0) 
+                    {
+                        rigibody.velocity = new Vector2(0f, 0f);
+                        rigibody.velocity += new Vector2(-1f, 4f);
+                    }
+                    else if(transform.localScale.x > 0) 
+                    {
+                        rigibody.velocity = new Vector2(0f, 0f);
+                        rigibody.velocity += new Vector2(1f, 4f);
+                    }
                 }
             }
         }
     }
+
+    private void KickColliderCheck()
+    {
+        if(this.GetComponent<SpriteRenderer>().sprite == kickTimer_1 ||
+            this.GetComponent<SpriteRenderer>().sprite == kickTimer_2 ||
+            this.GetComponent<SpriteRenderer>().sprite == kickTimer_3)
+        {
+            kickCollider.SetActive(true);
+        }
+        else
+        {
+            kickCollider.SetActive(false);
+        }
+    }
+
+    public bool GetGroundCheck() { return checkGround; }
 }

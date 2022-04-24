@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
     void Start()
     {
         gm= FindObjectOfType<GameManager>();
-        player= FindObjectOfType<PlayerBehaviour>();
+        FindPlayer();
         tf = this.transform;
 
         minMove = tf.localPosition.y - moveLimit;
@@ -35,9 +35,16 @@ public class Item : MonoBehaviour
     void Update()
     {
         ItemMove();
-
+        if(player != null)
+        {
+            FindPlayer();
+        }
     }
 
+    public void FindPlayer()
+    {
+        player = FindObjectOfType<PlayerBehaviour>();
+    }
     //need to adjust for when moving
     private void ItemMove()
     {
@@ -88,7 +95,7 @@ public class Item : MonoBehaviour
 
     private void CoconutConsumed()
     {
-        player.SetCocoBuff();
+        gm.coconutBuff = 3;
     }
 
     private void OrangeConsumed()

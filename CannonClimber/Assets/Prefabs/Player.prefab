@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119862049028219051}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.75, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -403,6 +403,76 @@ MonoBehaviour:
   heart1: {fileID: 2895634912374043617}
   heart2: {fileID: 8622142515153465984}
   heart3: {fileID: 3592629287447031510}
+--- !u!1 &4896826233823065334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5672699409465181168}
+  - component: {fileID: 1143591899441818506}
+  - component: {fileID: 2939164606176556152}
+  m_Layer: 6
+  m_Name: Kick
+  m_TagString: Block
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5672699409465181168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4896826233823065334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.122, y: -0.101, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5889391050513251572}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1143591899441818506
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4896826233823065334}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.07829988, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.09446019
+--- !u!50 &2939164606176556152
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4896826233823065334}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &6110972380302112930
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +691,7 @@ GameObject:
   - component: {fileID: 205257565555990047}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -635,13 +705,14 @@ Transform:
   m_GameObject: {fileID: 8776693051589764495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 119862049028219060}
   - {fileID: 119862049523600463}
   - {fileID: 5401644375741506533}
   - {fileID: 9055836189258701795}
+  - {fileID: 5672699409465181168}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -729,7 +800,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.15595408
+  m_Mass: 0.35089666
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1.85
@@ -766,6 +837,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535f867dcd9808a4aa0ebf532bd12275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kickCollider: {fileID: 4896826233823065334}
+  kickTimer_1: {fileID: 21300000, guid: a5b3b7c9969097e41ad88c76639f0425, type: 3}
+  kickTimer_2: {fileID: 21300000, guid: 0333b85daf01e2a42bd5e49921b52a77, type: 3}
+  kickTimer_3: {fileID: 21300000, guid: 2aa4cbcb94373814896722f2ade15c54, type: 3}
+  jumpFx: {fileID: 6638353455945680815, guid: 1ef9dc533d534b84db85cb0dd87ef0cd, type: 3}
+  jumpSpwn: {fileID: 3339060871521577708}
   moveSpeed: 4
   jumpPower: 11
   jumpStart: 0.7

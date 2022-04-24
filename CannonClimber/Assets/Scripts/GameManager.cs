@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject player;
     public int stageLevel = 0;
     public int maxLives = 3;
+    public int coconutBuff;
     public int score;
-
+    
+    private float peakHeight;
     private Vector2 spawnLoc;
+
 
     private void Awake()
     {
@@ -27,6 +31,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         score = 0;
+        peakHeight = 0f;
+        coconutBuff = 0;
     }
 
     void Update()
@@ -34,9 +40,20 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void setSpawnLoc(float locX, float locY)
+    public void SetSpawnLoc(float locX, float locY)
     {
         spawnLoc = new Vector2(locX, locY);
     }
 
+    public void SpawnNewChar()
+    {
+        if (maxLives > 0)
+        {
+            Instantiate(player, spawnLoc, Quaternion.identity);
+        }
+    }
+
+    public void SetPeakHeight(float y) { peakHeight = y; }
+
+    public float GetPeakHeight() { return peakHeight; }
 }
