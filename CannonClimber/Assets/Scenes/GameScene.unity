@@ -269,6 +269,10 @@ PrefabInstance:
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 205257565555990047, guid: 3e5c4b663ca4adf46b828f719c107226, type: 3}
+      propertyPath: invincible
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 205257565555990047, guid: 3e5c4b663ca4adf46b828f719c107226, type: 3}
       propertyPath: kickTimer_1
       value: 
       objectReference: {fileID: 21300000, guid: a5b3b7c9969097e41ad88c76639f0425, type: 3}

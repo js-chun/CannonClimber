@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
         if (maxLives > 0)
         {
             Instantiate(player, spawnLoc, Quaternion.identity);
+            FindObjectOfType<PlayerBehaviour>().justSpawned = true;
         }
     }
 

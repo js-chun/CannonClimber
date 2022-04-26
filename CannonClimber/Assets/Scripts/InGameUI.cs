@@ -92,6 +92,8 @@ public class InGameUI : MonoBehaviour
             heart1.GetComponent<Animator>().SetTrigger("Hurt");
             StartCoroutine(removeHeart(1));
         }
+        player.SetInvincible(true);
+        StartCoroutine(player.DelayOffInvincible());
     }
 
     private IEnumerator removeHeart(int i)

@@ -28,6 +28,10 @@ public class PlayerBehaviour : MonoBehaviour
     private bool chargingJump;
     private float groundSpawn;
 
+    public bool invincible;
+    public bool showInvincible;
+    public bool justSpawned;
+
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
@@ -37,6 +41,7 @@ public class PlayerBehaviour : MonoBehaviour
         moveStop = 1;
         groundSpawn = 0;
         chargingJump = false;
+
     }
 
     void Update()
@@ -47,17 +52,20 @@ public class PlayerBehaviour : MonoBehaviour
             Jump();
             Kick();
             KickColliderCheck();
+            Invincible();
         }
         else
         {
             MenuLoad();
         }
+
+        
     }
 
     private void Move()
     {
         float inAir = 1f;
-        if (!checkGround) { inAir = 0.7f; }
+        if (!checkGround) { inAir = 0.9f; }
         float moveFt = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime * moveStop * inAir;
         if (moveFt != 0)
         {
@@ -233,4 +241,61 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     public bool GetGroundCheck() { return checkGround; }
+
+    private void Invincible()
+    {
+        if (invincible)
+        {
+            gameObject.layer = 14;
+            StartCoroutine(InvincibleShow());
+            if (justSpawned)
+            {
+                if (Input.GetKeyDown("space") || Input.GetAxis("Horizontal") > 0 || (gm.coconutBuff > 0 && Input.GetKeyDown("f")))
+                {
+                    invincible = false;
+                    justSpawned = false;
+                }
+            }
+            else
+            {
+                gameObject.layer = 6;
+            }
+        }
+    }
+
+    private IEnumerator InvincibleShow()
+    {
+        if (showInvincible)
+        {
+            showInvincible = false;
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+            yield return new WaitForSeconds(0.15f);
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            yield return new WaitForSeconds(0.15f);
+            showInvincible = true;
+        }
+    }
+
+
+    public void SetInvincible(bool onOrOff)
+    {
+        if (onOrOff)
+        {
+            invincible = true;
+            showInvincible = true;
+        }
+        else
+        {
+            invincible = false;
+            showInvincible = false;
+        }
+        
+    }
+
+    public IEnumerator DelayOffInvincible()
+    {
+        yield return new WaitForSeconds(2f);
+        showInvincible = false;
+        invincible = false;
+    }
 }
