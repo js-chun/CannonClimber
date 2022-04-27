@@ -1,0 +1,28 @@
+- Sometimes, spawnLoc in GameManager is too low on the map (will be stuck spawning) - Need to fix
+- Work on UI
+	- Coconut - Need text (x0 - x3) and update function
+	- Wine - colors in during buff
+	- Score - Need text on and update function
+- Need to add item spawns (might look at incorporating into TileGrid script and FloorRandomizer)
+- Add more difficulty (hazards)
+    	- Instead of normal tiles, might have moving box tiles
+	- Fire Trap/Hazard - need to add
+	- Idle Spikes
+- Need to not be able to jump when lying down initially (break down to another stage level)
+- Animation State for Kick (need to clean up)
+- Add Cannonball Jump mechanic (where if player jumps on top of cannonball, even if hit, doesn't take damage + new double jump(?))
+- Need to put in Player Hit Animations
+- Make user actually take damage from Cannonballs
+- Need to find and add audio
+- Add in destruction animation to tiles being destroyed at the bottom (or water)
+- Pause Function
+	- Go back to menu
+	- Restart
+
+
+- Need to work on menu a lot
+- Change Font
+- Change Buttons
+- Hook Buttons up (Play should change stage level to 1)
+- How to Play (?) - Might not need. Put into intro.
+- Settings

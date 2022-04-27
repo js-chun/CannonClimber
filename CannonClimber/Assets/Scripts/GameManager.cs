@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public int score;
     
     private float peakHeight;
-    private Vector2 spawnLoc;
+    private Vector3 spawnLoc;
 
 
     private void Awake()
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public void SetSpawnLoc(float locX, float locY)
     {
-        spawnLoc = new Vector2(locX, locY);
+        spawnLoc = new Vector3(locX, locY, -5f);
     }
 
     public void SpawnNewChar()
@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
         if (maxLives > 0)
         {
             Instantiate(player, spawnLoc, Quaternion.identity);
+            FindObjectOfType<PlayerBehaviour>().SetInvincible(true);
             FindObjectOfType<PlayerBehaviour>().justSpawned = true;
         }
     }

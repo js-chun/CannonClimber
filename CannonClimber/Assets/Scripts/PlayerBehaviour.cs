@@ -256,10 +256,10 @@ public class PlayerBehaviour : MonoBehaviour
                     justSpawned = false;
                 }
             }
-            else
-            {
-                gameObject.layer = 6;
-            }
+        }
+        else
+        {
+            gameObject.layer = 6;
         }
     }
 
@@ -275,7 +275,6 @@ public class PlayerBehaviour : MonoBehaviour
             showInvincible = true;
         }
     }
-
 
     public void SetInvincible(bool onOrOff)
     {
