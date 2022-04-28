@@ -85,7 +85,7 @@ public class Item : MonoBehaviour
     private void MapConsumed()
     {
         gm.stageLevel++;
-        if (gm.stageLevel  == 4)
+        if (gm.stageLevel  == 5)
         {
             FindObjectOfType<LevelSpawner>().SetLvl(true);
             FloorRandomizer fr = FindObjectOfType<FloorRandomizer>();

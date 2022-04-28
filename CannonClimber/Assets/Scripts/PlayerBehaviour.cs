@@ -46,7 +46,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (gm.stageLevel>2)
+        if (gm.stageLevel > 3) 
         {
             Move();
             Jump();
@@ -54,12 +54,9 @@ public class PlayerBehaviour : MonoBehaviour
             KickColliderCheck();
             Invincible();
         }
-        else
-        {
-            MenuLoad();
-        }
+        else if (gm.stageLevel > 2 ) { Move(); }
+        else{ MenuLoad(); }
 
-        
     }
 
     private void Move()
@@ -69,6 +66,7 @@ public class PlayerBehaviour : MonoBehaviour
         float moveFt = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime * moveStop * inAir;
         if (moveFt != 0)
         {
+            if(gm.stageLevel == 3) { gm.stageLevel = 4; }
             anim.SetBool("isMoving", true);
             if (moveFt > 0)
             {
