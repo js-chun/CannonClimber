@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TileBehaviour : MonoBehaviour
@@ -26,7 +25,7 @@ public class TileBehaviour : MonoBehaviour
     {
         if (!stopMoving)
         {
-            transform.localPosition -= new Vector3(movementSpd, 0, 0) * Time.deltaTime;
+            transform.position -= new Vector3(movementSpd, 0, 0) * Time.deltaTime;
         }
     }
 
@@ -34,5 +33,25 @@ public class TileBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         stopMoving = true;
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Boundary")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (gm.stageLevel > 2)
+            {
+                collision.gameObject.transform.position -= new Vector3(movementSpd, 0, 0) * Time.deltaTime;
+            }
+        }
     }
 }
