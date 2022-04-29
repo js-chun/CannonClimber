@@ -1,4 +1,4 @@
-- Sometimes, spawnLoc in GameManager is too low on the map (will be stuck spawning) - Need to fix
+- Check peakHeight on GameManager and similar float on PlayerBehaviour - One is used for Camera, other is used for PB. Change to 1
 - Work on UI
 	- Coconut - Need text (x0 - x3) and update function
 	- Wine - colors in during buff

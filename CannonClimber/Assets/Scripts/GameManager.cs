@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject player;
-    public int stageLevel = 0;
-    public int maxLives = 3;
-    public int coconutBuff;
-    public int score;
+    public GameObject player;   //Player prefab to respawn in case Player falls
+    public int stageLevel = 0;  //Stage Level to determine certain events
+    public int maxLives = 3;    //Maximum lives the Player has
+    public int coconutBuff;     //How many kicks the Player has
+    public int score;           //Score of Player in game session
     
     private float peakHeight;
     private Vector3 spawnLoc;
@@ -40,22 +38,27 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //Set Spawn Location of Player in case they need to respawn
     public void SetSpawnLoc(float locX, float locY)
     {
         spawnLoc = new Vector3(locX, locY, -5f);
     }
 
+    //If Player has more than 0 lives, will respawn character
+    //Character will be invincible at spawn location
     public void SpawnNewChar()
     {
         if (maxLives > 0)
         {
             Instantiate(player, spawnLoc, Quaternion.identity);
             FindObjectOfType<PlayerBehaviour>().SetInvincible(true);
-            FindObjectOfType<PlayerBehaviour>().justSpawned = true;
+            FindObjectOfType<PlayerBehaviour>().SetJustSpawned(true);
         }
     }
 
+    //Set maximum height
     public void SetPeakHeight(float y) { peakHeight = y; }
 
+    //Get the maximum height
     public float GetPeakHeight() { return peakHeight; }
 }

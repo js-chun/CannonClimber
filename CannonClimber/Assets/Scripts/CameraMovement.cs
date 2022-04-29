@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+//Class to control Camera movement
 public class CameraMovement : MonoBehaviour
 {
     private GameObject cam;
@@ -20,6 +19,8 @@ public class CameraMovement : MonoBehaviour
         CamMove();
     }
 
+    //To move the camera's height based on CameraFocus on Player
+    //Only starts moving once the initial map is grabbed
     private void CamMove()
     {
         if(cam != null)

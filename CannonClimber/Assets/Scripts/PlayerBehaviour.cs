@@ -1,36 +1,37 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+//Class to control Player Movements and Invincibility
 public class PlayerBehaviour : MonoBehaviour
 {
     private GameManager gm;
     private Rigidbody2D rigibody;
     private Animator anim;
-    private InGameUI jumpSlider;
+    private InGameUI jumpSlider;    
 
-    public GameObject kickCollider;
-    public Sprite kickTimer_1;
+    public GameObject kickCollider; //Kick Collision to turn on or off
+    public Sprite kickTimer_1;      //Sprites to determine when Kick Collision is active
     public Sprite kickTimer_2;
-    public Sprite kickTimer_3;
-    public GameObject jumpFx;
-    public GameObject jumpSpwn;
+    public Sprite kickTimer_3;      
+    public GameObject jumpFx;       //Particle prefab for when user is jumping
+    public GameObject jumpSpwn;     //Where jump particles are instantiated
 
-    public float moveSpeed = 4f;     //move speed of player
-    public float jumpPower;          //how high a jump is
-    public float jumpStart = 0.7f;   //lowest % a jump can be
-    public float jumpBuildRate;      //how fast jump % builds
+    public float moveSpeed = 4f;     //Move speed of Player
+    public float jumpPower;          //Max jump Height of Player
+    public float jumpStart = 0.7f;   //Min jump % of Player
+    public float jumpBuildRate;      //Build up rate of jump %
 
-    private float jumpPerc;          //jump % of current jump
-    private int jumpCount;           //player 1 jump only
-    private int moveStop;            //stops user left/right while jumping
-    private bool checkGround;        //check if player on the ground
-    private bool chargingJump;
-    private float groundSpawn;
+    private float jumpPerc;          //Current jump %
+    private int jumpCount;           //Player jumpt count for double jump
+    private int moveStop;            //Stops Player from moving left/right while charging jump
+    private bool checkGround;        //If Player is currently on ground
+    private bool chargingJump;       //If Player is currently charging jump
+    private float previousHeight;    //Previous max height of Player
 
-    public bool invincible;
-    public bool showInvincible;
-    public bool justSpawned;
+    private bool invincible;          //If Player should currently be invincible or not
+    private bool showInvincible;      //If Player is showing as Invincible
+    private bool justSpawned;         //If Player just spawned
+
 
     void Start()
     {
@@ -38,14 +39,18 @@ public class PlayerBehaviour : MonoBehaviour
         anim = GetComponent<Animator>();
         rigibody = GetComponent<Rigidbody2D>();
         jumpSlider = FindObjectOfType<InGameUI>();
+
         moveStop = 1;
-        groundSpawn = 0;
+        previousHeight = 0;
         chargingJump = false;
 
     }
 
     void Update()
     {
+        //Stage Level 4 when Player is actually in the levels (has moved after hitting ground)
+        //Stage Level 3 when Player first hits ground
+        //Stage Level 1-2 when Player Object is in Menu (not controllable)
         if (gm.stageLevel > 3) 
         {
             Move();
@@ -59,6 +64,30 @@ public class PlayerBehaviour : MonoBehaviour
 
     }
 
+
+    //When Player is in Menu (non-controllable
+    private void MenuLoad()
+    {
+        if (gm.stageLevel == 0)
+        {
+            anim.SetBool("isMoving", true);
+        }
+        else if (gm.stageLevel == 1)
+        {
+            StartCoroutine(HaltChar());
+        }
+    }
+
+    //When Play is clicked on menu, Player stops moving
+    private IEnumerator HaltChar()
+    {
+        yield return new WaitForSeconds(1.5f);
+        anim.SetBool("isMoving", false);
+    }
+
+
+    //To control Player movement (left and right)
+    //If in air, less left and right
     private void Move()
     {
         float inAir = 1f;
@@ -84,6 +113,9 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    //To control Player movement (jumps - up and down)
+    //Shows jump slider when charging
+    //Player can double jump
     private void Jump()
     {
         //need to update jump behaviour
@@ -141,37 +173,8 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "CannonBall")
-        {
-            //Vector2 pushback = (this.transform.position - collision.transform.position) * collision.gameObject.GetComponent<CannonBallBehaviour>().GetBallPower();
-            //rigibody.velocity += pushback;
-        }
-        else if (collision.gameObject.tag == "Boundary")
-        {
-            //need to make it so player can't move in direction of Boundary
-        }
-    }
-
-    private void MenuLoad()
-    {
-        if (gm.stageLevel == 0)
-        {
-            anim.SetBool("isMoving", true);
-        }
-        else if (gm.stageLevel == 1)
-        {
-            StartCoroutine(HaltChar());
-        }
-    }
-
-    private IEnumerator HaltChar()
-    {
-        yield return new WaitForSeconds(1.5f);
-        anim.SetBool("isMoving", false);
-    }
-
+    //To set when Player is on the ground
+    //If Player reaches new max height and is grounded, set as new spawn location
     public void IsGrounded(bool grounded)
     {
         if (grounded) 
@@ -183,12 +186,11 @@ public class PlayerBehaviour : MonoBehaviour
             anim.SetBool("isGrounded", true);
             checkGround = true;
             jumpCount = 0;
-            groundSpawn += Time.deltaTime;
 
-            if (groundSpawn > 2f)
+            if (this.transform.position.y > previousHeight)
             {
-                gm.SetSpawnLoc(this.transform.position.x, this.transform.position.y);
-                groundSpawn = 0;
+                previousHeight = this.transform.position.y; 
+                gm.SetSpawnLoc(this.transform.position.x, previousHeight);
             }
             
         }
@@ -199,6 +201,7 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
 
+    //When Player has Coconut buffs, can kick while not charging jumps
     private void Kick()
     {
         if (gm.coconutBuff > 0)
@@ -224,6 +227,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    //Turns on Kick Collider (to block Cannon damage) during Kick animation
     private void KickColliderCheck()
     {
         if(this.GetComponent<SpriteRenderer>().sprite == kickTimer_1 ||
@@ -238,7 +242,10 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    public bool GetGroundCheck() { return checkGround; }
+    //To check Player invincibility and trigger flashes and function
+    //If the Player just spawned, moving will cancel invincibility
+    //Otherwise, for a set amount of time
+
 
     private void Invincible()
     {
@@ -261,6 +268,8 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    //On how invincibility shows on Player
+    //Player flashes during invincibility
     private IEnumerator InvincibleShow()
     {
         if (showInvincible)
@@ -274,6 +283,16 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    //Set duration of invincibility for when Player takes damage before it turns off
+    public IEnumerator DelayOffInvincible()
+    {
+        yield return new WaitForSeconds(2f);
+        showInvincible = false;
+        invincible = false;
+    }
+
+
+    //To set if Player is invincible
     public void SetInvincible(bool onOrOff)
     {
         if (onOrOff)
@@ -286,13 +305,12 @@ public class PlayerBehaviour : MonoBehaviour
             invincible = false;
             showInvincible = false;
         }
-        
+
     }
 
-    public IEnumerator DelayOffInvincible()
-    {
-        yield return new WaitForSeconds(2f);
-        showInvincible = false;
-        invincible = false;
-    }
+    //To get if Player is on ground or not
+    public bool GetGroundCheck() { return checkGround; }
+
+    //To set if Player just spawned
+    public void SetJustSpawned(bool isSpawn) { justSpawned = isSpawn; }
 }

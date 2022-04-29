@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class LevelSpawner : MonoBehaviour
 {
-    private GameManager gm;
     private FloorRandomizer fr;
     public int tileCount; //will be private later on
     public int levelCount; //will be private later on
@@ -30,9 +27,9 @@ public class LevelSpawner : MonoBehaviour
     public Tile bndRightTile;
 
     public bool tileIsSet;
+
     void Start()
     {
-        gm = FindObjectOfType<GameManager>();
         fr = FindObjectOfType<FloorRandomizer>();
         lvlActive = false;
         levelCount = 0;
@@ -145,6 +142,7 @@ public class LevelSpawner : MonoBehaviour
         fr.SetBotFloor();
     }
 
+
     private void CheckTile()
     {
         int y = (int)this.transform.position.y;
@@ -157,4 +155,5 @@ public class LevelSpawner : MonoBehaviour
             tileIsSet = true;
         }
     }
+
 }
