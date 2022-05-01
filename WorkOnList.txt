@@ -1,4 +1,3 @@
-- Check peakHeight on GameManager and similar float on PlayerBehaviour - One is used for Camera, other is used for PB. Change to 1
 - Work on UI
 	- Coconut - Need text (x0 - x3) and update function
 	- Wine - colors in during buff
@@ -24,3 +23,7 @@
 - Hook Buttons up (Play should change stage level to 1)
 - How to Play (?) - Might not need. Put into intro.
 - Settings
+
+- Added moving left and right to boxes in TileBehaviour and BoxSpawner
+- Updated BoxSpawnLevel prefab so that BoxSpawner script is on main parent and can reflect -x for left/right
+- Cleaned up TileGrid so 8 bools for tiles are in an array

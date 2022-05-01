@@ -434,7 +434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 205257565555990047, guid: 3e5c4b663ca4adf46b828f719c107226, type: 3}
       propertyPath: jumpStart
-      value: 0.7
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 205257565555990047, guid: 3e5c4b663ca4adf46b828f719c107226, type: 3}
       propertyPath: invincible
@@ -454,7 +454,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 2aa4cbcb94373814896722f2ade15c54, type: 3}
     - target: {fileID: 205257565555990047, guid: 3e5c4b663ca4adf46b828f719c107226, type: 3}
       propertyPath: jumpBuildRate
-      value: 1.3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2515451747936912455, guid: 3e5c4b663ca4adf46b828f719c107226, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1673,13 +1673,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3405c59007608ac42b15df5d9c9f03fd, type: 2}
   - {fileID: 11400000, guid: 383a3806d5a69674c966a16afa041ec3, type: 2}
   - {fileID: 11400000, guid: e8e575682100a3a4582c8f66601632a3, type: 2}
-  - {fileID: 11400000, guid: a27cdb1e49aa99141a4f97593d7bcaee, type: 2}
-  - {fileID: 11400000, guid: 766ce738dc74fc945b96c34c09197bdf, type: 2}
+  - {fileID: 11400000, guid: 66c09b54752025949bb06a6d52cf9857, type: 2}
+  - {fileID: 11400000, guid: a6a27e931b1121b4eb8bf0f9b8ed77e7, type: 2}
   botFloor: {fileID: 11400000, guid: b7d29c139da4a1a45bc7696ae36b497a, type: 2}
   topFloor: {fileID: 0}
   initialFloor: {fileID: 11400000, guid: b7d29c139da4a1a45bc7696ae36b497a, type: 2}
   cannon: {fileID: 330046419867062274, guid: 6113c09bd9ba1ff43bd20543e97042e3, type: 3}
   fSpeed: 0.2
+  boxLevel: {fileID: 2262462515464467336, guid: 25128cfdde3681e4c92542bbdfd2cfde, type: 3}
 --- !u!4 &1197322936
 Transform:
   m_ObjectHideFlags: 0

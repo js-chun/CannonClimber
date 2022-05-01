@@ -12,11 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe9508a54e338347a1ded03db4686c3, type: 3}
   m_Name: 6L
   m_EditorClassIdentifier: 
-  x1: 1
-  x2: 1
-  x3: 1
-  x4: 1
-  x5: 1
-  x6: 1
-  x7: 0
-  x8: 0
+  xTiles: 0101010101010000
+  movBoxesL: 0
+  movBoxesR: 0

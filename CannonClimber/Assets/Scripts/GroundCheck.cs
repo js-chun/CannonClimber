@@ -32,10 +32,12 @@ public class GroundCheck : MonoBehaviour
             player.GetComponent<Animator>().SetTrigger("hitDead");
             gm.stageLevel = 3;
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        player.IsGrounded(false);
+         player.IsGrounded(false);
+        
     }
 }

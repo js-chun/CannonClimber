@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbe9508a54e338347a1ded03db4686c3, type: 3}
-  m_Name: 3R
+  m_Name: BoxFloorLeft
   m_EditorClassIdentifier: 
-  xTiles: 0000000000010101
-  movBoxesL: 0
-  movBoxesR: 0
+  xTiles: 0101010100000000
+  moveBoxes: 1
+  boxesLeft: 1
+  boxesRight: 0

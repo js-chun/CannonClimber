@@ -125,18 +125,25 @@ public class LevelSpawner : MonoBehaviour
     private void AddLevel()
     {
         fr.RandomFlr();
-        for (int i = -4; i < 4; i++)
+        if (fr.topFloor.moveBoxes)
         {
-            int typeTile = fr.topFloor.TypeOfTile(i);
-            if(typeTile != -1)
+            fr.SpawnBoxLevel((int)this.transform.position.y);
+        }
+        else
+        {
+            for (int i = -4; i < 4; i++)
             {
-                Tile newTile;
-                if (typeTile == 0) { newTile = lvlSoloTile; }
-                else if (typeTile == 1) { newTile = lvlLeftTile; }
-                else if (typeTile == 2) { newTile = lvlMidTile; }
-                else { newTile = lvlRightTile; }
-                int y = (int)this.transform.position.y;
-                lvlMap.SetTile(new Vector3Int(i, y, 0), newTile);
+                int typeTile = fr.topFloor.TypeOfTile(i);
+                if (typeTile != -1)
+                {
+                    Tile newTile;
+                    if (typeTile == 0) { newTile = lvlSoloTile; }
+                    else if (typeTile == 1) { newTile = lvlLeftTile; }
+                    else if (typeTile == 2) { newTile = lvlMidTile; }
+                    else { newTile = lvlRightTile; }
+                    int y = (int)this.transform.position.y;
+                    lvlMap.SetTile(new Vector3Int(i, y, 0), newTile);
+                }
             }
         }
         fr.SetBotFloor();

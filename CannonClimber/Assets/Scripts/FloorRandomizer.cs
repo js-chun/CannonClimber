@@ -11,6 +11,8 @@ public class FloorRandomizer : MonoBehaviour
 
     public GameObject cannon;
     public float fSpeed = 0.2f;
+
+    public GameObject boxLevel;
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
@@ -45,6 +47,19 @@ public class FloorRandomizer : MonoBehaviour
         if (faceRight)
         {
             newCan.transform.localScale = new Vector2(-2f, 2f);
+        }
+    }
+
+    public void SpawnBoxLevel(float locY)
+    {
+        GameObject newBoxLevel = Instantiate(boxLevel, new Vector2(0f,locY + 1),Quaternion.identity, transform);
+        if (topFloor.boxesLeft)
+        {
+            newBoxLevel.GetComponent<BoxSpawner>().boxMoveLeft = true;
+        }
+        else
+        {
+            newBoxLevel.GetComponent<BoxSpawner>().boxMoveLeft = false;
         }
     }
 }

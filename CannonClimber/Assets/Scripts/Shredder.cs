@@ -36,7 +36,7 @@ public class Shredder : MonoBehaviour
     //If Player falls, destroys Player and respawns
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Cannon" || collision.gameObject.tag == "CannonBall") 
+        if (collision.gameObject.tag == "Cannon" || collision.gameObject.tag == "CannonBall" || collision.gameObject.tag == "Terrain") 
         {
             Destroy(collision.gameObject);
         }

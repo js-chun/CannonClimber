@@ -7,27 +7,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Floor Config")]
 public class TileGrid : ScriptableObject
 {
-    public bool x1;
-    public bool x2;
-    public bool x3;
-    public bool x4;
-    public bool x5;
-    public bool x6;
-    public bool x7;
-    public bool x8;
+    public bool[] xTiles = new bool[8];     //each bool for if tile is occupied or not (left to right)
 
-    public TileGrid(bool x1T, bool x2T, bool x3T, bool x4T, bool x5T, bool x6T, bool x7T, bool x8T)
-    {
-        x1 = x1T;
-        x2 = x2T;
-        x3 = x3T;
-        x4 = x4T;
-        x5 = x5T;
-        x6 = x6T;
-        x7 = x7T;
-        x8 = x8T;
-    }
+    public bool moveBoxes;      //if floor is moving box level
+    public bool boxesLeft;      //if box is moving left
+    public bool boxesRight;     //if box is moving right
 
+    //checks current TileGrid vs the one above to see if there's no where to jump to (incompatible)
     public bool CantGoUp(TileGrid aboveLevel)
     {
         int numJumpTo = 0;
@@ -43,23 +29,24 @@ public class TileGrid : ScriptableObject
                     int checkPosition = i + j;
                     if (checkPosition > 0 && checkPosition < 9)
                     {
-                        if(j == 0)
+                        if (j == 0)
                         {
-                            if (TileCompare(aboveLevel,checkPosition) == -1) { numBotBlocked++; }
+                            if (TileCompare(aboveLevel, checkPosition) == -1) { numBotBlocked++; }
                         }
                         if (aboveLevel.GetOccupied(checkPosition)) { numJumpTo++; }
                     }
                 }
             }
         }
-        if(numJumpTo == 0) { return true; }
+        if (numJumpTo == 0) { return true; }
         else
         {
-            if(numBotOccupied == numBotBlocked) { return true; }
+            if (numBotOccupied == numBotBlocked) { return true; }
             else { return false; }
         }
     }
 
+    //gets occupied for x tile as an integer (0 for none, or 1 for occupied)
     public int GetOccupiedInt(int x)
     {
         bool a = GetOccupied(x);
@@ -67,32 +54,19 @@ public class TileGrid : ScriptableObject
         else { return 0; }
     }
 
+    //gets occupied x tile as true or false
     public bool GetOccupied(int x)
     {
-        if (x == 1) { return x1; }
-        else if (x == 2) { return x2; }
-        else if (x == 3) { return x3; }
-        else if (x == 4) { return x4; }
-        else if (x == 5) { return x5; }
-        else if (x == 6) { return x6; }
-        else if (x == 7) { return x7; }
-        else if (x == 8) { return x8; }
-        else { return false; }
+        return xTiles[x - 1];
     }
 
-
+    //sets oocupied for x tile
     public void SetOccupied(int x, bool hasTile)
     {
-        if (x == 1) { x1 = hasTile; }
-        else if (x == 2) { x2 = hasTile; }
-        else if (x == 3) { x3 = hasTile; }
-        else if (x == 4) { x4 = hasTile; }
-        else if (x == 5) { x5 = hasTile; }
-        else if (x == 6) { x6 = hasTile; }
-        else if (x == 7) { x7 = hasTile; }
-        else if (x == 8) { x8 = hasTile; }
+        xTiles[x - 1] = hasTile;
     }
 
+    //compares x tile with x tile on above level to see if empty, blocked
     public int TileCompare(TileGrid aboveLevel, int x)
     {
         int state = this.GetOccupiedInt(x) - 2 * aboveLevel.GetOccupiedInt(x);
@@ -103,6 +77,7 @@ public class TileGrid : ScriptableObject
         //1 means above does not, current does have a tile on X
     }
 
+    //returns what type of tile (visually) should be created for this if occupied
     public int TypeOfTile (int x)
     {
         x += 5;     //starts -4 in game

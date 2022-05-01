@@ -25,7 +25,7 @@ public class CameraMovement : MonoBehaviour
     {
         if(cam != null)
         {
-            if(gm.stageLevel > 3)
+            if(gm.stageLevel > 4)
             {
                 if(player != null)
                 {
