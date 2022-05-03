@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class FloorRandomizer : MonoBehaviour
 {
-    private GameManager gm;
     
     public TileGrid[] floors;
     public TileGrid botFloor;
@@ -15,7 +14,6 @@ public class FloorRandomizer : MonoBehaviour
     public GameObject boxLevel;
     void Start()
     {
-        gm = FindObjectOfType<GameManager>();
         botFloor = initialFloor;
     }
 

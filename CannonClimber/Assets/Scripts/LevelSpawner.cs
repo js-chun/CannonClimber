@@ -4,29 +4,36 @@ using UnityEngine.Tilemaps;
 public class LevelSpawner : MonoBehaviour
 {
     private FloorRandomizer fr;
-    public int tileCount; //will be private later on
-    public int levelCount; //will be private later on
+    public int tileCount;           //will be private later on
+    public int levelCount;          //will be private later on
 
-    private int difficulty;
+    private int difficulty;         //Used to set difficulty of levels later on
 
-    private bool lvlActive;
+    private bool lvlActive;         //Activates the levels once initial map is consumed
 
-    public Tilemap lvlMap;
-    public Tile lvlSoloTile;
-    public Tile lvlLeftTile;
-    public Tile lvlMidTile;
-    public Tile lvlRightTile;
+    public Tilemap lvlMap;          //Level TileMap
+    public Tile lvlSoloTile;        //Level Tile - Single
+    public Tile lvlLeftTile;        //Level Tile - Left End of Multi
+    public Tile lvlMidTile;         //Level Tile - Middle of Multi
+    public Tile lvlRightTile;       //Level Tile - Right End of Multi
 
-    public Tilemap bgdMap;
-    public Tile bgdLeftTile;
-    public Tile bgdMidTile;
-    public Tile bgdRightTile;
+    public Tilemap bgdMap;          //Background TileMap
+    public Tile bgdLeftTile;        //Background Tile - Left Edge
+    public Tile bgdMidTile;         //Background Tile - Middle
+    public Tile bgdRightTile;       //Background Tile - Right Edge
 
-    public Tilemap boundMap;
-    public Tile bndLeftTile;
-    public Tile bndRightTile;
+    public Tilemap boundMap;        //Boundary TileMap
+    public Tile bndLeftTile;        //Boundary Tile - Left End
+    public Tile bndRightTile;       //Boundary Tile - Right End
 
-    public bool tileIsSet;
+    private bool tileIsSet;         //To check if top tile is set or not
+
+    public GameObject scoreOne;             //Score Level 1 Item
+    private float scoreOneRate;     //Rate at which score level 1 item occurs
+    public GameObject scoreTwo;             //Score Level 2 Item
+    private float scoreTwoRate;     //Rate at which score level 1 item occurs
+    public GameObject scoreThree;           //Score Level 3 Item
+    private float scoreThreeRate;   //Rate at which score level 1 item occurs
 
     void Start()
     {
@@ -34,6 +41,9 @@ public class LevelSpawner : MonoBehaviour
         lvlActive = false;
         levelCount = 0;
         difficulty = 2;
+        scoreOneRate = 0.15f;
+        scoreTwoRate = 0.05f;
+        scoreThreeRate = 0.01f;
     }
 
     void Update()
@@ -46,6 +56,7 @@ public class LevelSpawner : MonoBehaviour
         GenerateLevel();
     }
 
+    //To show level intially - activates and fades in
     private void ShowLevel()
     {
         if (lvlMap != null)
@@ -64,8 +75,10 @@ public class LevelSpawner : MonoBehaviour
         }
     }
 
+    //To trigger level showing - Used in MapConsumed in Item script
     public void SetLvl(bool isActive) { lvlActive = isActive; }
 
+    //Generates each floor
     private void GenerateLevel()
     {
         if (!tileIsSet)
@@ -80,6 +93,7 @@ public class LevelSpawner : MonoBehaviour
             }
             else if (levelCount == 2)
             {
+                AddItems((int)this.transform.position.y);
                 AddLevel();
                 AddBoundary(0);
             }
@@ -87,6 +101,7 @@ public class LevelSpawner : MonoBehaviour
         }
     }
 
+    //Adds Background tiles for y height
     private void AddBackground()
     {
         Tile newTile;
@@ -102,6 +117,7 @@ public class LevelSpawner : MonoBehaviour
         }
     }
 
+    //Adds Boundary tiles for y height
     private void AddBoundary(int scenario)
     {
         int y = (int)this.transform.position.y;
@@ -122,6 +138,7 @@ public class LevelSpawner : MonoBehaviour
         }
     }
 
+    //Takes randomized level from FloorRandomizer and adds setup as Level tiles for y height
     private void AddLevel()
     {
         fr.RandomFlr();
@@ -149,7 +166,28 @@ public class LevelSpawner : MonoBehaviour
         fr.SetBotFloor();
     }
 
+    private void AddItems(float y)
+    {
+        float a;
+        for (int i = -4; i < 4; i++)
+        {
+            a = Random.Range(0f,1f);
+            if (a <= scoreThreeRate)
+            {
+                Instantiate(scoreThree, new Vector2(i + 0.5f, y-0.25f), Quaternion.identity);
+            }
+            else if (a <= scoreTwoRate)
+            {
+                Instantiate(scoreTwo, new Vector2(i + 0.5f, y - 0.25f), Quaternion.identity);
+            }
+            else if (a <= scoreOneRate)
+            {
+                Instantiate(scoreOne, new Vector2(i + 0.5f, y - 0.25f), Quaternion.identity);
+            }
+        }
+    }
 
+    //Checks if current y height has tiles or not (just checks a background tile)
     private void CheckTile()
     {
         int y = (int)this.transform.position.y;
