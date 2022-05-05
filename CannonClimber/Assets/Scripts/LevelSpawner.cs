@@ -28,6 +28,7 @@ public class LevelSpawner : MonoBehaviour
 
     private bool tileIsSet;         //To check if top tile is set or not
 
+    public GameObject itemContainer;
     public GameObject scoreOne;             //Score Level 1 Item
     private float scoreOneRate;     //Rate at which score level 1 item occurs
     public GameObject scoreTwo;             //Score Level 2 Item
@@ -174,15 +175,15 @@ public class LevelSpawner : MonoBehaviour
             a = Random.Range(0f,1f);
             if (a <= scoreThreeRate)
             {
-                Instantiate(scoreThree, new Vector2(i + 0.5f, y-0.25f), Quaternion.identity);
+                Instantiate(scoreThree, new Vector2(i + 0.5f, y-0.25f), Quaternion.identity, itemContainer.transform);
             }
             else if (a <= scoreTwoRate)
             {
-                Instantiate(scoreTwo, new Vector2(i + 0.5f, y - 0.25f), Quaternion.identity);
+                Instantiate(scoreTwo, new Vector2(i + 0.5f, y - 0.25f), Quaternion.identity, itemContainer.transform);
             }
             else if (a <= scoreOneRate)
             {
-                Instantiate(scoreOne, new Vector2(i + 0.5f, y - 0.25f), Quaternion.identity);
+                Instantiate(scoreOne, new Vector2(i + 0.5f, y - 0.25f), Quaternion.identity, itemContainer.transform);
             }
         }
     }

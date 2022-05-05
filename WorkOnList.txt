@@ -1,7 +1,5 @@
 - Work on UI
-	- Coconut - Need text (x0 - x3) and update function
 	- Wine - colors in during buff
-	- Score - Need text on and update function
 - Add more difficulty (hazards)
 	- Fire Trap/Hazard - need to add
 	- Idle Spikes
@@ -14,11 +12,12 @@
 - Pause Function
 	- Go back to menu
 	- Restart
+- Clean Up Charge Cannon Color
+- If no charge jump, then would need to fix animation (no charge animation)
+- When Kick, slow down animation effect?
+- Add How to Play in Intro
 
-- Need to add scrolling background on menu
 - Need to work on menu a lot
-- Change Font
 - Change Buttons
 - Hook Buttons up (Play should change stage level to 1)
-- How to Play (?) - Might not need. Put into intro.
 - Settings

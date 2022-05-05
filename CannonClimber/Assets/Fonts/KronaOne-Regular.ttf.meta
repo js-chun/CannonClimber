@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 18453950c896d5f4390029c4ff8abf12
+guid: 20d30e7000dc0a44682c0cabe17bc146
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Pirate Jack
+  - Krona One
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

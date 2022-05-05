@@ -9,6 +9,7 @@ TagManager:
   - Boundary
   - Cannon
   - Block
+  - Item
   layers:
   - Default
   - TransparentFX

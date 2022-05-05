@@ -12,6 +12,8 @@ public class FloorRandomizer : MonoBehaviour
     public float fSpeed = 0.2f;
 
     public GameObject boxLevel;
+
+    public GameObject levelContainer;
     void Start()
     {
         botFloor = initialFloor;
@@ -40,7 +42,7 @@ public class FloorRandomizer : MonoBehaviour
         {
             locX = -(locX);
         }
-        GameObject newCan = Instantiate(cannon, new Vector2(locX, locY), Quaternion.identity, transform);
+        GameObject newCan = Instantiate(cannon, new Vector2(locX, locY), Quaternion.identity, levelContainer.transform);
         newCan.GetComponent<CannonBehaviour>().fireSpeed = Random.Range(fSpeed - 0.15f, fSpeed + 0.15f);
         if (faceRight)
         {
@@ -50,7 +52,7 @@ public class FloorRandomizer : MonoBehaviour
 
     public void SpawnBoxLevel(float locY)
     {
-        GameObject newBoxLevel = Instantiate(boxLevel, new Vector2(0f,locY + 1),Quaternion.identity, transform);
+        GameObject newBoxLevel = Instantiate(boxLevel, new Vector2(0f,locY + 1),Quaternion.identity, levelContainer.transform);
         if (topFloor.boxesLeft)
         {
             newBoxLevel.GetComponent<BoxSpawner>().boxMoveLeft = true;

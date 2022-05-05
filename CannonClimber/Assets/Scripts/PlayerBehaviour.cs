@@ -17,15 +17,20 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject jumpSpwn;     //Where jump particles are instantiated
 
     public float moveSpeed = 4f;     //Move speed of Player
+
+    //below are for charge jump method
     public float jumpPower;          //Max jump Height of Player
     public float jumpStart = 0.7f;   //Min jump % of Player
     public float jumpBuildRate;      //Build up rate of jump %
-
+    private bool chargingJump;       //If Player is currently charging jump
     private float jumpPerc;          //Current jump %
+
+    //below is for alternative no charge jump method
+    public float jumpPowerAlt = 8f;
+
     private int jumpCount;           //Player jumpt count for double jump
     private int moveStop;            //Stops Player from moving left/right while charging jump
     private bool checkGround;        //If Player is currently on ground
-    private bool chargingJump;       //If Player is currently charging jump
     private float previousHeight;    //Previous max height of Player
 
     private bool invincible;          //If Player should currently be invincible or not
@@ -54,7 +59,8 @@ public class PlayerBehaviour : MonoBehaviour
         if (gm.stageLevel > 3) 
         {
             Move();
-            Jump();
+            //Jump();
+            JumpAlternative();
             Kick();
             KickColliderCheck();
             Invincible();
@@ -136,7 +142,7 @@ public class PlayerBehaviour : MonoBehaviour
                         moveStop = 0;
 
                         anim.SetInteger("JumpState", 1);
-                }
+                    }
                 }
                 else if (Input.GetKeyUp("space"))
                 {
@@ -152,7 +158,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         if (!checkGround)
         {
-            if(rigibody.velocity.y > 0)
+            if (rigibody.velocity.y > 0)
             {
                 anim.SetInteger("JumpState", 2);
             }
@@ -160,12 +166,54 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 anim.SetInteger("JumpState", 3);
             }
-            if(jumpCount == 1)
+            if (jumpCount == 1)
             {
                 if (Input.GetKeyDown("space"))
                 {
                     rigibody.velocity = new Vector2(0, 0);
                     rigibody.velocity += new Vector2(0, jumpPower * 0.6f);
+                    Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
+                    jumpCount++;
+                }
+            }
+        }
+    }
+
+    //To control Player movement (jumps - up and down)
+    //Non-Charge - no jump slider
+    //Player can double jump
+    private void JumpAlternative()
+    {
+        //need to update jump behaviour
+        if (checkGround)
+        {
+            if (jumpCount == 0)
+            {
+                if (Input.GetKeyDown("space")) 
+                {
+                    Vector2 jumpFt = new Vector2(0, jumpPowerAlt);
+                    rigibody.velocity += jumpFt;
+                    Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
+                    jumpCount++;
+                }
+            }
+        }
+        if (!checkGround)
+        {
+            if (rigibody.velocity.y > 0)
+            {
+                anim.SetInteger("JumpState", 2);
+            }
+            else if (rigibody.velocity.y < 0)
+            {
+                anim.SetInteger("JumpState", 3);
+            }
+            if (jumpCount == 1)
+            {
+                if (Input.GetKeyDown("space"))
+                {
+                    rigibody.velocity = new Vector2(0, 0);
+                    rigibody.velocity += new Vector2(0, jumpPowerAlt * 0.8f);
                     Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
                     jumpCount++;
                 }

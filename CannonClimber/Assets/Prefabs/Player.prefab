@@ -847,8 +847,7 @@ MonoBehaviour:
   jumpPower: 11
   jumpStart: 0.7
   jumpBuildRate: 1
-  invincible: 0
-  showInvincible: 0
+  jumpPowerAlt: 9
 --- !u!1001 &174645318105570361
 PrefabInstance:
   m_ObjectHideFlags: 0

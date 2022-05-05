@@ -32,11 +32,14 @@ public class Shredder : MonoBehaviour
         }   
     }
 
-    //If Cannon or Cannonball hits the shredder (at the bottom), destroys them
+    //If Cannon, Cannonball, Item, etc hits the shredder (at the bottom), destroys them
     //If Player falls, destroys Player and respawns
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Cannon" || collision.gameObject.tag == "CannonBall" || collision.gameObject.tag == "Terrain") 
+        if (collision.gameObject.tag == "Cannon" || 
+            collision.gameObject.tag == "CannonBall" || 
+            collision.gameObject.tag == "Terrain" || 
+            collision.gameObject.tag == "Item") 
         {
             Destroy(collision.gameObject);
         }
