@@ -105,7 +105,8 @@ public class Item : MonoBehaviour
 
     private void WineConsumed()
     {
-
+        gm.wineBuff = true;
+        player.CallWineInvincible();
     }
 
     private void ScoreConsumed()

@@ -10,8 +10,11 @@ public class InGameGridUI : MonoBehaviour
     public GameObject wine;             //Image of Wine Buff Status
     public TextMeshProUGUI scoreTxt;    //Text for Score
 
+    private float hue;
+
     void Start()
     {
+        hue = 0f;
         gm = FindObjectOfType<GameManager>();
     }
 
@@ -21,6 +24,7 @@ public class InGameGridUI : MonoBehaviour
         ShowWineStatus();
         ShowScore();
         ShowCoconut();
+        ShowWineStatus();
     }
 
     //Keeps banner on screen at the top relevant to Camera
@@ -34,10 +38,16 @@ public class InGameGridUI : MonoBehaviour
     //Greyed out if no buff. In colour if buffed
     private void ShowWineStatus()
     {
-        //if for wine enabled
-        //wine.GetComponent<SpriteRenderer>().color = Color.white;
-        //else
-        //wine.GetComponent<SpriteRenderer>().material.color = Color.gray;
+        if (gm.wineBuff)
+        {
+            hue += Time.deltaTime * 1f;
+            if (hue >= 1f) { hue = 0f; }
+            wine.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(hue,1f,1f);
+        }
+        else
+        {
+            wine.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(0f,1f,0.1f);
+        }
     }
 
     //Updates text with current number of coconut charges

@@ -21,8 +21,8 @@ public class CannonBallBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Vector2 pushback = (collision.transform.localPosition - this.transform.position) * ballPower;
-            collision.gameObject.GetComponent<Rigidbody2D>().velocity += pushback;
+            //Vector2 pushback = (collision.transform.localPosition - this.transform.position) * ballPower;
+            //collision.gameObject.GetComponent<Rigidbody2D>().velocity += pushback;
             //need to add player dmg
             Debug.Log("Player");
         }

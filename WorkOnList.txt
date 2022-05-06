@@ -1,5 +1,4 @@
-- Work on UI
-	- Wine - colors in during buff
+- Reversed directions while buffed?
 - Add more difficulty (hazards)
 	- Fire Trap/Hazard - need to add
 	- Idle Spikes

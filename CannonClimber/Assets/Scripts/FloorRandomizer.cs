@@ -43,7 +43,7 @@ public class FloorRandomizer : MonoBehaviour
             locX = -(locX);
         }
         GameObject newCan = Instantiate(cannon, new Vector2(locX, locY), Quaternion.identity, levelContainer.transform);
-        newCan.GetComponent<CannonBehaviour>().fireSpeed = Random.Range(fSpeed - 0.15f, fSpeed + 0.15f);
+        newCan.GetComponent<CannonBehaviour>().fireSpeed = Random.Range(fSpeed - 0.1f, fSpeed + 0.05f);
         if (faceRight)
         {
             newCan.transform.localScale = new Vector2(-2f, 2f);

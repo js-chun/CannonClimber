@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,8 +7,10 @@ public class GameManager : MonoBehaviour
     public int stageLevel = 0;  //Stage Level to determine certain events
     public int maxLives = 3;    //Maximum lives the Player has
     public int coconutBuff;     //How many kicks the Player has
+    public bool wineBuff;       //If Player currently has wine buff
     public int score;           //Score of Player in game session
     
+
     private float peakHeight;
     private Vector3 spawnLoc;
 
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
         score = 0;
         peakHeight = 0f;
         coconutBuff = 0;
+        wineBuff = false;
     }
 
     void Update()
@@ -61,4 +65,5 @@ public class GameManager : MonoBehaviour
 
     //Get the maximum height
     public float GetPeakHeight() { return peakHeight; }
+
 }

@@ -36,7 +36,7 @@ public class PlayerBehaviour : MonoBehaviour
     private bool invincible;          //If Player should currently be invincible or not
     private bool showInvincible;      //If Player is showing as Invincible
     private bool justSpawned;         //If Player just spawned
-
+    private float wineHue;
 
     void Start()
     {
@@ -48,6 +48,7 @@ public class PlayerBehaviour : MonoBehaviour
         moveStop = 1;
         previousHeight = 0;
         chargingJump = false;
+        wineHue = 0f;
 
     }
 
@@ -300,7 +301,17 @@ public class PlayerBehaviour : MonoBehaviour
         if (invincible)
         {
             gameObject.layer = 14;
-            StartCoroutine(InvincibleShow());
+            if (!gm.wineBuff)
+            {
+                StartCoroutine(InvincibleShow());
+            }
+            else
+            {
+                wineHue += Time.deltaTime * 1f;
+                if (wineHue >= 1f) { wineHue = 0f; }
+                this.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(wineHue, 1f, 1f);
+            }
+
             if (justSpawned)
             {
                 if (Input.GetKeyDown("space") || Input.GetAxis("Horizontal") > 0 || (gm.coconutBuff > 0 && Input.GetKeyDown("f")))
@@ -331,6 +342,20 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    public void CallWineInvincible()
+    {
+        StartCoroutine(WineInvincible());
+    }
+
+    private IEnumerator WineInvincible()
+    {
+        invincible = true;
+        yield return new WaitForSeconds(5f);
+        gm.wineBuff = false;
+        invincible = false;
+        this.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
     //Set duration of invincibility for when Player takes damage before it turns off
     public IEnumerator DelayOffInvincible()
     {
@@ -338,7 +363,6 @@ public class PlayerBehaviour : MonoBehaviour
         showInvincible = false;
         invincible = false;
     }
-
 
     //To set if Player is invincible
     public void SetInvincible(bool onOrOff)
@@ -353,7 +377,6 @@ public class PlayerBehaviour : MonoBehaviour
             invincible = false;
             showInvincible = false;
         }
-
     }
 
     //To get if Player is on ground or not
