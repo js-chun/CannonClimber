@@ -4,7 +4,6 @@ public class CannonBallBehaviour : MonoBehaviour
 {
     public float ballSpeed = 2.5f;        //how fast the cannon ball will go
     public GameObject explosionAnim;    //explosion prefab for when it hits
-    private float ballPower = 3f;
 
     void Update()
     {
@@ -21,10 +20,12 @@ public class CannonBallBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            //Vector2 pushback = (collision.transform.localPosition - this.transform.position) * ballPower;
-            //collision.gameObject.GetComponent<Rigidbody2D>().velocity += pushback;
             //need to add player dmg
             Debug.Log("Player");
+            if(FindObjectOfType<GameManager>().stageLevel == 1)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().velocity += new Vector2(5f,4f);
+            }
         }
         else if (collision.gameObject.tag == "Block")
         {
@@ -34,13 +35,4 @@ public class CannonBallBehaviour : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void SetBallPower(float power)
-    {
-        ballPower = power;
-    }
-
-    public float GetBallPower()
-    {
-        return ballPower;
-    }
 }

@@ -1,3 +1,6 @@
+- Reset jump charges when kicked successfully?
+- Add pause mid air when re-spawned until user moves (add ability to jump)
+- Need to find dizzy icon for wine buff
 - Reversed directions while buffed?
 - Add more difficulty (hazards)
 	- Fire Trap/Hazard - need to add

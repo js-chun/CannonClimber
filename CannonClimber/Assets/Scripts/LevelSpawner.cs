@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -29,12 +30,14 @@ public class LevelSpawner : MonoBehaviour
     private bool tileIsSet;         //To check if top tile is set or not
 
     public GameObject itemContainer;
-    public GameObject scoreOne;             //Score Level 1 Item
-    private float scoreOneRate;     //Rate at which score level 1 item occurs
-    public GameObject scoreTwo;             //Score Level 2 Item
-    private float scoreTwoRate;     //Rate at which score level 1 item occurs
-    public GameObject scoreThree;           //Score Level 3 Item
-    private float scoreThreeRate;   //Rate at which score level 1 item occurs
+    public GameObject scoreOne;     //Score Level 1 Item
+    public GameObject scoreTwo;     //Score Level 2 Item
+    public GameObject scoreThree;   //Score Level 3 Item
+    public GameObject orangeItem;   //Orange Item (for +1 HP)
+    public GameObject wineItem;     //Wine Item (for temp invincibility)
+    public GameObject coconutItem;  //Coconut Item for kicks
+
+    private Dictionary<GameObject, float> itemRarity = new Dictionary<GameObject, float>();
 
     void Start()
     {
@@ -42,9 +45,8 @@ public class LevelSpawner : MonoBehaviour
         lvlActive = false;
         levelCount = 0;
         difficulty = 2;
-        scoreOneRate = 0.15f;
-        scoreTwoRate = 0.05f;
-        scoreThreeRate = 0.01f;
+
+        AddItemRarities();
     }
 
     void Update()
@@ -169,23 +171,58 @@ public class LevelSpawner : MonoBehaviour
 
     private void AddItems(float y)
     {
+        
         float a;
         for (int i = -4; i < 4; i++)
         {
             a = Random.Range(0f,1f);
-            if (a <= scoreThreeRate)
+            if (a <= itemRarity[scoreOne])
             {
-                Instantiate(scoreThree, new Vector2(i + 0.5f, y-0.25f), Quaternion.identity, itemContainer.transform);
+                Instantiate(scoreOne, new Vector2(i + 0.5f, y-0.25f), Quaternion.identity, itemContainer.transform);
             }
-            else if (a <= scoreTwoRate)
+            else if (a <= itemRarity[scoreTwo])
             {
                 Instantiate(scoreTwo, new Vector2(i + 0.5f, y - 0.25f), Quaternion.identity, itemContainer.transform);
             }
-            else if (a <= scoreOneRate)
+            else if (a <= itemRarity[scoreThree])
             {
-                Instantiate(scoreOne, new Vector2(i + 0.5f, y - 0.25f), Quaternion.identity, itemContainer.transform);
+                Instantiate(scoreThree, new Vector2(i + 0.5f, y - 0.25f), Quaternion.identity, itemContainer.transform);
+            }
+            else if (a <= itemRarity[orangeItem])
+            {
+                Instantiate(orangeItem, new Vector2(i + 0.5f, y - 0.25f), Quaternion.identity, itemContainer.transform);
+            }
+            else if (a <= itemRarity[wineItem])
+            {
+                Instantiate(wineItem, new Vector2(i + 0.5f, y - 0.25f), Quaternion.identity, itemContainer.transform);
+            }
+            else if (a <= itemRarity[coconutItem])
+            {
+                Instantiate(coconutItem, new Vector2(i + 0.5f, y - 0.25f), Quaternion.identity, itemContainer.transform);
             }
         }
+    }
+
+    //To store cumulative rarities for items at the start of game
+    private void AddItemRarities()
+    {
+        float flatRarity = scoreOne.GetComponent<Item>().rarity;
+        itemRarity.Add(scoreOne, flatRarity);
+
+        flatRarity += scoreTwo.GetComponent<Item>().rarity;
+        itemRarity.Add(scoreTwo, flatRarity);
+
+        flatRarity += scoreThree.GetComponent<Item>().rarity;
+        itemRarity.Add(scoreThree, flatRarity);
+
+        flatRarity += orangeItem.GetComponent<Item>().rarity;
+        itemRarity.Add(orangeItem, flatRarity);
+
+        flatRarity += wineItem.GetComponent<Item>().rarity;
+        itemRarity.Add(wineItem, flatRarity);
+
+        flatRarity += coconutItem.GetComponent<Item>().rarity;
+        itemRarity.Add(coconutItem, flatRarity);
     }
 
     //Checks if current y height has tiles or not (just checks a background tile)

@@ -2,28 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Class for items
 public class Item : MonoBehaviour
 {
-    private readonly float moveLimit = 0.2f;
-    private readonly float itemSpeed = 0.5f;
-    private Transform tf;
+    private readonly float moveLimit = 0.2f;    //How much items move up or down from center
+    private readonly float itemSpeed = 0.5f;    //How fast items move
+    private Transform tf;                       //Center point
 
-    private float minMove;
-    private float maxMove;
-    private bool goingUp;
+    private float minMove;          //Lowest point item moves
+    private float maxMove;          //Highest point item moves
+    private bool goingUp;           //Bool for when item is going up
 
-    private GameManager gm;
-    private PlayerBehaviour player;
-    public GameObject linked;
+    private GameManager gm;         
+    public GameObject linked;       //Linked is specifically for Map to activate levels
 
-    public int itemType;
-    public int scoreBonus;
+    public int itemType;            //Governs item type, 0 = map, 1 = coconut, 2 = orange, 3 = wine, 4 = score
+    public int scoreBonus;          //How much points a score item gives
     public float rarity;
 
     void Start()
     {
         gm= FindObjectOfType<GameManager>();
-        FindPlayer();
         tf = this.transform;
 
         minMove = tf.localPosition.y - moveLimit;
@@ -35,17 +34,9 @@ public class Item : MonoBehaviour
     void Update()
     {
         ItemMove();
-        if(player != null)
-        {
-            FindPlayer();
-        }
     }
 
-    public void FindPlayer()
-    {
-        player = FindObjectOfType<PlayerBehaviour>();
-    }
-    //need to adjust for when moving
+    //Moves the item up and down
     private void ItemMove()
     {
         if (goingUp)
@@ -67,8 +58,9 @@ public class Item : MonoBehaviour
         }
     }
 
-    //need to add a collider
 
+    //When Player collides with it, triggers methods based on what type of item
+    //Destroys item after triggering method
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -82,6 +74,8 @@ public class Item : MonoBehaviour
         }
     }
 
+
+    //When map is used, starts the level
     private void MapConsumed()
     {
         gm.stageLevel++;
@@ -93,24 +87,26 @@ public class Item : MonoBehaviour
         }
     }
 
-    private void CoconutConsumed()
-    {
-        gm.coconutBuff = 3;
-    }
+    //When coconut is used, gives player kick charges
+    private void CoconutConsumed() { gm.coconutBuff = 3; }
 
+    //When orange is used, gives player a life back
     private void OrangeConsumed()
     {
-
+        if(gm.maxLives < 3)
+        {
+            gm.maxLives++;
+        }
     }
 
+    //When wine is used, gives player temporary wine buff
     private void WineConsumed()
     {
         gm.wineBuff = true;
-        player.CallWineInvincible();
+        FindObjectOfType<PlayerBehaviour>().CallWineInvincible();
     }
 
-    private void ScoreConsumed()
-    {
-        gm.score += scoreBonus;
-    }
+    //When score item is used, adds score
+    private void ScoreConsumed(){ gm.score += scoreBonus; }
+
 }

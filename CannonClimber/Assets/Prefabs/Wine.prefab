@@ -123,7 +123,7 @@ MonoBehaviour:
   linked: {fileID: 0}
   itemType: 3
   scoreBonus: 0
-  rarity: 0
+  rarity: 0.005
 --- !u!58 &6063057815302484483
 CircleCollider2D:
   m_ObjectHideFlags: 0

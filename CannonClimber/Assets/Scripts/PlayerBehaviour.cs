@@ -12,9 +12,11 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject kickCollider; //Kick Collision to turn on or off
     public Sprite kickTimer_1;      //Sprites to determine when Kick Collision is active
     public Sprite kickTimer_2;
-    public Sprite kickTimer_3;      
+    public Sprite kickTimer_3;
+    public GameObject kickFx;       //Particle prefab for when user is kicking
     public GameObject jumpFx;       //Particle prefab for when user is jumping
     public GameObject jumpSpwn;     //Where jump particles are instantiated
+    private bool kicked;
 
     public float moveSpeed = 4f;     //Move speed of Player
 
@@ -33,10 +35,10 @@ public class PlayerBehaviour : MonoBehaviour
     private bool checkGround;        //If Player is currently on ground
     private float previousHeight;    //Previous max height of Player
 
-    private bool invincible;          //If Player should currently be invincible or not
-    private bool showInvincible;      //If Player is showing as Invincible
-    private bool justSpawned;         //If Player just spawned
-    private float wineHue;
+    private bool invincible;         //If Player should currently be invincible or not
+    private bool showInvincible;     //If Player is showing as Invincible
+    private bool justSpawned;        //If Player just spawned
+    private float wineHue;           //Colour hue value of player (used for wine buff)
 
     void Start()
     {
@@ -261,6 +263,7 @@ public class PlayerBehaviour : MonoBehaviour
                 {
                     Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
                     anim.SetTrigger("Kick");
+                    kicked = true;
                     if (transform.localScale.x < 0) 
                     {
                         rigibody.velocity = new Vector2(0f, 0f);
@@ -284,6 +287,14 @@ public class PlayerBehaviour : MonoBehaviour
             this.GetComponent<SpriteRenderer>().sprite == kickTimer_3)
         {
             kickCollider.SetActive(true);
+            if(this.GetComponent<SpriteRenderer>().sprite == kickTimer_1)
+            {
+                if (kicked)
+                {
+                    Instantiate(kickFx, kickCollider.transform.position, Quaternion.identity, transform.parent);
+                    kicked = false;
+                }
+            }
         }
         else
         {
@@ -292,10 +303,9 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     //To check Player invincibility and trigger flashes and function
+    //Rainbow color while wine buff invincibility
     //If the Player just spawned, moving will cancel invincibility
     //Otherwise, for a set amount of time
-
-
     private void Invincible()
     {
         if (invincible)
@@ -342,11 +352,13 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    //Calls wine buff invincibility (called from item)
     public void CallWineInvincible()
     {
         StartCoroutine(WineInvincible());
     }
 
+    //Wine buff wears off after 5 seconds
     private IEnumerator WineInvincible()
     {
         invincible = true;

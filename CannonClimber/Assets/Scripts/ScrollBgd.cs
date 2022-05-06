@@ -17,6 +17,6 @@ public class ScrollBgd : MonoBehaviour
     private void Scroll()
     {
         this.transform.Translate(-1 * scrollSpeed * Time.deltaTime, 0, 0);
-        if(this.transform.position.x < endLoc) { this.transform.position = new Vector3(startLoc, 0, 0); }
+        if(this.transform.position.x < endLoc) { this.transform.position = new Vector3(startLoc, 0, 10); }
     }
 }

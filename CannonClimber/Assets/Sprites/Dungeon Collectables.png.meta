@@ -1,0 +1,288 @@
+fileFormatVersion: 2
+guid: f67dd145d86502a43ba9f6162611f591
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Dungeon Collectables_10
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 118
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96c251ebae5d56e4da418d02007d086d
+      internalID: 10524038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon Collectables_11
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 118
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d33e69f27f742f742866821d1c9bac3f
+      internalID: -1042120507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon Collectables_12
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 118
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d1322c3a4cbc58479ab871c70ba926e
+      internalID: 1448850095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon Collectables_0
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 119
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c9c452056fe99a49b3ab3c2a570c6fc
+      internalID: 1385024260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Dungeon Collectables_3: -59627221
+      Dungeon Collectables_10: 10524038
+      Dungeon Collectables_43: 339772406
+      Dungeon Collectables_49: -1086889699
+      Dungeon Collectables_50: -809169775
+      Dungeon Collectables_25: -1172602764
+      Dungeon Collectables_6: 1038485754
+      Dungeon Collectables_29: 588477387
+      Dungeon Collectables_9: -1521280605
+      Dungeon Collectables_52: 735138981
+      Dungeon Collectables_22: 1226433094
+      Dungeon Collectables_37: -1269294709
+      Dungeon Collectables_21: -505915096
+      Dungeon Collectables_2: -1079406821
+      Dungeon Collectables_12: 1448850095
+      Dungeon Collectables_54: 782557726
+      Dungeon Collectables_16: 1364757114
+      Dungeon Collectables_42: -915557996
+      Dungeon Collectables_15: 445168108
+      Dungeon Collectables_47: -349583880
+      Dungeon Collectables_33: 1951375102
+      Dungeon Collectables_44: -1926220949
+      Dungeon Collectables_56: 1416654224
+      Dungeon Collectables_8: -1543327919
+      Dungeon Collectables_36: -905176031
+      Dungeon Collectables_34: 1263024804
+      Dungeon Collectables_57: -1234079788
+      Dungeon Collectables_18: 1071314927
+      Dungeon Collectables_38: 921625464
+      Dungeon Collectables_27: -28018866
+      Dungeon Collectables_40: -857065357
+      Dungeon Collectables_17: 984431031
+      Dungeon Collectables_19: -1328072200
+      Dungeon Collectables_51: 569365202
+      Dungeon Collectables_0: 1385024260
+      Dungeon Collectables_20: -81737979
+      Dungeon Collectables_26: 634008969
+      Dungeon Collectables_23: 1380188443
+      Dungeon Collectables_11: -1042120507
+      Dungeon Collectables_35: -362043934
+      Dungeon Collectables_55: -197358068
+      Dungeon Collectables_1: 1476157495
+      Dungeon Collectables_13: -825482368
+      Dungeon Collectables_5: 1021699479
+      Dungeon Collectables_30: 935632162
+      Dungeon Collectables_24: 1777452406
+      Dungeon Collectables_48: -873546468
+      Dungeon Collectables_32: 2008002997
+      Dungeon Collectables_31: -592282815
+      Dungeon Collectables_45: 713128881
+      Dungeon Collectables_7: 1331893301
+      Dungeon Collectables_41: -497710074
+      Dungeon Collectables_28: -2126404688
+      Dungeon Collectables_39: 980819037
+      Dungeon Collectables_4: -403282089
+      Dungeon Collectables_46: -2106473953
+      Dungeon Collectables_14: 1381629925
+      Dungeon Collectables_53: 1926798961
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CannonBehaviour : MonoBehaviour
@@ -54,7 +53,6 @@ public class CannonBehaviour : MonoBehaviour
                     numFired += 1;
                     Vector3 loc = BallPoint.transform.position + new Vector3(0f, 0f, -5f);
                     GameObject fireBall = Instantiate(CannonBall, loc, Quaternion.identity, transform);
-                    fireBall.GetComponent<CannonBallBehaviour>().SetBallPower(cannonPower);
                     GameObject fireFx = Instantiate(LaunchFx, loc, Quaternion.identity, transform);
                 }
             }

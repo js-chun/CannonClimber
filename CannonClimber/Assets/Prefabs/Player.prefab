@@ -841,6 +841,7 @@ MonoBehaviour:
   kickTimer_1: {fileID: 21300000, guid: a5b3b7c9969097e41ad88c76639f0425, type: 3}
   kickTimer_2: {fileID: 21300000, guid: 0333b85daf01e2a42bd5e49921b52a77, type: 3}
   kickTimer_3: {fileID: 21300000, guid: 2aa4cbcb94373814896722f2ade15c54, type: 3}
+  kickFx: {fileID: 5298477221382528638, guid: a04612cd3fdbbf64d9df6f60ae3370ef, type: 3}
   jumpFx: {fileID: 6638353455945680815, guid: 1ef9dc533d534b84db85cb0dd87ef0cd, type: 3}
   jumpSpwn: {fileID: 3339060871521577708}
   moveSpeed: 4
