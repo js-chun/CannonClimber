@@ -193,8 +193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28764a3659f0ca048bbad7caff1ba972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireSpeed: 0.2
   CannonBall: {fileID: 7407634343731111114, guid: a7faf5876295b7b4db98ca81bcb18ed3, type: 3}
   BallPoint: {fileID: 330046418648680895}
+  readySprite_1: {fileID: 21300000, guid: 663ad6aa1cbef3f45a2dbe86aa6669ad, type: 3}
+  readySprite_2: {fileID: 21300000, guid: 533f0fb0be7ebce469c1173a9191925b, type: 3}
   fireSprite: {fileID: 21300000, guid: 61136546d611860428b646aea86b9ed9, type: 3}
   LaunchFx: {fileID: 492722812103043842, guid: d9e5c90a737633940b89d1215b7b80ee, type: 3}
   cannonPower: 3

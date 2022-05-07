@@ -30,6 +30,7 @@ public class CannonBallBehaviour : MonoBehaviour
         else if (collision.gameObject.tag == "Block")
         {
             Debug.Log("Kicked");
+            FindObjectOfType<PlayerBehaviour>().jumpCount = 0;
         }
         GameObject explosion = Instantiate(explosionAnim, this.transform.position, Quaternion.identity, transform.parent);
         Destroy(this.gameObject);

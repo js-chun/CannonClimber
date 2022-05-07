@@ -32,7 +32,7 @@ public class CameraMovement : MonoBehaviour
                     if (player.GetGroundCheck())
                     {
                         float currentHeight = this.transform.position.y;
-                        if (currentHeight > gm.GetPeakHeight()) { gm.SetPeakHeight(currentHeight); }
+                        if (currentHeight > gm.GetPeakHeight()) {gm.SetPeakHeight(currentHeight); }
                     }
                 }
                 Vector2 dist = new Vector2(0, gm.GetPeakHeight()-cam.transform.position.y) * Time.deltaTime * 0.9f;

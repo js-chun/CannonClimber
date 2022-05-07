@@ -1,11 +1,15 @@
-- Reset jump charges when kicked successfully?
-- Add pause mid air when re-spawned until user moves (add ability to jump)
+- Add a way to record floors reached
+- Make pause available when Player is initially falling
+- Add new Cannon variant to spawner
+- Gray overlay around Player when they spawn
 - Need to find dizzy icon for wine buff
 - Reversed directions while buffed?
 - Add more difficulty (hazards)
 	- Fire Trap/Hazard - need to add
 	- Idle Spikes
-- Animation State for Kick (need to clean up)
+- Need to clean up kick
+	- Animation
+	- Make it longer
 - Add Cannonball Jump mechanic (where if player jumps on top of cannonball, even if hit, doesn't take damage + new double jump(?))
 - Need to put in Player Hit Animations
 - Make user actually take damage from Cannonballs
@@ -14,12 +18,10 @@
 - Pause Function
 	- Go back to menu
 	- Restart
-- Clean Up Charge Cannon Color
 - If no charge jump, then would need to fix animation (no charge animation)
-- When Kick, slow down animation effect?
 - Add How to Play in Intro
 
-- Need to work on menu a lot
+- Need to work on menu
 - Change Buttons
 - Hook Buttons up (Play should change stage level to 1)
 - Settings

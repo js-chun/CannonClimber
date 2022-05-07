@@ -10,6 +10,7 @@ TagManager:
   - Cannon
   - Block
   - Item
+  - Box
   layers:
   - Default
   - TransparentFX

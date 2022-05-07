@@ -449,9 +449,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07829988, y: 0}
+  m_Offset: {x: 0.099974915, y: 0.036124926}
   serializedVersion: 2
-  m_Radius: 0.09446019
+  m_Radius: 0.16671018
 --- !u!50 &2939164606176556152
 Rigidbody2D:
   serializedVersion: 4
@@ -803,7 +803,7 @@ Rigidbody2D:
   m_Mass: 0.35089666
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.85
+  m_GravityScale: 1.9
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -849,6 +849,7 @@ MonoBehaviour:
   jumpStart: 0.7
   jumpBuildRate: 1
   jumpPowerAlt: 9
+  jumpCount: 0
 --- !u!1001 &174645318105570361
 PrefabInstance:
   m_ObjectHideFlags: 0

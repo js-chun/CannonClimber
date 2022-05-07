@@ -21,7 +21,18 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        player.IsGrounded(true);
+        if (!player.GetJustSpawned())
+        {
+            player.IsGrounded(true);
+        }
+        else
+        {
+            if (collision.gameObject.tag != "Box")
+            {
+                player.IsGrounded(true);
+            }
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

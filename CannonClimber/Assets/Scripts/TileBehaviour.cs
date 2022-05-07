@@ -67,13 +67,16 @@ public class TileBehaviour : MonoBehaviour
         {
             if (gm.stageLevel > 2)
             {
-                if (!moveLeft)
+                if (!collision.gameObject.GetComponent<PlayerBehaviour>().GetJustSpawned())
                 {
-                    collision.gameObject.transform.position += new Vector3(movementSpd, 0, 0) * Time.deltaTime;
-                }
-                else
-                {
-                    collision.gameObject.transform.position -= new Vector3(movementSpd, 0, 0) * Time.deltaTime;
+                    if (!moveLeft)
+                    {
+                        collision.gameObject.transform.position += new Vector3(movementSpd, 0, 0) * Time.deltaTime;
+                    }
+                    else
+                    {
+                        collision.gameObject.transform.position -= new Vector3(movementSpd, 0, 0) * Time.deltaTime;
+                    }
                 }
             }
         }

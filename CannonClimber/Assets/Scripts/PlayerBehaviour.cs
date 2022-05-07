@@ -7,7 +7,8 @@ public class PlayerBehaviour : MonoBehaviour
     private GameManager gm;
     private Rigidbody2D rigibody;
     private Animator anim;
-    private InGameUI jumpSlider;    
+    private InGameUI jumpSlider;
+    private PauseOverlay pauseOverlay;
 
     public GameObject kickCollider; //Kick Collision to turn on or off
     public Sprite kickTimer_1;      //Sprites to determine when Kick Collision is active
@@ -30,7 +31,7 @@ public class PlayerBehaviour : MonoBehaviour
     //below is for alternative no charge jump method
     public float jumpPowerAlt = 8f;
 
-    private int jumpCount;           //Player jumpt count for double jump
+    public int jumpCount;           //Player jumpt count for double jump
     private int moveStop;            //Stops Player from moving left/right while charging jump
     private bool checkGround;        //If Player is currently on ground
     private float previousHeight;    //Previous max height of Player
@@ -46,6 +47,7 @@ public class PlayerBehaviour : MonoBehaviour
         anim = GetComponent<Animator>();
         rigibody = GetComponent<Rigidbody2D>();
         jumpSlider = FindObjectOfType<InGameUI>();
+        pauseOverlay = FindObjectOfType<PauseOverlay>();
 
         moveStop = 1;
         previousHeight = 0;
@@ -59,7 +61,7 @@ public class PlayerBehaviour : MonoBehaviour
         //Stage Level 4 when Player is actually in the levels (has moved after hitting ground)
         //Stage Level 3 when Player first hits ground
         //Stage Level 1-2 when Player Object is in Menu (not controllable)
-        if (gm.stageLevel > 3) 
+        if (gm.stageLevel > 3)
         {
             Move();
             //Jump();
@@ -68,11 +70,10 @@ public class PlayerBehaviour : MonoBehaviour
             KickColliderCheck();
             Invincible();
         }
-        else if (gm.stageLevel > 2 ) { Move(); }
-        else{ MenuLoad(); }
+        else if (gm.stageLevel > 2) { Move(); }
+        else { MenuLoad(); }
 
     }
-
 
     //When Player is in Menu (non-controllable
     private void MenuLoad()
@@ -104,7 +105,7 @@ public class PlayerBehaviour : MonoBehaviour
         float moveFt = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime * moveStop * inAir;
         if (moveFt != 0)
         {
-            if(gm.stageLevel == 3) { gm.stageLevel = 4; }
+            if (gm.stageLevel == 3) { gm.stageLevel = 4; }
             anim.SetBool("isMoving", true);
             if (moveFt > 0)
             {
@@ -187,20 +188,6 @@ public class PlayerBehaviour : MonoBehaviour
     //Player can double jump
     private void JumpAlternative()
     {
-        //need to update jump behaviour
-        if (checkGround)
-        {
-            if (jumpCount == 0)
-            {
-                if (Input.GetKeyDown("space")) 
-                {
-                    Vector2 jumpFt = new Vector2(0, jumpPowerAlt);
-                    rigibody.velocity += jumpFt;
-                    Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
-                    jumpCount++;
-                }
-            }
-        }
         if (!checkGround)
         {
             if (rigibody.velocity.y > 0)
@@ -211,15 +198,27 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 anim.SetInteger("JumpState", 3);
             }
-            if (jumpCount == 1)
+        }
+
+            //need to update jump behaviour
+        if (jumpCount == 0)
+        {
+            if (Input.GetKeyDown("space"))
             {
-                if (Input.GetKeyDown("space"))
-                {
-                    rigibody.velocity = new Vector2(0, 0);
-                    rigibody.velocity += new Vector2(0, jumpPowerAlt * 0.8f);
-                    Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
-                    jumpCount++;
-                }
+                rigibody.velocity = new Vector2(0, 0);
+                rigibody.velocity += new Vector2(0, jumpPowerAlt);
+                Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
+                jumpCount = 1;
+            }
+        }
+        else if (jumpCount == 1)
+        {
+            if (Input.GetKeyDown("space"))
+            {
+                rigibody.velocity = new Vector2(0, 0);
+                rigibody.velocity += new Vector2(0, jumpPowerAlt * 0.85f);
+                Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
+                jumpCount++;
             }
         }
     }
@@ -228,11 +227,11 @@ public class PlayerBehaviour : MonoBehaviour
     //If Player reaches new max height and is grounded, set as new spawn location
     public void IsGrounded(bool grounded)
     {
-        if (grounded) 
+        if (grounded)
         {
             if (!checkGround)
             {
-                anim.SetInteger("JumpState",4);
+                anim.SetInteger("JumpState", 4);
             }
             anim.SetBool("isGrounded", true);
             checkGround = true;
@@ -240,12 +239,12 @@ public class PlayerBehaviour : MonoBehaviour
 
             if (this.transform.position.y > previousHeight)
             {
-                previousHeight = this.transform.position.y; 
+                previousHeight = this.transform.position.y;
                 gm.SetSpawnLoc(this.transform.position.x, previousHeight);
             }
-            
+
         }
-        else { 
+        else {
             anim.SetBool("isGrounded", false);
             checkGround = false;
         }
@@ -264,12 +263,12 @@ public class PlayerBehaviour : MonoBehaviour
                     Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
                     anim.SetTrigger("Kick");
                     kicked = true;
-                    if (transform.localScale.x < 0) 
+                    if (transform.localScale.x < 0)
                     {
                         rigibody.velocity = new Vector2(0f, 0f);
                         rigibody.velocity += new Vector2(-1f, 4f);
                     }
-                    else if(transform.localScale.x > 0) 
+                    else if (transform.localScale.x > 0)
                     {
                         rigibody.velocity = new Vector2(0f, 0f);
                         rigibody.velocity += new Vector2(1f, 4f);
@@ -282,12 +281,12 @@ public class PlayerBehaviour : MonoBehaviour
     //Turns on Kick Collider (to block Cannon damage) during Kick animation
     private void KickColliderCheck()
     {
-        if(this.GetComponent<SpriteRenderer>().sprite == kickTimer_1 ||
+        if (this.GetComponent<SpriteRenderer>().sprite == kickTimer_1 ||
             this.GetComponent<SpriteRenderer>().sprite == kickTimer_2 ||
             this.GetComponent<SpriteRenderer>().sprite == kickTimer_3)
         {
             kickCollider.SetActive(true);
-            if(this.GetComponent<SpriteRenderer>().sprite == kickTimer_1)
+            if (this.GetComponent<SpriteRenderer>().sprite == kickTimer_1)
             {
                 if (kicked)
                 {
@@ -324,8 +323,15 @@ public class PlayerBehaviour : MonoBehaviour
 
             if (justSpawned)
             {
+                if (pauseOverlay != null) { pauseOverlay.SetMaskOn(true); }
+                if (!checkGround)
+                {
+                    rigibody.gravityScale = 0f;
+                }
                 if (Input.GetKeyDown("space") || Input.GetAxis("Horizontal") > 0 || (gm.coconutBuff > 0 && Input.GetKeyDown("f")))
                 {
+                    if (pauseOverlay != null) { pauseOverlay.SetMaskOn(false); }
+                    rigibody.gravityScale = 1.9f;
                     invincible = false;
                     justSpawned = false;
                 }
@@ -396,4 +402,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     //To set if Player just spawned
     public void SetJustSpawned(bool isSpawn) { justSpawned = isSpawn; }
+
+    public bool GetJustSpawned() {return justSpawned; }
 }
