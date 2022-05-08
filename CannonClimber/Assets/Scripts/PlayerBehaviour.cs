@@ -324,11 +324,11 @@ public class PlayerBehaviour : MonoBehaviour
             if (justSpawned)
             {
                 if (pauseOverlay != null) { pauseOverlay.SetMaskOn(true); }
-                if (!checkGround)
-                {
-                    rigibody.gravityScale = 0f;
-                }
-                if (Input.GetKeyDown("space") || Input.GetAxis("Horizontal") > 0 || (gm.coconutBuff > 0 && Input.GetKeyDown("f")))
+                if (!checkGround) { rigibody.gravityScale = 0f; }
+
+                if (Input.GetKeyDown("space") || 
+                    Input.GetAxis("Horizontal") != 0 || 
+                    (gm.coconutBuff > 0 && Input.GetKeyDown("f")))
                 {
                     if (pauseOverlay != null) { pauseOverlay.SetMaskOn(false); }
                     rigibody.gravityScale = 1.9f;

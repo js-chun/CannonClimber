@@ -1,4 +1,6 @@
-- Add a way to record floors reached
+- Fix Canvas scaling
+- Add vertical cannon on top (permanent) - that just keeps shooting
+- Traps (spikes should be on/off - existing tiles)
 - Make pause available when Player is initially falling
 - Add new Cannon variant to spawner
 - Gray overlay around Player when they spawn
@@ -6,7 +8,6 @@
 - Reversed directions while buffed?
 - Add more difficulty (hazards)
 	- Fire Trap/Hazard - need to add
-	- Idle Spikes
 - Need to clean up kick
 	- Animation
 	- Make it longer

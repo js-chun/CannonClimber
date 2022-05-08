@@ -5,10 +5,9 @@ using UnityEngine.Tilemaps;
 public class LevelSpawner : MonoBehaviour
 {
     private FloorRandomizer fr;
-    public int tileCount;           //will be private later on
-    public int levelCount;          //will be private later on
+    private GameManager gm;
 
-    private int difficulty;         //Used to set difficulty of levels later on
+    private int levelCount;         //float to keep track of what should be generated for y coordinate
 
     private bool lvlActive;         //Activates the levels once initial map is consumed
 
@@ -29,6 +28,10 @@ public class LevelSpawner : MonoBehaviour
 
     private bool tileIsSet;         //To check if top tile is set or not
 
+    public GameObject fIndContainer;    //Container to add instances of floor indicators
+    public GameObject floorInd;         //Prefab for spawning floor indicators
+    private float floorIndY;            //float to keep track of Y coordinate for floor indicator
+
     public GameObject itemContainer;
     public GameObject scoreOne;     //Score Level 1 Item
     public GameObject scoreTwo;     //Score Level 2 Item
@@ -41,12 +44,14 @@ public class LevelSpawner : MonoBehaviour
 
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         fr = FindObjectOfType<FloorRandomizer>();
         lvlActive = false;
         levelCount = 0;
-        difficulty = 2;
 
         AddItemRarities();
+
+        floorIndY = 9.5f;
     }
 
     void Update()
@@ -91,7 +96,7 @@ public class LevelSpawner : MonoBehaviour
 
             if (levelCount == 3)
             {
-                AddBoundary(Random.Range(0, difficulty + 1));
+                AddBoundary(Random.Range(0, 3));
                 levelCount = 0;
             }
             else if (levelCount == 2)
@@ -142,6 +147,7 @@ public class LevelSpawner : MonoBehaviour
     }
 
     //Takes randomized level from FloorRandomizer and adds setup as Level tiles for y height
+    //Adds floor indicator trigger object with correct floor level
     private void AddLevel()
     {
         fr.RandomFlr();
@@ -167,6 +173,10 @@ public class LevelSpawner : MonoBehaviour
             }
         }
         fr.SetBotFloor();
+        
+        floorIndY += 3f;
+        GameObject fI = Instantiate(floorInd, new Vector2(0f, floorIndY), Quaternion.identity, fIndContainer.transform);
+        fI.GetComponent<FloorIndicator>().floorNumber = ++gm.createdFloors;
     }
 
     private void AddItems(float y)

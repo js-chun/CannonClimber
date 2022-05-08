@@ -15,6 +15,7 @@ public class Item : MonoBehaviour
 
     private GameManager gm;         
     public GameObject linked;       //Linked is specifically for Map to activate levels
+    public GameObject particleFx;
 
     public int itemType;            //Governs item type, 0 = map, 1 = coconut, 2 = orange, 3 = wine, 4 = score
     public int scoreBonus;          //How much points a score item gives
@@ -65,6 +66,7 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            CreateFx();
             if (itemType == 0) { MapConsumed(); }
             else if (itemType == 1) { CoconutConsumed(); }
             else if (itemType == 2) { OrangeConsumed(); }
@@ -109,4 +111,13 @@ public class Item : MonoBehaviour
     //When score item is used, adds score
     private void ScoreConsumed(){ gm.score += scoreBonus; }
 
+
+    //To create a vfx when consumed by Player
+    private void CreateFx()
+    {
+        if(particleFx != null)
+        {
+            Instantiate(particleFx, this.transform.position, Quaternion.identity);
+        }
+    }
 }

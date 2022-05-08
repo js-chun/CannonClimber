@@ -13,11 +13,12 @@ public class GameManager : MonoBehaviour
     public int score;           //Score of Player in game session
     private bool pauseGame;
 
-    public int floors;
+    public int playerFloors;    //What floor the Player has hit
+    public int createdFloors;   //What floor level the map has generated
     private float peakHeight;
-    private Vector3 spawnLoc;
+    private Vector3 spawnLoc;   //Spawn location of Player in case they fall
 
-
+    //Make sure there is one GameManager object at a time
     private void Awake()
     {
         int sessionCount = FindObjectsOfType<GameManager>().Length;
@@ -34,11 +35,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        floors = 0;
+        playerFloors = 0;
         score = 0;
         peakHeight = 0f;
         coconutBuff = 0;
         wineBuff = false;
+        createdFloors = 5;
     }
 
     void Update()
@@ -82,6 +84,7 @@ public class GameManager : MonoBehaviour
     //Get the maximum height
     public float GetPeakHeight() { return peakHeight; }
 
+    //If game is paused, stops time and activates pause overlay
     private void PauseGame()
     {
         if (pauseGame)

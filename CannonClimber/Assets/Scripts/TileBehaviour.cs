@@ -54,7 +54,7 @@ public class TileBehaviour : MonoBehaviour
     //When box collides with the boundary, it gets destroyed
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Boundary")
+        if(collision.gameObject.tag == "Boundary" || collision.gameObject.tag == "Shredder")
         {
             Destroy(this.gameObject);
         }

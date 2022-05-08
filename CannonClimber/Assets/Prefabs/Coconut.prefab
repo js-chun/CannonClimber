@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linked: {fileID: 0}
+  particleFx: {fileID: 2578411644746968899, guid: f59f80dafc7c80041aa6364983781919, type: 3}
   itemType: 1
   scoreBonus: 0
   rarity: 0.025
