@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class FloorRandomizer : MonoBehaviour
 {
-    
+    private GameManager gm;
+
     public TileGrid[] floors;
     public TileGrid botFloor;
     public TileGrid topFloor;
@@ -12,11 +13,13 @@ public class FloorRandomizer : MonoBehaviour
     public GameObject triCannon;
     public float fSpeed = 0.2f;
 
+    public GameObject spikes;
     public GameObject boxLevel;
 
     public GameObject levelContainer;
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         botFloor = initialFloor;
     }
 
@@ -41,7 +44,7 @@ public class FloorRandomizer : MonoBehaviour
     {
         GameObject can = cannon;
 
-        if (FindObjectOfType<GameManager>().createdFloors > 30){
+        if (gm.createdFloors > 45){
             int a = Random.Range(0, 2);
             if (a == 0) { can = cannon; }
             else if (a == 1) { can = triCannon; }
@@ -69,6 +72,18 @@ public class FloorRandomizer : MonoBehaviour
         else
         {
             newBoxLevel.GetComponent<BoxSpawner>().boxMoveLeft = false;
+        }
+    }
+
+    public void SpawnTraps(float locX, float locY)
+    {
+        if(gm.createdFloors > 30)
+        {
+            float a = Random.Range(0f, 1f);
+            if (a < 0.2f)
+            {
+                Instantiate(spikes, new Vector2(locX, locY), Quaternion.identity, levelContainer.transform);
+            }
         }
     }
 }

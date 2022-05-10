@@ -58,7 +58,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.06666667
-        value: -0.30633312
+        value: -0.2
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -67,7 +67,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.083333336
-        value: -0.30633312
+        value: -0.2
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -156,9 +156,9 @@ AnimationClip:
     - time: 0.05
       value: {fileID: -396148359, guid: 9325813af6596104db7fb7f660ac5d99, type: 3}
     - time: 0.06666667
-      value: {fileID: 427154398, guid: 9325813af6596104db7fb7f660ac5d99, type: 3}
-    - time: 0.083333336
       value: {fileID: -1933477367, guid: 9325813af6596104db7fb7f660ac5d99, type: 3}
+    - time: 0.083333336
+      value: {fileID: 427154398, guid: 9325813af6596104db7fb7f660ac5d99, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -196,8 +196,8 @@ AnimationClip:
     - {fileID: -335843021, guid: 9325813af6596104db7fb7f660ac5d99, type: 3}
     - {fileID: 901770929, guid: 9325813af6596104db7fb7f660ac5d99, type: 3}
     - {fileID: -396148359, guid: 9325813af6596104db7fb7f660ac5d99, type: 3}
-    - {fileID: 427154398, guid: 9325813af6596104db7fb7f660ac5d99, type: 3}
     - {fileID: -1933477367, guid: 9325813af6596104db7fb7f660ac5d99, type: 3}
+    - {fileID: 427154398, guid: 9325813af6596104db7fb7f660ac5d99, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -260,7 +260,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.06666667
-        value: -0.30633312
+        value: -0.2
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -269,7 +269,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.083333336
-        value: -0.30633312
+        value: -0.2
         inSlope: 0
         outSlope: 0
         tangentMode: 136

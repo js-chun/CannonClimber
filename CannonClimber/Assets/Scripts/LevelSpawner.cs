@@ -169,6 +169,8 @@ public class LevelSpawner : MonoBehaviour
                     else { newTile = lvlRightTile; }
                     int y = (int)this.transform.position.y;
                     lvlMap.SetTile(new Vector3Int(i, y, 0), newTile);
+
+                    fr.SpawnTraps(i, y);
                 }
             }
         }

@@ -1,9 +1,8 @@
 - Fix Canvas scaling
+- Need to fix wine so if multiple wine items consumed consecutively, it lengthens time
 - Add vertical cannon on top (permanent) - that just keeps shooting
-- Traps (spikes should be on/off - existing tiles)
 - Make pause available when Player is initially falling
 - Add new Cannon variant to spawner
-- Gray overlay around Player when they spawn
 - Need to find dizzy icon for wine buff
 - Reversed directions while buffed?
 - Add more difficulty (hazards)
