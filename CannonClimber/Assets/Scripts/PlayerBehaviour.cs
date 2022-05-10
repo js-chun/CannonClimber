@@ -260,6 +260,7 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 if (!chargingJump)
                 {
+                    gm.coconutBuff--;
                     Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
                     anim.SetTrigger("Kick");
                     kicked = true;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InGameUI : MonoBehaviour
 {
+    private GameManager gm;
     private PlayerBehaviour player;
 
     public GameObject jumpBottom;
@@ -21,6 +22,7 @@ public class InGameUI : MonoBehaviour
 
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         player = FindObjectOfType<PlayerBehaviour>();
         jpStart = player.jumpStart;
         jpFlat = jpStart;
@@ -32,6 +34,7 @@ public class InGameUI : MonoBehaviour
         UpdSlider();
         UpdSeeThru();
         KeepReflection();
+        ActiveHearts();
     }
 
     void KeepReflection()
@@ -77,6 +80,7 @@ public class InGameUI : MonoBehaviour
 
     public void TakeDamage()
     {
+        gm.maxLives--;
         if (heart3.gameObject.activeSelf)
         {
             heart3.GetComponent<Animator>().SetTrigger("Hurt");
@@ -102,6 +106,13 @@ public class InGameUI : MonoBehaviour
         if (i == 3) { heart3.SetActive(false); }
         else if (i == 2) { heart2.SetActive(false); }
         else { heart1.SetActive(false); }
+    }
+
+    private void ActiveHearts()
+    {
+        if (gm.maxLives > 2) { heart3.SetActive(true); }
+        if (gm.maxLives > 1) { heart2.SetActive(true); }
+        if (gm.maxLives > 0) { heart1.SetActive(true); }
     }
 
 }
