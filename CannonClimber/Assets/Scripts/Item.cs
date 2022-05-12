@@ -104,7 +104,7 @@ public class Item : MonoBehaviour
     //When wine is used, gives player temporary wine buff
     private void WineConsumed()
     {
-        gm.wineBuff = true;
+        FindObjectOfType<PlayerBehaviour>().AddToWine();
         FindObjectOfType<PlayerBehaviour>().CallWineInvincible();
     }
 

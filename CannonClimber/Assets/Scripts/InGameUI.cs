@@ -111,8 +111,13 @@ public class InGameUI : MonoBehaviour
     private void ActiveHearts()
     {
         if (gm.maxLives > 2) { heart3.SetActive(true); }
+        else { heart3.SetActive(false); }
+
         if (gm.maxLives > 1) { heart2.SetActive(true); }
+        else { heart2.SetActive(false); }
+
         if (gm.maxLives > 0) { heart1.SetActive(true); }
+        else { heart1.SetActive(false); }
     }
 
 }

@@ -449,9 +449,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.099974915, y: 0.036124926}
+  m_Offset: {x: 0.080999196, y: 0.036124926}
   serializedVersion: 2
-  m_Radius: 0.16671018
+  m_Radius: 0.16038494
 --- !u!50 &2939164606176556152
 Rigidbody2D:
   serializedVersion: 4
@@ -800,7 +800,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.35089666
+  m_Mass: 0.3345741
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1.9
@@ -822,8 +822,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.019651791, y: -0.024564624}
-  m_Size: {x: 0.31557304, y: 0.5619158}
+  m_Offset: {x: -0.028085431, y: -0.024564624}
+  m_Size: {x: 0.29870576, y: 0.5619158}
   m_Direction: 0
 --- !u!114 &205257565555990047
 MonoBehaviour:
@@ -850,6 +850,7 @@ MonoBehaviour:
   jumpBuildRate: 1
   jumpPowerAlt: 9
   jumpCount: 0
+  wineConsumed: 0
 --- !u!1001 &174645318105570361
 PrefabInstance:
   m_ObjectHideFlags: 0

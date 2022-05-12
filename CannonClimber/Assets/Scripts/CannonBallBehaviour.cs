@@ -20,6 +20,7 @@ public class CannonBallBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            collision.gameObject.GetComponentInChildren<InGameUI>().TakeDamage();
             //need to add player dmg
             Debug.Log("Player");
             if(FindObjectOfType<GameManager>().stageLevel == 1)
@@ -27,13 +28,18 @@ public class CannonBallBehaviour : MonoBehaviour
                 collision.gameObject.GetComponent<Rigidbody2D>().velocity += new Vector2(5f,4f);
             }
         }
+
         else if (collision.gameObject.tag == "Block")
         {
             Debug.Log("Kicked");
             FindObjectOfType<PlayerBehaviour>().jumpCount = 0;
         }
+        Detonate();
+    }
+
+    public void Detonate()
+    {
         GameObject explosion = Instantiate(explosionAnim, this.transform.position, Quaternion.identity, transform.parent);
         Destroy(this.gameObject);
     }
-
 }

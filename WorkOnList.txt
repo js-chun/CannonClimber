@@ -1,12 +1,14 @@
-- Fix Canvas scaling
-- Need to fix wine so if multiple wine items consumed consecutively, it lengthens time
+- Need to fix Canvas Scaling for Gray Screen (through script)
+- Need to fix heart so it doesn't reflect
+- Need to fix wine so if multiple wine items consumed consecutively, it resets buff
 - Add vertical cannon on top (permanent) - that just keeps shooting
 - Make pause available when Player is initially falling
-- Add new Cannon variant to spawner
 - Need to find dizzy icon for wine buff
 - Reversed directions while buffed?
 - Add more difficulty (hazards)
 	- Fire Trap/Hazard - need to add
+	- Disappearing Platforms
+
 - Need to clean up kick
 	- Animation
 	- Make it longer
@@ -25,4 +27,5 @@
 - Change Buttons
 - Hook Buttons up (Play should change stage level to 1)
 - Settings
+
 

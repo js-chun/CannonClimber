@@ -40,6 +40,8 @@ public class PlayerBehaviour : MonoBehaviour
     private bool showInvincible;     //If Player is showing as Invincible
     private bool justSpawned;        //If Player just spawned
     private float wineHue;           //Colour hue value of player (used for wine buff)
+    public int wineConsumed;
+    private IEnumerator buff;
 
     void Start()
     {
@@ -53,6 +55,7 @@ public class PlayerBehaviour : MonoBehaviour
         previousHeight = 0;
         chargingJump = false;
         wineHue = 0f;
+        wineConsumed = 0;
 
     }
 
@@ -362,16 +365,30 @@ public class PlayerBehaviour : MonoBehaviour
     //Calls wine buff invincibility (called from item)
     public void CallWineInvincible()
     {
-        StartCoroutine(WineInvincible());
+        //NEED TO FIX
+        buff = WineInvincible();
+        if (wineConsumed > 1) 
+        { 
+            StopCoroutine(buff);
+            StartCoroutine(buff);
+        }
+        else
+        {
+            StartCoroutine(buff);
+        }
+        gm.wineBuff = true;
     }
 
     //Wine buff wears off after 5 seconds
     private IEnumerator WineInvincible()
     {
         invincible = true;
+        Debug.Log("Started");
         yield return new WaitForSeconds(5f);
         gm.wineBuff = false;
         invincible = false;
+        wineConsumed = 0;
+        Debug.Log("Done");
         this.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
@@ -382,6 +399,8 @@ public class PlayerBehaviour : MonoBehaviour
         showInvincible = false;
         invincible = false;
     }
+
+    public void AddToWine() { wineConsumed++; }
 
     //To set if Player is invincible
     public void SetInvincible(bool onOrOff)

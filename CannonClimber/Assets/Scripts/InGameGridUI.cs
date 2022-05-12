@@ -9,6 +9,7 @@ public class InGameGridUI : MonoBehaviour
     public TextMeshProUGUI cocoTxt;     //Text for Coconut Charges
     public GameObject wine;             //Image of Wine Buff Status
     public TextMeshProUGUI scoreTxt;    //Text for Score
+    public TextMeshProUGUI floorTxt;
 
     private float hue;
 
@@ -25,6 +26,7 @@ public class InGameGridUI : MonoBehaviour
         ShowScore();
         ShowCoconut();
         ShowWineStatus();
+        ShowFloor();
     }
 
     //Keeps banner on screen at the top relevant to Camera
@@ -60,5 +62,10 @@ public class InGameGridUI : MonoBehaviour
     private void ShowScore()
     {
         scoreTxt.text = "x" + gm.score;
+    }
+
+    private void ShowFloor()
+    {
+        floorTxt.text = gm.playerFloors.ToString();
     }
 }
