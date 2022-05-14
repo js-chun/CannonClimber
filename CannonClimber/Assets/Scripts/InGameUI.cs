@@ -16,6 +16,7 @@ public class InGameUI : MonoBehaviour
     private float jpPerc;
     private bool jpCanSee;
 
+    public GameObject heartContainer;
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
@@ -118,6 +119,11 @@ public class InGameUI : MonoBehaviour
 
         if (gm.maxLives > 0) { heart1.SetActive(true); }
         else { heart1.SetActive(false); }
+    }
+
+    public void HideHearts(bool hide)
+    {
+        heartContainer.SetActive(!hide);
     }
 
 }

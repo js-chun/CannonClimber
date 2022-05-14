@@ -58,12 +58,14 @@ public class SpearLevel : MonoBehaviour
                 SpearsDown(second);
                 started = true;
             }
-            yield return new WaitForSeconds(spearRestTime);
-            SpearsUp(second);
+            yield return new WaitForSeconds(spearRestTime * 0.2f);
             SpearsDown(first);
-            yield return new WaitForSeconds(spearRestTime);
-            SpearsUp(first);
+            yield return new WaitForSeconds(spearRestTime * 0.8f);
+            SpearsUp(second);
+            yield return new WaitForSeconds(spearRestTime * 0.2f);
             SpearsDown(second);
+            yield return new WaitForSeconds(spearRestTime * 0.8f);
+            SpearsUp(first);
             trapActive = true;
         }
         

@@ -55,6 +55,11 @@ public class PlayerBehaviour : MonoBehaviour
         chargingJump = false;
         wineHue = 0f;
         buff = null;
+
+        if(gm.stageLevel >= 99 || gm.stageLevel <= 1)
+        {
+            if (FindObjectOfType<InGameUI>()) { FindObjectOfType<InGameUI>().HideHearts(true); }
+        }
     }
 
     void Update()
@@ -62,18 +67,20 @@ public class PlayerBehaviour : MonoBehaviour
         //Stage Level 4 when Player is actually in the levels (has moved after hitting ground)
         //Stage Level 3 when Player first hits ground
         //Stage Level 1-2 when Player Object is in Menu (not controllable)
-        if (gm.stageLevel > 3)
+        if(gm.stageLevel < 99)
         {
-            Move();
-            //Jump();
-            JumpAlternative();
-            Kick();
-            KickColliderCheck();
-            Invincible();
+            if (gm.stageLevel > 3)
+            {
+                Move();
+                //Jump();
+                JumpAlternative();
+                Kick();
+                KickColliderCheck();
+                Invincible();
+            }
+            else if (gm.stageLevel > 2) { Move(); }
+            else { MenuLoad(); }
         }
-        else if (gm.stageLevel > 2) { Move(); }
-        else { MenuLoad(); }
-
     }
 
     //When Player is in Menu (non-controllable

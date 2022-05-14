@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,17 +37,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        playerFloors = 0;
-        score = 0;
-        peakHeight = 0f;
-        coconutBuff = 0;
-        wineBuff = false;
-        createdFloors = 5;
+        ResetGame();
     }
 
     void Update()
     {
-        if (stageLevel > 2)
+        if (stageLevel > 2 && stageLevel < 99)
         {
             if (Input.GetKeyDown("p"))
             {
@@ -53,6 +50,17 @@ public class GameManager : MonoBehaviour
             }
             PauseGame();
         }
+    }
+
+    public void ResetGame()
+    {
+        maxLives = 2;
+        score = 0;
+        peakHeight = 0f;
+        coconutBuff = 0;
+        wineBuff = false;
+        playerFloors = 0;
+        createdFloors = 5;
     }
 
     //Set Spawn Location of Player in case they need to respawn
@@ -76,6 +84,17 @@ public class GameManager : MonoBehaviour
             FindObjectOfType<PlayerBehaviour>().SetInvincible(true);
             FindObjectOfType<PlayerBehaviour>().SetJustSpawned(true);
         }
+        else
+        {
+            StartCoroutine(GameOver());
+        }
+    }
+
+    private IEnumerator GameOver()
+    {
+        stageLevel = 99;
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("EndScene");
     }
 
     //Set maximum height

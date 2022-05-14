@@ -9,11 +9,15 @@ public class FloatTileSystem : MonoBehaviour
     private bool movingUp;
     public bool completeStop;
 
+    private float minY;
+
     // Start is called before the first frame update
     void Start()
     {
         completeStop = false;
         movingUp = false;
+
+        minY = tiles[0].transform.position.y;
     }
 
     // Update is called once per frame
@@ -23,13 +27,36 @@ public class FloatTileSystem : MonoBehaviour
         {
             MoveUp();
         }
+
     }
 
     private void MoveUp()
     {
         if (movingUp)
         {
-            foreach(GameObject t in tiles) { t.transform.position += new Vector3(0f, speed*Time.deltaTime, 0f); }
+            foreach(GameObject t in tiles) 
+            { 
+                t.transform.position += new Vector3(0f, speed*Time.deltaTime, 0f);
+                t.GetComponent<Animator>().SetBool("Moving", true);
+                t.GetComponent<Animator>().SetBool("Up", true);
+            }
+        }
+        else
+        {
+            foreach (GameObject t in tiles)
+            { 
+                if(t.transform.position.y > minY)
+                {
+                    t.transform.position -= new Vector3(0f, speed * Time.deltaTime / 2, 0f);
+                    t.GetComponent<Animator>().SetBool("Moving", true);
+                    t.GetComponent<Animator>().SetBool("Up", false);
+                }
+                else
+                {
+                    t.GetComponent<Animator>().SetBool("Moving", false);
+                }
+                
+            }
         }
     }
 

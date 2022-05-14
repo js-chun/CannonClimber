@@ -1,6 +1,5 @@
 - Need to fix Canvas Scaling for Gray Screen (through script)
 - Need to fix going up when respawning on spear level
-- Spears need to damage Player only by one
 - Need to fix heart so it doesn't reflect
 - Add vertical cannon on top (permanent) - that just keeps shooting
 - Make pause available when Player is initially falling
@@ -24,15 +23,7 @@
 - Add How to Play in Intro
 
 - Need to work on menu
-- Change Buttons
-- Hook Buttons up (Play should change stage level to 1)
 - Settings
-
-- Fixed wine so if multiple wine items consumed consecutively, it resets buff
-- Added additional score particle
-- Game UI only shows up when Player hits the ground in intro
-- Added Spear Levels
-- Working on Floating Tiles to go with Spear Levels
 
 Prefabs - Tag - Layer
 Ball Launch Particle - Untagged - Default

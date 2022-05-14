@@ -43,6 +43,11 @@ public class GroundCheck : MonoBehaviour
             gm.stageLevel = 3;
         }
         
+        if (gm.stageLevel == 99)
+        {
+            player.GetComponent<Rigidbody2D>().velocity += new Vector2(1.5f, 5f);
+            player.GetComponent<Animator>().SetTrigger("hitDead");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

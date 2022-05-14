@@ -43,7 +43,10 @@ public class Shredder : MonoBehaviour
         }
         else
         {
-            Destroy(collision.gameObject);
+            if(collision.gameObject.tag != "SpearLevel")
+            {
+                Destroy(collision.gameObject);
+            }
         }
     }
 

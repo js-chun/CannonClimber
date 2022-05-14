@@ -56,6 +56,7 @@ public class FloorRandomizer : MonoBehaviour
         {
             locX = -(locX);
         }
+
         GameObject newCan = Instantiate(can, new Vector2(locX, locY), Quaternion.identity, levelContainer.transform);
         newCan.GetComponent<CannonBehaviour>().fireSpeed = Random.Range(fSpeed - 0.08f, fSpeed + 0.08f);
         if (faceRight)

@@ -39,6 +39,10 @@ public class FloatTile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "TileStopper") { ftSys.completeStop = true; }
+        if (collision.gameObject.tag == "TileStopper") 
+        {
+            ftSys.completeStop = true;
+            this.GetComponent<Animator>().SetBool("Moving", false);
+        }
     }
 }

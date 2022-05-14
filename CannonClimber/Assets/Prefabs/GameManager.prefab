@@ -44,5 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2fcf5ddfcec4444a6d4e51db34408c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMenuState: 0
-  menuStage: 0
+  player: {fileID: 8776693051589764495, guid: 3e5c4b663ca4adf46b828f719c107226, type: 3}
+  stageLevel: 0
+  maxLives: 3
+  coconutBuff: 0
+  wineBuff: 0
+  score: 0
+  playerFloors: 0
+  createdFloors: 0

@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 330046418648680895, guid: 6113c09bd9ba1ff43bd20543e97042e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 330046419867062274, guid: 6113c09bd9ba1ff43bd20543e97042e3, type: 3}
       propertyPath: m_Name
       value: Cannon3Shot Variant
@@ -84,6 +88,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 330046419867062335, guid: 6113c09bd9ba1ff43bd20543e97042e3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 09851558797891e4b83cfee86e8b9508, type: 2}
+    - target: {fileID: 2320711511993697301, guid: 6113c09bd9ba1ff43bd20543e97042e3, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 09851558797891e4b83cfee86e8b9508, type: 2}

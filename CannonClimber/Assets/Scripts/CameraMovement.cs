@@ -16,7 +16,15 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-        CamMove();
+        if(gm.stageLevel < 99)
+        {
+            CamMove();
+        }
+        else
+        {
+            cam.transform.position = new Vector3(0f,0f,-10f);
+        }
+        
     }
 
     //To move the camera's height based on CameraFocus on Player

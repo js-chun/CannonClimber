@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d4fcbd631a97d42a0f5e69430c95db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameUI: {fileID: 0}
 --- !u!1 &741278609686882172
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +401,7 @@ MonoBehaviour:
   jumpBar: {fileID: 6859753940931606151}
   slider: {fileID: 799727108248942398}
   jpFlat: 0
+  heartContainer: {fileID: 8528037194016280312}
   heart1: {fileID: 2895634912374043617}
   heart2: {fileID: 8622142515153465984}
   heart3: {fileID: 3592629287447031510}
@@ -850,7 +852,6 @@ MonoBehaviour:
   jumpBuildRate: 1
   jumpPowerAlt: 9
   jumpCount: 0
-  wineConsumed: 0
 --- !u!1001 &174645318105570361
 PrefabInstance:
   m_ObjectHideFlags: 0

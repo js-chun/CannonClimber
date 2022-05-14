@@ -1120,7 +1120,7 @@ GameObject:
   - component: {fileID: 632408123}
   m_Layer: 16
   m_Name: Set (4)
-  m_TagString: Untagged
+  m_TagString: SpearLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2815,8 +2815,8 @@ GameObject:
   - component: {fileID: 1125191405}
   - component: {fileID: 1125191404}
   m_Layer: 16
-  m_Name: Set (6)
-  m_TagString: Untagged
+  m_Name: Set (5)
+  m_TagString: SpearLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2846,7 +2846,7 @@ Transform:
   - {fileID: 534602740}
   - {fileID: 1408545402}
   m_Father: {fileID: 8948709965757965141}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1125191406
 Animator:
@@ -3524,8 +3524,8 @@ GameObject:
   - component: {fileID: 1343001640}
   - component: {fileID: 1343001639}
   m_Layer: 16
-  m_Name: Set (5)
-  m_TagString: Untagged
+  m_Name: Set (6)
+  m_TagString: SpearLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3555,7 +3555,7 @@ Transform:
   - {fileID: 793139656}
   - {fileID: 607079351}
   m_Father: {fileID: 8948709965757965141}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1343001641
 Animator:
@@ -4738,7 +4738,7 @@ GameObject:
   - component: {fileID: 2036266003}
   m_Layer: 16
   m_Name: Set (3)
-  m_TagString: Untagged
+  m_TagString: SpearLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5363,7 +5363,7 @@ GameObject:
   - component: {fileID: 5583816210126012917}
   m_Layer: 16
   m_Name: Set (2)
-  m_TagString: Untagged
+  m_TagString: SpearLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7223,7 +7223,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8948709965757965141}
   - component: {fileID: 8948709965757965142}
-  m_Layer: 0
+  - component: {fileID: 4526282544871356843}
+  - component: {fileID: 1819065272346973130}
+  m_Layer: 16
   m_Name: SpearLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7246,8 +7248,8 @@ Transform:
   - {fileID: 201578242045791952}
   - {fileID: 2036266006}
   - {fileID: 632408126}
-  - {fileID: 1343001642}
   - {fileID: 1125191407}
+  - {fileID: 1343001642}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7265,13 +7267,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   left:
   - {fileID: 2083683712366349375}
-  - {fileID: 632408123}
+  - {fileID: 2036266003}
   - {fileID: 1125191404}
   right:
   - {fileID: 5583816210126012917}
-  - {fileID: 2036266003}
+  - {fileID: 632408123}
   - {fileID: 1343001639}
-  spearRestTime: 5
+  spearRestTime: 4
+--- !u!61 &4526282544871356843
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948709965757965140}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 5, y: 10}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0
+--- !u!50 &1819065272346973130
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948709965757965140}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8948709965950008296
 GameObject:
   m_ObjectHideFlags: 0
@@ -7538,7 +7587,7 @@ GameObject:
   - component: {fileID: 2083683712366349375}
   m_Layer: 16
   m_Name: Set (1)
-  m_TagString: Untagged
+  m_TagString: SpearLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
