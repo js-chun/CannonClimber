@@ -1,47 +1,33 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapBehaviour : MonoBehaviour
 {
-    public int trapType;
-    public float restTime;
-    public Sprite idleSpr;
-    private bool trapActive;
-
+    public int trapType;        //Trap type. Spike = 0, Spear = 1
+    public float spikeRestTime; //Time between traps
+    public Sprite idleSpr;      //Sprite on which trigger is not active
     private Animator anim;
+
+    private bool spikeActive;    //Spike Trap is active or not
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        trapActive = true;
+        spikeActive = true;
     }
 
     void Update()
     {
+        TriggerOnOff();
         Spikes();
     }
 
-    private void Spikes()
+    private void TriggerOnOff()
     {
         if (trapType == 0)
         {
-            StartCoroutine(SpikeAnim());
-            if(this.GetComponent<SpriteRenderer>().sprite == idleSpr) { this.GetComponent<BoxCollider2D>().enabled = false; }
-            else { this.GetComponent <BoxCollider2D>().enabled = true; }
-        }
-    }
-
-    private IEnumerator SpikeAnim()
-    {
-        if (trapActive)
-        {
-            trapActive = false;
-            yield return new WaitForSeconds(restTime);
-            anim.SetTrigger("SpikesUp");
-            yield return new WaitForSeconds(restTime);
-            anim.SetTrigger("SpikesDown");
-            trapActive = true;
+            if (this.GetComponent<SpriteRenderer>().sprite == idleSpr) { this.GetComponent<BoxCollider2D>().enabled = false; }
+            else { this.GetComponent<BoxCollider2D>().enabled = true; }
         }
     }
 
@@ -50,7 +36,39 @@ public class TrapBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.GetComponentInChildren<InGameUI>().TakeDamage();
-            collision.GetComponent<Rigidbody2D>().velocity += new Vector2(0f, 3f);
-        }    
+            if (trapType == 0)
+            {
+                collision.GetComponent<Rigidbody2D>().velocity += new Vector2(0f, 3f);
+            }
+        }
     }
+
+    private void Spikes()
+    {
+        if (trapType == 0) { StartCoroutine(SpikeAnim()); }
+    }
+
+    private IEnumerator SpikeAnim()
+    {
+        if (spikeActive)
+        {
+            spikeActive = false;
+            yield return new WaitForSeconds(spikeRestTime);
+            anim.SetTrigger("SpikesUp");
+            yield return new WaitForSeconds(spikeRestTime);
+            anim.SetTrigger("SpikesDown");
+            spikeActive = true;
+        }
+    }
+
+    public void SpearsUp()
+    {
+        if (trapType == 1) { anim.SetTrigger("SpearsUp"); }
+    }
+
+    public void SpearsDown()
+    {
+        if (trapType == 1) { anim.SetTrigger("SpearsDown"); }
+    }
+
 }

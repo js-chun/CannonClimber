@@ -61,11 +61,20 @@ public class InGameGridUI : MonoBehaviour
     //Updates text with current score
     private void ShowScore()
     {
-        scoreTxt.text = "x" + gm.score;
+        string x ;
+        if (gm.score < 10) { x = "x000"; }
+        else if (gm.score < 100) { x = "x00"; }
+        else if (gm.score < 1000) { x = "x0"; }
+        else { x = "x"; }
+        scoreTxt.text = x + gm.score;
     }
 
     private void ShowFloor()
     {
-        floorTxt.text = gm.playerFloors.ToString();
+        string x;
+        if (gm.playerFloors < 10) { x = "00"; }
+        else if (gm.playerFloors < 100) { x = "0"; }
+        else { x = ""; }
+        floorTxt.text = x + gm.playerFloors.ToString();
     }
 }

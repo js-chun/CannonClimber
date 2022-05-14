@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8425249445201448116}
   - component: {fileID: 5993279403919463926}
   - component: {fileID: 4054499545283873475}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Gold Coin
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linked: {fileID: 0}
   particleFx: {fileID: 6727523036610400659, guid: 88dced8e8621a7548b3b4cd870a784e5, type: 3}
+  scoreFx: {fileID: 3819780833365430325, guid: da5e7551faedbfc479c53a9ba0c7e8bd, type: 3}
   itemType: 4
   scoreBonus: 10
   rarity: 0.08

@@ -15,6 +15,8 @@ public class FloorRandomizer : MonoBehaviour
 
     public GameObject spikes;
     public GameObject boxLevel;
+    public GameObject spearLevel;
+    public GameObject floatTile;
 
     public GameObject levelContainer;
     void Start()
@@ -31,7 +33,7 @@ public class FloorRandomizer : MonoBehaviour
             {
                 int testFlr = Random.Range(0, floors.Length);
                 topFloor = floors[testFlr];
-            } while (botFloor.CantGoUp(topFloor));
+            } while (botFloor.CantGoUp(topFloor) || (botFloor.spearLevel && topFloor.spearLevel));
         }
     }
 
@@ -73,6 +75,13 @@ public class FloorRandomizer : MonoBehaviour
         {
             newBoxLevel.GetComponent<BoxSpawner>().boxMoveLeft = false;
         }
+    }
+
+    public void SpawnSpearLevel(float locY)
+    {
+        Instantiate(spearLevel, new Vector2(0f, locY + 1), Quaternion.identity, levelContainer.transform);
+        Instantiate(floatTile, new Vector2(0f, locY + 1), Quaternion.identity, levelContainer.transform);
+        FindObjectOfType<LevelSpawner>().spearCounter = 3;
     }
 
     public void SpawnTraps(float locX, float locY)

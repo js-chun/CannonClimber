@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8513181066928990777}
   - component: {fileID: 6929460151534553652}
   - component: {fileID: 4549459228647795698}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Orange
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linked: {fileID: 0}
   particleFx: {fileID: 2578411644746968899, guid: f59f80dafc7c80041aa6364983781919, type: 3}
+  scoreFx: {fileID: 0}
   itemType: 2
   scoreBonus: 0
   rarity: 0.015

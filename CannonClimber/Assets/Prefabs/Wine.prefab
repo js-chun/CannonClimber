@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4686668198994547496}
   - component: {fileID: 6063057815302484483}
   - component: {fileID: -1702784839540581411}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Wine
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linked: {fileID: 0}
   particleFx: {fileID: 2578411644746968899, guid: f59f80dafc7c80041aa6364983781919, type: 3}
+  scoreFx: {fileID: 0}
   itemType: 3
   scoreBonus: 0
   rarity: 0.005

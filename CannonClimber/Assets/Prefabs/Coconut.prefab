@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7916122869345383129}
   - component: {fileID: 7916122869345383128}
   - component: {fileID: 7311656426269883180}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Coconut
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linked: {fileID: 0}
   particleFx: {fileID: 2578411644746968899, guid: f59f80dafc7c80041aa6364983781919, type: 3}
+  scoreFx: {fileID: 0}
   itemType: 1
   scoreBonus: 0
   rarity: 0.025

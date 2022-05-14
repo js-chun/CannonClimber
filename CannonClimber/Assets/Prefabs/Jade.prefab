@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5683837925242245629}
   - component: {fileID: 7149893611546459393}
   - component: {fileID: 2577907662951012509}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Jade
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linked: {fileID: 0}
   particleFx: {fileID: 7391764750436697406, guid: 04a7fda92d809ed45a28c149f275dd44, type: 3}
+  scoreFx: {fileID: 3819780833365430325, guid: da5e7551faedbfc479c53a9ba0c7e8bd, type: 3}
   itemType: 4
   scoreBonus: 20
   rarity: 0.02

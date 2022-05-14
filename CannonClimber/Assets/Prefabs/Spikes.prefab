@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trapType: 0
-  restTime: 3
+  spikeRestTime: 2.5
   idleSpr: {fileID: 427154398, guid: 9325813af6596104db7fb7f660ac5d99, type: 3}
 --- !u!1 &5043108721528146664
 GameObject:
@@ -157,7 +157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5043108721528146665}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}

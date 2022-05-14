@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //Class for items
@@ -16,11 +14,12 @@ public class Item : MonoBehaviour
     private GameManager gm;         
     public GameObject linked;       //Linked is specifically for Map to activate levels
     public GameObject particleFx;
+    public GameObject scoreFx;
 
     public int itemType;            //Governs item type, 0 = map, 1 = coconut, 2 = orange, 3 = wine, 4 = score
     public int scoreBonus;          //How much points a score item gives
     public float rarity;
-
+    
     void Start()
     {
         gm= FindObjectOfType<GameManager>();
@@ -104,12 +103,19 @@ public class Item : MonoBehaviour
     //When wine is used, gives player temporary wine buff
     private void WineConsumed()
     {
-        FindObjectOfType<PlayerBehaviour>().AddToWine();
         FindObjectOfType<PlayerBehaviour>().CallWineInvincible();
     }
 
     //When score item is used, adds score
-    private void ScoreConsumed(){ gm.score += scoreBonus; }
+    private void ScoreConsumed()
+    {
+        gm.score += scoreBonus; 
+        if(scoreFx != null)
+        {
+            GameObject fx = Instantiate(scoreFx, this.transform.position, Quaternion.identity);
+            fx.GetComponent<ParticleFX>().setScore(scoreBonus);
+        }
+    }
 
 
     //To create a vfx when consumed by Player

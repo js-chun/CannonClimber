@@ -11,6 +11,8 @@ public class LevelSpawner : MonoBehaviour
 
     private bool lvlActive;         //Activates the levels once initial map is consumed
 
+    public int spearCounter;
+
     public Tilemap lvlMap;          //Level TileMap
     public Tile lvlSoloTile;        //Level Tile - Single
     public Tile lvlLeftTile;        //Level Tile - Left End of Multi
@@ -151,29 +153,42 @@ public class LevelSpawner : MonoBehaviour
     private void AddLevel()
     {
         fr.RandomFlr();
-        if (fr.topFloor.moveBoxes)
+        if(spearCounter == 0)
         {
-            fr.SpawnBoxLevel((int)this.transform.position.y);
-        }
-        else
-        {
-            for (int i = -4; i < 4; i++)
+            if (fr.topFloor.moveBoxes)
             {
-                int typeTile = fr.topFloor.TypeOfTile(i);
-                if (typeTile != -1)
+                fr.SpawnBoxLevel((int)this.transform.position.y);
+            }
+            else if (fr.topFloor.spearLevel)
+            {
+                fr.SpawnSpearLevel((int)this.transform.position.y);
+            }
+            else
+            {
+                for (int i = -4; i < 4; i++)
                 {
-                    Tile newTile;
-                    if (typeTile == 0) { newTile = lvlSoloTile; }
-                    else if (typeTile == 1) { newTile = lvlLeftTile; }
-                    else if (typeTile == 2) { newTile = lvlMidTile; }
-                    else { newTile = lvlRightTile; }
-                    int y = (int)this.transform.position.y;
-                    lvlMap.SetTile(new Vector3Int(i, y, 0), newTile);
+                    int typeTile = fr.topFloor.TypeOfTile(i);
+                    if (typeTile != -1)
+                    {
+                        Tile newTile;
+                        if (typeTile == 0) { newTile = lvlSoloTile; }
+                        else if (typeTile == 1) { newTile = lvlLeftTile; }
+                        else if (typeTile == 2) { newTile = lvlMidTile; }
+                        else { newTile = lvlRightTile; }
+                        int y = (int)this.transform.position.y;
+                        lvlMap.SetTile(new Vector3Int(i, y, 0), newTile);
 
-                    fr.SpawnTraps(i, y);
+                        fr.SpawnTraps(i, y);
+                    }
                 }
             }
         }
+        else
+        {
+            spearCounter--;
+            if (spearCounter < 0) { spearCounter = 0; }
+        }
+
         fr.SetBotFloor();
         
         floorIndY += 3f;

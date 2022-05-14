@@ -1,6 +1,7 @@
 - Need to fix Canvas Scaling for Gray Screen (through script)
+- Need to fix going up when respawning on spear level
+- Spears need to damage Player only by one
 - Need to fix heart so it doesn't reflect
-- Need to fix wine so if multiple wine items consumed consecutively, it resets buff
 - Add vertical cannon on top (permanent) - that just keeps shooting
 - Make pause available when Player is initially falling
 - Need to find dizzy icon for wine buff
@@ -8,7 +9,6 @@
 - Add more difficulty (hazards)
 	- Fire Trap/Hazard - need to add
 	- Disappearing Platforms
-
 - Need to clean up kick
 	- Animation
 	- Make it longer
@@ -28,4 +28,37 @@
 - Hook Buttons up (Play should change stage level to 1)
 - Settings
 
+- Fixed wine so if multiple wine items consumed consecutively, it resets buff
+- Added additional score particle
+- Game UI only shows up when Player hits the ground in intro
+- Added Spear Levels
+- Working on Floating Tiles to go with Spear Levels
 
+Prefabs - Tag - Layer
+Ball Launch Particle - Untagged - Default
+BoxSpawnLevel - Cannon - Default
+BuffItemParticle - Untagged - Default
+Cannon - Cannon - Cannon
+Cannon3Shot Variant - Cannon - Cannon
+CannonBall - CannonBall - Cannon
+Coconut - Item - Items
+CoinParticle - Untagged - Default
+Explosion Particle - Explosion - Default
+FloorIndicator
+GameManager - Untagged - Default
+GemParticle - Untagged - Default
+Gold Coin - Item - Items
+Heart - Untagged - Player
+Jade - Item - Items
+JumpParticle - Untagged - Default
+KickParticle - Untagged - Default
+MapParticle  - Untagged - Default
+MenuTile Vairant - Box - Terrain
+MenuTile - Untagged - Terrain
+Orange - Item - Items
+Player - Player - Player
+Ruby - Item - Items
+ScoreParticle - Untagged - Default
+Shredder - Shredder - Shredder
+Spikes - Untagged - Hazards
+Wine - Item - Items

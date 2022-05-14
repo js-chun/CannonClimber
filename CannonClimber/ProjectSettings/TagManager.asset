@@ -13,6 +13,7 @@ TagManager:
   - Box
   - FloorIndicator
   - Shredder
+  - TileStopper
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - Invincible
   - FloorIndicator
   - Hazards
-  - 
+  - Items
   - 
   - 
   - 
