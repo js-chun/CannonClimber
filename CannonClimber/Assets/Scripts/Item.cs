@@ -97,6 +97,7 @@ public class Item : MonoBehaviour
         if(gm.maxLives < 3)
         {
             gm.maxLives++;
+            FindObjectOfType<InGameUI>().addHeart(gm.maxLives);
         }
     }
 

@@ -7273,7 +7273,7 @@ MonoBehaviour:
   - {fileID: 5583816210126012917}
   - {fileID: 632408123}
   - {fileID: 1343001639}
-  spearRestTime: 4
+  spearRestTime: 2.5
 --- !u!61 &4526282544871356843
 BoxCollider2D:
   m_ObjectHideFlags: 0

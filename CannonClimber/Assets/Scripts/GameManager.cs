@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        maxLives = 2;
         score = 0;
         peakHeight = 0f;
         coconutBuff = 0;

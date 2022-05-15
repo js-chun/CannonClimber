@@ -10,20 +10,17 @@
 	- Disappearing Platforms
 - Need to clean up kick
 	- Animation
-	- Make it longer
-- Add Cannonball Jump mechanic (where if player jumps on top of cannonball, even if hit, doesn't take damage + new double jump(?))
 - Need to put in Player Hit Animations
-- Make user actually take damage from Cannonballs
 - Need to find and add audio
 - Add in destruction animation to tiles being destroyed at the bottom (or water)
 - Pause Function
 	- Go back to menu
 	- Restart
-- If no charge jump, then would need to fix animation (no charge animation)
 - Add How to Play in Intro
 
 - Need to work on menu
 - Settings
+
 
 Prefabs - Tag - Layer
 Ball Launch Particle - Untagged - Default

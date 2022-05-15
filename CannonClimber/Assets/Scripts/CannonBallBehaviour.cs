@@ -28,7 +28,6 @@ public class CannonBallBehaviour : MonoBehaviour
                 collision.gameObject.GetComponent<Rigidbody2D>().velocity += new Vector2(5f,4f);
             }
         }
-
         else if (collision.gameObject.tag == "Block")
         {
             Debug.Log("Kicked");

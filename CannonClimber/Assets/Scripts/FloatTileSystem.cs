@@ -6,7 +6,7 @@ public class FloatTileSystem : MonoBehaviour
     public GameObject[] tiles;
     public GameObject stopper;
     public float speed;
-    private bool movingUp;
+    public bool movingUp;
     public bool completeStop;
 
     private float minY;
@@ -47,7 +47,7 @@ public class FloatTileSystem : MonoBehaviour
             { 
                 if(t.transform.position.y > minY)
                 {
-                    t.transform.position -= new Vector3(0f, speed * Time.deltaTime / 2, 0f);
+                    t.transform.position -= new Vector3(0f, speed * Time.deltaTime * 0.3f, 0f);
                     t.GetComponent<Animator>().SetBool("Moving", true);
                     t.GetComponent<Animator>().SetBool("Up", false);
                 }
