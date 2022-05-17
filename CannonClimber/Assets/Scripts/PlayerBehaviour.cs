@@ -17,6 +17,7 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject kickFx;       //Particle prefab for when user is kicking
     public GameObject jumpFx;       //Particle prefab for when user is jumping
     public GameObject jumpSpwn;     //Where jump particles are instantiated
+    public GameObject jumpAudio;
     private bool kicked;
 
     public float moveSpeed = 4f;     //Move speed of Player
@@ -164,6 +165,7 @@ public class PlayerBehaviour : MonoBehaviour
                     Vector2 jumpFt = new Vector2(0, jumpPower * jumpPerc);
                     rigibody.velocity += jumpFt;
                     Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
+                    Instantiate(jumpAudio, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
                     jumpCount++;
                 }
             }
@@ -185,6 +187,7 @@ public class PlayerBehaviour : MonoBehaviour
                     rigibody.velocity = new Vector2(0, 0);
                     rigibody.velocity += new Vector2(0, jumpPower * 0.6f);
                     Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
+                    Instantiate(jumpAudio, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
                     jumpCount++;
                 }
             }
@@ -216,6 +219,7 @@ public class PlayerBehaviour : MonoBehaviour
                 rigibody.velocity = new Vector2(0, 0);
                 rigibody.velocity += new Vector2(0, jumpPowerAlt);
                 Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
+                Instantiate(jumpAudio, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
                 jumpCount = 1;
             }
         }
@@ -226,6 +230,7 @@ public class PlayerBehaviour : MonoBehaviour
                 rigibody.velocity = new Vector2(0, 0);
                 rigibody.velocity += new Vector2(0, jumpPowerAlt * 0.85f);
                 Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
+                Instantiate(jumpAudio, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
                 jumpCount++;
             }
         }
@@ -270,6 +275,7 @@ public class PlayerBehaviour : MonoBehaviour
                 {
                     gm.coconutBuff--;
                     Instantiate(jumpFx, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
+                    Instantiate(jumpAudio, jumpSpwn.transform.position, Quaternion.identity, transform.parent);
                     anim.SetTrigger("Kick");
                     kicked = true;
                     if (transform.localScale.x < 0)

@@ -4,6 +4,7 @@ public class CannonBallBehaviour : MonoBehaviour
 {
     public float ballSpeed = 2.5f;        //how fast the cannon ball will go
     public GameObject explosionAnim;    //explosion prefab for when it hits
+    public GameObject audioSfx;
 
     void Update()
     {
@@ -13,7 +14,6 @@ public class CannonBallBehaviour : MonoBehaviour
     private void BallMove()
     {
         transform.localPosition -= new Vector3(ballSpeed, 0, 0) * Time.deltaTime;
-        //add rotation?
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -38,7 +38,8 @@ public class CannonBallBehaviour : MonoBehaviour
 
     public void Detonate()
     {
-        GameObject explosion = Instantiate(explosionAnim, this.transform.position, Quaternion.identity, transform.parent);
+        Instantiate(audioSfx, this.transform.position, Quaternion.identity, transform.parent);
+        Instantiate(explosionAnim, this.transform.position, Quaternion.identity, transform.parent);
         Destroy(this.gameObject);
     }
 }

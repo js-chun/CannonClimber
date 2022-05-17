@@ -20,6 +20,7 @@ public class FloatTile : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
                 ftSys.movingUp = true;
+                collision.gameObject.transform.parent = this.transform;
             }
         }
     }
@@ -31,20 +32,7 @@ public class FloatTile : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
                 ftSys.movingUp = false;
-            }
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (parent)
-        {
-            if (collision.gameObject.tag == "Player")
-            {
-                if (!ftSys.completeStop)
-                {
-                    collision.transform.position += new Vector3(0f, ftSys.speed * Time.deltaTime, 0f);
-                }
+                collision.gameObject.transform.parent = null;
             }
         }
     }

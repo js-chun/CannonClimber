@@ -11,6 +11,7 @@ public class ParticleFX : MonoBehaviour
     public bool isScoreFX;              //If it is a +## score particle or not
     public TextMeshProUGUI plusScore;   //Text reference for score particle
 
+
     void Start()
     {
         if (!isScoreFX)
@@ -30,7 +31,7 @@ public class ParticleFX : MonoBehaviour
     private void StartAnim()
     {
         if(anim != null)
-        {
+        {   
             animTime = anim.GetCurrentAnimatorStateInfo(0).length;
             StartCoroutine(DestroyParticleAnim());
         }
@@ -67,4 +68,5 @@ public class ParticleFX : MonoBehaviour
             StartCoroutine(DestroyScore());
         }
     }
+
 }

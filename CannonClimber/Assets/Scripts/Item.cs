@@ -19,6 +19,7 @@ public class Item : MonoBehaviour
     public int itemType;            //Governs item type, 0 = map, 1 = coconut, 2 = orange, 3 = wine, 4 = score
     public int scoreBonus;          //How much points a score item gives
     public float rarity;
+    public GameObject audioSfx;
     
     void Start()
     {
@@ -125,6 +126,10 @@ public class Item : MonoBehaviour
         if(particleFx != null)
         {
             Instantiate(particleFx, this.transform.position, Quaternion.identity);
+            if(audioSfx != null)
+            {
+                Instantiate(audioSfx, this.transform.position, Quaternion.identity);
+            }
         }
     }
 }

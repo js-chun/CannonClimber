@@ -846,6 +846,7 @@ MonoBehaviour:
   kickFx: {fileID: 5298477221382528638, guid: a04612cd3fdbbf64d9df6f60ae3370ef, type: 3}
   jumpFx: {fileID: 6638353455945680815, guid: 1ef9dc533d534b84db85cb0dd87ef0cd, type: 3}
   jumpSpwn: {fileID: 3339060871521577708}
+  jumpAudio: {fileID: 3240717042046018987, guid: 893aff1932445264ea195db986112086, type: 3}
   moveSpeed: 4
   jumpPower: 11
   jumpStart: 0.7

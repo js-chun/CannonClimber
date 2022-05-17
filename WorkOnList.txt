@@ -1,4 +1,6 @@
 - Need to fix Canvas Scaling for Gray Screen (through script)
+- Invincible - Grounded does not ignore CannonBall Top
+- Hearts need to be fixed after respawning
 - Need to fix going up when respawning on spear level
 - Need to fix heart so it doesn't reflect
 - Add vertical cannon on top (permanent) - that just keeps shooting

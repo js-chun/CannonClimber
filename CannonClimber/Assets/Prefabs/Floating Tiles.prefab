@@ -792,7 +792,7 @@ MonoBehaviour:
   - {fileID: 2934355065062158251}
   - {fileID: 2934355066416883325}
   stopper: {fileID: 2934355066216988082}
-  speed: 1.5
+  speed: 3
   movingUp: 0
   completeStop: 0
 --- !u!1 &5976748303270386834

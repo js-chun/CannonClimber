@@ -36,7 +36,7 @@ public class FloatTileSystem : MonoBehaviour
         {
             foreach(GameObject t in tiles) 
             { 
-                t.transform.position += new Vector3(0f, speed*Time.deltaTime, 0f);
+                t.transform.position += new Vector3(0f, speed * Time.deltaTime, 0f);
                 t.GetComponent<Animator>().SetBool("Moving", true);
                 t.GetComponent<Animator>().SetBool("Up", true);
             }

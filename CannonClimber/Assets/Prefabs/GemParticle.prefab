@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7391764750436697394}
   - component: {fileID: 7391764750436697405}
-  - component: {fileID: 7391764750436697404}
   - component: {fileID: 7391764750436697407}
+  - component: {fileID: 7391764750436697404}
   m_Layer: 0
   m_Name: GemParticle
   m_TagString: Untagged
@@ -86,18 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7391764750436697404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7391764750436697406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3d9685b468e2e44bb721463b17b61f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &7391764750436697407
 Animator:
   serializedVersion: 4
@@ -118,3 +106,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7391764750436697404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7391764750436697406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3d9685b468e2e44bb721463b17b61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isScoreFX: 0
+  plusScore: {fileID: 0}
+  hasSound: 0

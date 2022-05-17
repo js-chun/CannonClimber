@@ -118,3 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3d9685b468e2e44bb721463b17b61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isScoreFX: 0
+  plusScore: {fileID: 0}
+  hasSound: 0

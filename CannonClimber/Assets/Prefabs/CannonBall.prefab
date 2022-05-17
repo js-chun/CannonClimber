@@ -244,3 +244,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballSpeed: 3
   explosionAnim: {fileID: 5414907176937968085, guid: 97f1898bd427fff4cb9cef522d04e5c2, type: 3}
+  audioSfx: {fileID: 8930201450062761651, guid: 455d61cada4053c40ad9cb276a25234b, type: 3}
