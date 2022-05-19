@@ -105,18 +105,9 @@ public class InGameUI : MonoBehaviour
 
     private void UpdateRemovedHearts()
     {
-        if (gm.maxLives == 2)
-        {
-            removeHeart(3);
-        }
-        else if (gm.maxLives == 1)
-        {
-            removeHeart(2);
-        }
-        else
-        {
-            removeHeart(1);
-        }
+        if(gm.maxLives < 3) { removeHeart(3); }
+        if(gm.maxLives < 2) { removeHeart(2); }
+        if(gm.maxLives < 1) { removeHeart(1); } 
     }
 
     private void removeHeart(int i)

@@ -125,6 +125,7 @@ MonoBehaviour:
   itemType: 1
   scoreBonus: 0
   rarity: 0.025
+  audioSfx: {fileID: 156788419522251260, guid: c292c65867bdd1141a902648c02098b1, type: 3}
 --- !u!58 &7311656426269883180
 CircleCollider2D:
   m_ObjectHideFlags: 0

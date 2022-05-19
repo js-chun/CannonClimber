@@ -4,7 +4,7 @@ public class GroundCheck : MonoBehaviour
 {
     private PlayerBehaviour player;
     private GameManager gm;
-    public InGameGridUI gameUI;
+    public GameObject landSfx;
 
     void Start()
     { 
@@ -15,7 +15,7 @@ public class GroundCheck : MonoBehaviour
 
     void Update()
     {
-        
+        IgnoreCollisionOnInv();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -31,11 +31,18 @@ public class GroundCheck : MonoBehaviour
                 player.IsGrounded(true);
             }
         }
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!player.GetGroundCheck()) 
+        { 
+            if (collision.gameObject.layer == 10 || collision.gameObject.tag == "Box")
+            {
+                Instantiate(landSfx, this.transform.position, Quaternion.identity, transform.parent); 
+            }
+        }
         if (gm.stageLevel == 2)
         {
             player.GetComponent<Rigidbody2D>().velocity += new Vector2(-1.5f, 5f);
@@ -54,5 +61,17 @@ public class GroundCheck : MonoBehaviour
     {
          player.IsGrounded(false);
         
+    }
+
+    private void IgnoreCollisionOnInv()
+    {
+        if (player.GetInvincible())
+        {
+            Physics.IgnoreLayerCollision(9, 18, true);
+        }
+        else
+        {
+            Physics.IgnoreLayerCollision(9, 18, false);
+        }
     }
 }

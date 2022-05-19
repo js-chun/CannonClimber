@@ -6,6 +6,7 @@ public class TrapBehaviour : MonoBehaviour
     public int trapType;        //Trap type. Spike = 0, Spear = 1
     public float spikeRestTime; //Time between traps
     public Sprite idleSpr;      //Sprite on which trigger is not active
+
     private Animator anim;
 
     private bool spikeActive;    //Spike Trap is active or not

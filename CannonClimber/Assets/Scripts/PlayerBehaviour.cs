@@ -422,6 +422,9 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    //To get if Player is invincible
+    public bool GetInvincible() { return invincible; }
+
     //To get if Player is on ground or not
     public bool GetGroundCheck() { return checkGround; }
 

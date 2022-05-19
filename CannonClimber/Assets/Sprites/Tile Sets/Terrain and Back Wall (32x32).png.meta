@@ -131,10 +131,10 @@ TextureImporter:
       name: Terrain and Back Wall (32x32)_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 288
+        x: 32
+        y: 224
         width: 32
-        height: 32
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,10 +152,10 @@ TextureImporter:
       name: Terrain and Back Wall (32x32)_0
       rect:
         serializedVersion: 2
-        x: 160
-        y: 320
+        x: 64
+        y: 224
         width: 32
-        height: 32
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,6 +186,27 @@ TextureImporter:
       bones: []
       spriteID: 553d6979c3969174caade2236c71a5c6
       internalID: -269970777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain and Back Wall (32x32)_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 32
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43ab3fe0a9278164ba6431c468a5e3a3
+      internalID: -1839203936
       vertices: []
       indices: 
       edges: []
