@@ -15,6 +15,7 @@ public class FloorRandomizer : MonoBehaviour
 
     public GameObject spikes;
     public GameObject boxLevel;
+    public GameObject disappearLevel;
     public GameObject spearLevel;
     public GameObject floatTile;
 
@@ -76,6 +77,11 @@ public class FloorRandomizer : MonoBehaviour
         {
             newBoxLevel.GetComponent<BoxSpawner>().boxMoveLeft = false;
         }
+    }
+
+    public void SpawnDisappearLevel(float locY)
+    {
+        GameObject newBoxLevel = Instantiate(disappearLevel, new Vector2(0f, locY + 1), Quaternion.identity, levelContainer.transform);
     }
 
     public void SpawnSpearLevel(float locY)

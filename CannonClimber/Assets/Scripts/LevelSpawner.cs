@@ -155,7 +155,11 @@ public class LevelSpawner : MonoBehaviour
         fr.RandomFlr();
         if(spearCounter == 0)
         {
-            if (fr.topFloor.moveBoxes)
+            if (fr.topFloor.disappearLevel)
+            {
+                fr.SpawnDisappearLevel((int)this.transform.position.y);
+            }
+            else if (fr.topFloor.moveBoxes)
             {
                 fr.SpawnBoxLevel((int)this.transform.position.y);
             }

@@ -1,5 +1,4 @@
 - Need to fix Canvas Scaling for Gray Screen (through script)
-- Need to fix going up when respawning on spear level (might put a disappearing tile on the middle with button
 - Add Disappearing Platforms
 - Need to fix heart so it doesn't reflect
 - Add vertical cannon on top (permanent) - that just keeps shooting
@@ -8,7 +7,6 @@
 - Reversed directions while buffed?
 - Add more difficulty (hazards)
 	- Fire Trap/Hazard - need to add
-	- Disappearing Platforms
 - Need to clean up kick
 	- Animation
 - Need to put in Player Hit Animations

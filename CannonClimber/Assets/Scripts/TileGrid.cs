@@ -13,6 +13,7 @@ public class TileGrid : ScriptableObject
     public bool boxesLeft;      //if box is moving left
     public bool boxesRight;     //if box is moving right
     public bool spearLevel;
+    public bool disappearLevel;
 
     //checks current TileGrid vs the one above to see if there's no where to jump to (incompatible)
     public bool CantGoUp(TileGrid aboveLevel)

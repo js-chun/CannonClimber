@@ -3,19 +3,19 @@ using System.Collections;
 
 public class SFXPlayer : MonoBehaviour
 {
-    private AudioSource audio;
+    private AudioSource sfx;
     private float localVolume = 0.1f;
 
     private void Awake()
     {
-        audio = GetComponent<AudioSource>();
+        sfx = GetComponent<AudioSource>();
         StartCoroutine(PlaySoundOnce());
     }
 
     private IEnumerator PlaySoundOnce()
     {
-        audio.volume = localVolume;
-        yield return new WaitForSeconds(audio.clip.length);
+        sfx.volume = localVolume;
+        yield return new WaitForSeconds(sfx.clip.length);
         Destroy(this.gameObject);
     }
 }

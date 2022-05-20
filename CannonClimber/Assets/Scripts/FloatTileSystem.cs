@@ -5,10 +5,11 @@ public class FloatTileSystem : MonoBehaviour
 {
     public GameObject[] tiles;
     public GameObject stopper;
+    
     public float speed;
     public bool movingUp;
     public bool completeStop;
-
+    
     private float minY;
 
     // Start is called before the first frame update
