@@ -5,6 +5,9 @@ using UnityEngine;
 public class PauseOverlay : MonoBehaviour
 {
     public GameObject overlay;      //Reference to child under pause overlay (gray overlay)
+    public GameObject restartBtn;
+    public GameObject menuBtn;
+
     private PlayerBehaviour player;
     private Vector2 loc;            //Initial location stored so child stays in place
 
@@ -12,6 +15,9 @@ public class PauseOverlay : MonoBehaviour
     {
         loc = this.GetComponent<RectTransform>().position;
         player = FindObjectOfType<PlayerBehaviour>();
+        Canvas canvas = FindObjectOfType<Canvas>();
+        overlay.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, canvas.GetComponent<RectTransform>().rect.height);
+        overlay.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, canvas.GetComponent<RectTransform>().rect.width);
     }
 
     void Update()
@@ -32,6 +38,12 @@ public class PauseOverlay : MonoBehaviour
 
     //Turns Mask on or off for pauses/spawning
     public void SetMaskOn(bool onOrOff) { overlay.SetActive(onOrOff); }
+
+    public void SetButtonsOn(bool onOrOff)
+    {
+        restartBtn.SetActive(onOrOff);
+        menuBtn.SetActive(onOrOff);
+    }
 
     //Used in GameManager so that it refers to spawned Player after they fall
     public void FindPlayer() { player = FindObjectOfType<PlayerBehaviour>(); }

@@ -1,5 +1,3 @@
-- Need to fix Canvas Scaling for Gray Screen (through script)
-- Add Disappearing Platforms
 - Need to fix heart so it doesn't reflect
 - Add vertical cannon on top (permanent) - that just keeps shooting
 - Make pause available when Player is initially falling
@@ -12,9 +10,6 @@
 - Need to put in Player Hit Animations
 - Need to find and add audio
 - Add in destruction animation to tiles being destroyed at the bottom (or water)
-- Pause Function
-	- Go back to menu
-	- Restart
 - Add How to Play in Intro
 
 - Need to work on menu

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 //Class for controlling the UI banner at the top of the Game
@@ -21,19 +22,11 @@ public class InGameGridUI : MonoBehaviour
 
     void Update()
     {
-        StayOnScreen();
         ShowWineStatus();
         ShowScore();
         ShowCoconut();
         ShowWineStatus();
         ShowFloor();
-    }
-
-    //Keeps banner on screen at the top relevant to Camera
-    private void StayOnScreen()
-    {
-        Vector3 camLoc = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -5f);
-        this.transform.position = camLoc;
     }
 
     //Shows Wine Buff status
@@ -44,11 +37,11 @@ public class InGameGridUI : MonoBehaviour
         {
             hue += Time.deltaTime * 1f;
             if (hue >= 1f) { hue = 0f; }
-            wine.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(hue,1f,1f);
+            wine.GetComponent<Image>().color = Color.HSVToRGB(hue,1f,1f);
         }
         else
         {
-            wine.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(0f,1f,0.1f);
+            wine.GetComponent<Image>().color = Color.HSVToRGB(0f,1f,0.1f);
         }
     }
 

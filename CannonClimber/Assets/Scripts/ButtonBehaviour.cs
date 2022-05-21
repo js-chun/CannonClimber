@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class ButtonBehaviour : MonoBehaviour
 {
     private GameManager gm;
-    public float waitTime;
+    public float waitTime = 1.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +27,13 @@ public class ButtonBehaviour : MonoBehaviour
         StartCoroutine(LoadGame());
     }
 
+    public void PlayGameFromPause()
+    {
+        gm.SetPaused(false);
+        PlayGame();
+    }
+
+
     private IEnumerator LoadGame()
     {
         yield return new WaitForSeconds(waitTime);
@@ -36,6 +43,7 @@ public class ButtonBehaviour : MonoBehaviour
 
     public void GoToMenu()
     {
+        gm.SetPaused(false);
         StartCoroutine(LoadMenu());
     }
 

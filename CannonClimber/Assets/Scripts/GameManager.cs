@@ -102,6 +102,8 @@ public class GameManager : MonoBehaviour
     //Get the maximum height
     public float GetPeakHeight() { return peakHeight; }
 
+    public void SetPaused(bool paused) { pauseGame = paused; }
+
     //If game is paused, stops time and activates pause overlay
     private void PauseGame()
     {
@@ -112,6 +114,7 @@ public class GameManager : MonoBehaviour
             if (pauseOverlay != null)
             {
                 pauseOverlay.SetMaskOn(true);
+                pauseOverlay.SetButtonsOn(true);
             }
         }
         else
@@ -120,8 +123,10 @@ public class GameManager : MonoBehaviour
             if (pauseOverlay != null)
             {
                 pauseOverlay.SetMaskOn(false);
+                pauseOverlay.SetButtonsOn(false);
             }
         }
     }
     
+
 }
