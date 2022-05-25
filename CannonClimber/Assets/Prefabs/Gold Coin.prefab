@@ -125,7 +125,7 @@ MonoBehaviour:
   scoreFx: {fileID: 3819780833365430325, guid: da5e7551faedbfc479c53a9ba0c7e8bd, type: 3}
   itemType: 4
   scoreBonus: 10
-  rarity: 0.13
+  rarity: 0.15
   audioSfx: {fileID: 8853553087360098279, guid: 028e7811ab055f14a9af1ef58cb42112, type: 3}
 --- !u!58 &5993279403919463926
 CircleCollider2D:

@@ -18,6 +18,7 @@ public class FloorRandomizer : MonoBehaviour
     public GameObject disappearLevel;
     public GameObject spearLevel;
     public GameObject floatTile;
+    public GameObject topCannonLevel;
 
     public GameObject levelContainer;
     void Start()
@@ -101,5 +102,10 @@ public class FloorRandomizer : MonoBehaviour
                 Instantiate(spikes, new Vector2(locX, locY), Quaternion.identity, levelContainer.transform);
             }
         }
+    }
+
+    public void TurnOnCannonLevel()
+    {
+        topCannonLevel.SetActive(true);
     }
 }

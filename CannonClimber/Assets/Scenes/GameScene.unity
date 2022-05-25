@@ -752,6 +752,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonTop
       objectReference: {fileID: 0}
+    - target: {fileID: 330046419867062328, guid: cda68e47f8efc0c4dae861201925e88e, type: 3}
+      propertyPath: autoFire
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330046419867062328, guid: cda68e47f8efc0c4dae861201925e88e, type: 3}
+      propertyPath: fireSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c0077cd0ed6dcd64399156d3d02cc2f5, type: 3}
+    - target: {fileID: 330046419867062328, guid: cda68e47f8efc0c4dae861201925e88e, type: 3}
+      propertyPath: readySprite_1
+      value: 
+      objectReference: {fileID: 21300000, guid: 4e8acb692634c3949acc4f6192e4a10d, type: 3}
+    - target: {fileID: 330046419867062328, guid: cda68e47f8efc0c4dae861201925e88e, type: 3}
+      propertyPath: readySprite_2
+      value: 
+      objectReference: {fileID: 21300000, guid: cbd0b5d8eaa99e4488b4506e5f93a488, type: 3}
     - target: {fileID: 330046419867062332, guid: cda68e47f8efc0c4dae861201925e88e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1328,13 +1344,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 957705270}
+  - component: {fileID: 957705271}
   m_Layer: 0
   m_Name: TopCannonLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &957705270
 Transform:
   m_ObjectHideFlags: 0
@@ -1351,6 +1368,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &957705271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957705269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e17a59c1b2b72e44abf5bb4f3ba5231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currLocX: 0
+  speed: 3
 --- !u!1001 &1003366072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2946,6 +2977,7 @@ MonoBehaviour:
   disappearLevel: {fileID: 2949515219495148177, guid: b6fbc4475d74cdb4392767fe7a21a286, type: 3}
   spearLevel: {fileID: 8948709965757965140, guid: aea294958ed5b2c4fbedd79f36d36607, type: 3}
   floatTile: {fileID: 2934355066481605163, guid: 10158d6f29a48d6498b0ba78dbfe2531, type: 3}
+  topCannonLevel: {fileID: 957705269}
   levelContainer: {fileID: 1880588228}
 --- !u!4 &1197322936
 Transform:

@@ -16,6 +16,7 @@ public class CannonBehaviour : MonoBehaviour
     private float hueReady;
     public GameObject LaunchFx;     //launch particle prefab
     private Vector3 loc;
+    public bool autoFire = true;
 
     private int numFired;
     public float cannonPower = 3f;
@@ -34,16 +35,16 @@ public class CannonBehaviour : MonoBehaviour
     void Update()
     {
         MenuPlay();
-        if(gm.stageLevel > 2)
+        if(gm.stageLevel > 2) { Fire(); }
+        if (autoFire)
         {
-            Fire();
+            SetOnOff(true);
         }
     }
 
     //add a color for aggro and about to fire
     private void Fire()
     {
-        anim.SetBool("IsFiring", true);
         anim.speed = fireSpeed;
         if (spRend.sprite == readySprite_1 || spRend.sprite == readySprite_2) 
         {
@@ -63,12 +64,18 @@ public class CannonBehaviour : MonoBehaviour
                 numFired += 1;
                 Instantiate(CannonBall, loc, Quaternion.identity, transform);
                 Instantiate(LaunchFx, loc, Quaternion.identity, transform);
+                SetOnOff(false);
             }
         }
         else
         {
             numFired = 0;
         }
+    }
+
+    public void SetOnOff(bool manual)
+    {
+        anim.SetBool("IsFiring", manual);
     }
 
     private void MenuPlay()

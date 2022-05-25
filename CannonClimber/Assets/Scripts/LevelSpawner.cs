@@ -109,6 +109,8 @@ public class LevelSpawner : MonoBehaviour
             }
             else { AddBoundary(0); }
         }
+
+        if(gm.playerFloors >= 50) { fr.TurnOnCannonLevel(); }
     }
 
     //Adds Background tiles for y height
