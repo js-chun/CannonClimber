@@ -1,5 +1,4 @@
 - Need to fix heart so it doesn't reflect
-- Add vertical cannon on top (permanent) - that just keeps shooting
 - Make pause available when Player is initially falling
 - Need to find dizzy icon for wine buff
 - Reversed directions while buffed?

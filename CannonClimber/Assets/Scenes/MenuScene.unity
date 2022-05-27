@@ -170,6 +170,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 330046419867062328, guid: 6113c09bd9ba1ff43bd20543e97042e3, type: 3}
+      propertyPath: autoFire
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330046419867062328, guid: 6113c09bd9ba1ff43bd20543e97042e3, type: 3}
       propertyPath: cannonPower
       value: 10
       objectReference: {fileID: 0}

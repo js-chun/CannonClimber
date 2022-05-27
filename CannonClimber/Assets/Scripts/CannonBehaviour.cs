@@ -35,7 +35,7 @@ public class CannonBehaviour : MonoBehaviour
     void Update()
     {
         MenuPlay();
-        if(gm.stageLevel > 2) { Fire(); }
+        if(gm.stageLevel > 0) { Fire(); }
         if (autoFire)
         {
             SetOnOff(true);
@@ -88,6 +88,6 @@ public class CannonBehaviour : MonoBehaviour
         yield return new WaitForSeconds(2f);
         GetComponent<Rigidbody2D>().gravityScale = 3f;
         yield return new WaitForSeconds(0.5f);
-        Fire();
+        SetOnOff(true);
     }
 }

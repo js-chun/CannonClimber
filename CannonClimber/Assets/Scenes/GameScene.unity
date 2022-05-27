@@ -667,6 +667,7 @@ MonoBehaviour:
   wine: {fileID: 285935864}
   scoreTxt: {fileID: 1199163417}
   floorTxt: {fileID: 1883857739}
+  inGame: 1
 --- !u!114 &308375968
 MonoBehaviour:
   m_ObjectHideFlags: 0

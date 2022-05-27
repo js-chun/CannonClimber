@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class FloatTileSystem : MonoBehaviour
@@ -12,7 +11,6 @@ public class FloatTileSystem : MonoBehaviour
     
     private float minY;
 
-    // Start is called before the first frame update
     void Start()
     {
         completeStop = false;
@@ -21,7 +19,6 @@ public class FloatTileSystem : MonoBehaviour
         minY = tiles[0].transform.position.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!completeStop)

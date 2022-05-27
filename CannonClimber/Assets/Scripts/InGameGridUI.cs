@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using TMPro;
 
 //Class for controlling the UI banner at the top of the Game
@@ -10,23 +11,33 @@ public class InGameGridUI : MonoBehaviour
     public TextMeshProUGUI cocoTxt;     //Text for Coconut Charges
     public GameObject wine;             //Image of Wine Buff Status
     public TextMeshProUGUI scoreTxt;    //Text for Score
-    public TextMeshProUGUI floorTxt;
+    public TextMeshProUGUI floorTxt;    //Text for Floor Player has hit
+    public TextMeshProUGUI finalTxt;
 
-    private float hue;
+    private float hue;                  //Float to represent hue for wine icon (rainbow color)
+
+    public bool inGame;                 //true = during game, false = post-game
 
     void Start()
     {
         hue = 0f;
         gm = FindObjectOfType<GameManager>();
+        if (!inGame)
+        {
+            ShowFinalCoins();
+        }
     }
 
     void Update()
     {
-        ShowWineStatus();
-        ShowScore();
-        ShowCoconut();
-        ShowWineStatus();
-        ShowFloor();
+        if (inGame)
+        {
+            ShowWineStatus();
+            ShowCoins();
+            ShowCoconut();
+            ShowWineStatus();
+            ShowFloor();
+        }
     }
 
     //Shows Wine Buff status
@@ -50,24 +61,80 @@ public class InGameGridUI : MonoBehaviour
     {
         cocoTxt.text = gm.coconutBuff + "/3";
     }
-    
-    //Updates text with current score
-    private void ShowScore()
+    private string CalcCoins(int num)
     {
-        string x ;
-        if (gm.score < 10) { x = "x000"; }
-        else if (gm.score < 100) { x = "x00"; }
-        else if (gm.score < 1000) { x = "x0"; }
-        else { x = "x"; }
-        scoreTxt.text = x + gm.score;
+        string x = "";
+        if (num < 10) { x = "000"; }
+        else if (num < 100) { x = "00"; }
+        else if (num < 1000) { x = "0"; }
+        return x + num;
     }
 
-    private void ShowFloor()
+    //Updates text with current score
+    private void ShowCoins() { scoreTxt.text = CalcCoins(gm.score); }
+    private string CalcFloor(int num)
     {
-        string x;
-        if (gm.playerFloors < 10) { x = "00"; }
-        else if (gm.playerFloors < 100) { x = "0"; }
-        else { x = ""; }
-        floorTxt.text = x + gm.playerFloors.ToString();
+        string x = "";
+        if (num < 10) { x = "00"; }
+        else if (num < 100) { x = "0"; }
+        return x + num;
+    }
+
+    //Updates text with current floor
+    private void ShowFloor() { floorTxt.text = CalcFloor(gm.playerFloors); }
+
+    private void ShowFinalCoins()
+    {
+        StartCoroutine(FinalCoins());
+    }
+
+    private IEnumerator FinalCoins()
+    {
+        float totalTime;
+        string txt;
+        int val;
+        TextMeshProUGUI go;
+        float t = 0.05f;
+
+        for (int turn = 0; turn < 3; turn++)
+        {
+            totalTime = 0f;
+
+            if (turn == 0)
+            {
+                txt = "TOTAL COINS: ";
+                val = gm.score;
+                go = scoreTxt;
+            }
+            else if (turn == 1)
+            {
+                txt = "FINAL FLOOR: ";
+                val = gm.playerFloors;
+                go = floorTxt;
+            }
+            else
+            {
+                txt = "TOTAL SCORE: ";
+                val = gm.score + 10 * gm.playerFloors;
+                go = finalTxt;
+            }
+
+            while (totalTime <= 1f)
+            {
+                yield return new WaitForSeconds(t);
+                totalTime += t;
+                go.text = txt + CalcCoins(Random.Range(0, 10000));
+            }
+            yield return new WaitForSeconds(t);
+            go.text = txt + CalcCoins(val);
+            for (int i = 0; i < 3; i++)
+            {
+                yield return new WaitForSeconds(t);
+                go.color = new Color(1f, 1f, 1f, 0f);
+                yield return new WaitForSeconds(t);
+                go.color = new Color(1f, 1f, 1f, 1f);
+            }
+        }
+
     }
 }
