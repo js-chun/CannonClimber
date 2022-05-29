@@ -115,7 +115,7 @@ public class Item : MonoBehaviour
         if(scoreFx != null)
         {
             GameObject fx = Instantiate(scoreFx, this.transform.position, Quaternion.identity);
-            fx.GetComponent<ParticleFX>().setScore(scoreBonus);
+            fx.GetComponent<ParticleFX>().SetScore(scoreBonus);
         }
     }
 

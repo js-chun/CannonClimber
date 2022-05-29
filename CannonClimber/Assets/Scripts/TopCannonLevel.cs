@@ -7,7 +7,9 @@ public class TopCannonLevel : MonoBehaviour
     private CannonBehaviour cannon;
     private bool isMoving;
     public float currLocX;
-    public float speed = 1f;
+    public float speed = 7f;
+    public float waitTime = 4f;
+    private float shootPerc = 0.7f;
     private float currSpeed;
     // Start is called before the first frame update
     void Start()
@@ -66,13 +68,17 @@ public class TopCannonLevel : MonoBehaviour
 
     private IEnumerator StopMoving()
     {
-        if(Random.Range(0f,1f) > 0.5f)
+        currSpeed = 0;
+        isMoving = false;
+        if (Random.Range(0f,1f) < shootPerc)
         {
             cannon.SetOnOff(true);
+            yield return new WaitForSeconds(waitTime);
         }
-        currSpeed = 0;
-        yield return new WaitForSeconds(4f);
-        isMoving = false;
+        else
+        {
+            yield return new WaitForSeconds(waitTime/2);
+        }
         currSpeed = speed;
     }
 }

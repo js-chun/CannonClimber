@@ -11,7 +11,7 @@ public class LevelSpawner : MonoBehaviour
 
     private bool lvlActive;         //Activates the levels once initial map is consumed
 
-    public int spearCounter;
+    public int spearCounter;        //
 
     public Tilemap lvlMap;          //Level TileMap
     public Tile lvlSoloTile;        //Level Tile - Single
@@ -33,6 +33,8 @@ public class LevelSpawner : MonoBehaviour
     public GameObject fIndContainer;    //Container to add instances of floor indicators
     public GameObject floorInd;         //Prefab for spawning floor indicators
     private float floorIndY;            //float to keep track of Y coordinate for floor indicator
+
+    private readonly int topCannonFloor = 20;
 
     public GameObject itemContainer;
     public GameObject scoreOne;     //Score Level 1 Item
@@ -110,7 +112,7 @@ public class LevelSpawner : MonoBehaviour
             else { AddBoundary(0); }
         }
 
-        if(gm.playerFloors >= 50) { fr.TurnOnCannonLevel(); }
+        if(gm.playerFloors >= topCannonFloor) { fr.TurnOnCannonLevel(); }
     }
 
     //Adds Background tiles for y height
@@ -202,6 +204,7 @@ public class LevelSpawner : MonoBehaviour
         fI.GetComponent<FloorIndicator>().floorNumber = ++gm.createdFloors;
     }
 
+    //Adds items randomly to the levels
     private void AddItems(float y)
     {
         

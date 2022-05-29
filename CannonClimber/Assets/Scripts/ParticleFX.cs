@@ -23,7 +23,7 @@ public class ParticleFX : MonoBehaviour
 
     void Update()
     {
-        if (isScoreFX) { moveUp(); }
+        if (isScoreFX) { MoveUp(); }
     }
 
 
@@ -51,7 +51,7 @@ public class ParticleFX : MonoBehaviour
     }
 
     //Moves score particle up
-    private void moveUp()
+    private void MoveUp()
     {
         if (isScoreFX)
         {
@@ -60,7 +60,7 @@ public class ParticleFX : MonoBehaviour
     }
 
     //Called from Item class to set score number and destory score object when item is consumed
-    public void setScore(int score)
+    public void SetScore(int score)
     {
         if(plusScore != null)
         {

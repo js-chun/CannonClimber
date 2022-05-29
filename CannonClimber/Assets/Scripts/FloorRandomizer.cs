@@ -23,6 +23,9 @@ public class FloorRandomizer : MonoBehaviour
 
     public GameObject levelContainer;   //Container for levels to be instantiated in for organization
 
+    private readonly int trapFloor = 30;
+    private readonly int cannonFloor = 45;
+
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
@@ -57,7 +60,7 @@ public class FloorRandomizer : MonoBehaviour
     {
         GameObject can = cannon;
 
-        if (gm.createdFloors > 45){
+        if (gm.createdFloors > cannonFloor){
             int a = Random.Range(0, 2);
             if (a == 0) { can = cannon; }
             else if (a == 1) { can = triCannon; }
@@ -109,7 +112,7 @@ public class FloorRandomizer : MonoBehaviour
     //Spawns random spikes
     public void SpawnTraps(float locX, float locY)
     {
-        if(gm.createdFloors > 30)
+        if(gm.createdFloors > trapFloor)
         {
             float a = Random.Range(0f, 1f);
             if (a < 0.2f)

@@ -121,8 +121,8 @@ GameObject:
   - component: {fileID: 7407634343731111119}
   - component: {fileID: 7407634343731111112}
   - component: {fileID: 7407634343731111113}
-  m_Layer: 7
-  m_Name: CannonBall
+  m_Layer: 19
+  m_Name: CannonBallVert
   m_TagString: CannonBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aa8132c9a44216544bcd29230ce61772, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1a86b9950eaa5374dacad86a292d39ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c510d133f16ca4a4dadb31e021e45cd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballSpeed: 3
+  ballSpeed: 5
   addScore: 15
   explosionAnim: {fileID: 5414907176937968085, guid: 97f1898bd427fff4cb9cef522d04e5c2, type: 3}
   audioSfx: {fileID: 8930201450062761651, guid: 455d61cada4053c40ad9cb276a25234b, type: 3}

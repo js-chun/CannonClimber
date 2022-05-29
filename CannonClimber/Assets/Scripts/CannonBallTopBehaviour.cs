@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CannonBallTopBehaviour : MonoBehaviour
 {
     private CannonBallBehaviour cb;
+    public GameObject scoreFx;
+    public int addScore;
 
     void Start()
     {
-        cb = GetComponentInParent<CannonBallBehaviour>();  
+        cb = GetComponentInParent<CannonBallBehaviour>();
+        addScore = 5;
     }
 
     //private void OnCollisionEnter2D(Collision2D collision)
@@ -27,10 +28,12 @@ public class CannonBallTopBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Grounded")
         {
-            Debug.Log("Top");
             FindObjectOfType<InGameUI>().CantTakeDam();
             collision.gameObject.GetComponentInParent<PlayerBehaviour>().jumpCount = 0;
             collision.gameObject.GetComponentInParent<Rigidbody2D>().velocity += new Vector2(0, 10f);
+            FindObjectOfType<GameManager>().score += addScore;
+            GameObject scoreEffect = Instantiate(scoreFx, this.transform.position, Quaternion.identity);
+            scoreEffect.GetComponent<ParticleFX>().SetScore(addScore);
             cb.Detonate();
         }
     }
